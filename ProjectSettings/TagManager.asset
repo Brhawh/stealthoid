@@ -13,9 +13,9 @@ TagManager:
   - UI
   - 
   - 
-  - 
-  - 
-  - 
+  - LightSource
+  - LightObstacle
+  - LightAmbiance
   - 
   - 
   - 
