@@ -64,6 +64,7 @@ public class EnemyPatrolAI : MonoBehaviour {
 
 		if (CheckForPlayer()) {
 			currentAIState = EnemyAIState.Chase;
+			Debug.Log ("State is now set to chasing.");
 		}
 	}
 
@@ -90,7 +91,8 @@ public class EnemyPatrolAI : MonoBehaviour {
 			RaycastHit2D hit = Physics2D.Raycast (transform.position, rayDirection, rayDistance);
 
 			if (hit.collider != null) {
-				Debug.DrawRay (transform.position, hit.point - new Vector2 (transform.position.x, transform.position.y), Color.green);	
+				Debug.DrawRay (transform.position, hit.point - new Vector2 (transform.position.x, transform.position.y), Color.green);
+				Debug.Log ("Player found");
 				return hit.collider.gameObject.name == playerObjectName;
 			} else {
 				Debug.DrawRay (transform.position, rayDirection * rayDistance, Color.red);
