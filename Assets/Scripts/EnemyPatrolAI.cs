@@ -22,6 +22,8 @@ public class EnemyPatrolAI : MonoBehaviour {
 	private float rayDistance = 170;
 	private string playerObjectName = "Player";
 
+	private float totalAngleRotatedBy = 0;
+
 	// Use this for initialization
 	void Start () {
 		currentPatrolPointTarget = patrolPoints [0];
@@ -39,7 +41,7 @@ public class EnemyPatrolAI : MonoBehaviour {
 			UpdateChasingEnemy ();
 			break;
 		case EnemyAIState.Search:
-			UpdateSearchingEnemy ();
+			UpdateSearchingEnemy (Time.deltaTime);
 			break;
 		}
 	}
@@ -64,7 +66,6 @@ public class EnemyPatrolAI : MonoBehaviour {
 
 		if (CheckForPlayer()) {
 			currentAIState = EnemyAIState.Chase;
-			Debug.Log ("State is now set to chasing.");
 		}
 	}
 
@@ -77,12 +78,23 @@ public class EnemyPatrolAI : MonoBehaviour {
 		transform.position += transform.up * speed * Time.deltaTime;
 
 		if (!CheckForPlayer ()) {
-			currentAIState = EnemyAIState.Patrol;
+			currentAIState = EnemyAIState.Search;
 		}
 	}
 
-	void UpdateSearchingEnemy() {
-		Debug.Log ("Searching for Player");
+	void UpdateSearchingEnemy(float deltaTime) {
+		var angle = 45f * deltaTime;
+		totalAngleRotatedBy += angle;
+
+		transform.Rotate (0f, 0f, angle);
+
+		if (CheckForPlayer ()) {
+			totalAngleRotatedBy = 0;
+			currentAIState = EnemyAIState.Chase;
+		} else if(totalAngleRotatedBy / 360f > 1f) {
+			totalAngleRotatedBy = 0;
+			currentAIState = EnemyAIState.Patrol;
+		}
 	}
 
 	bool CheckForPlayer() {
@@ -92,7 +104,6 @@ public class EnemyPatrolAI : MonoBehaviour {
 
 			if (hit.collider != null) {
 				Debug.DrawRay (transform.position, hit.point - new Vector2 (transform.position.x, transform.position.y), Color.green);
-				Debug.Log ("Player found");
 				return hit.collider.gameObject.name == playerObjectName;
 			} else {
 				Debug.DrawRay (transform.position, rayDirection * rayDistance, Color.red);
