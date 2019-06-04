@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/spot.png-36b4dfbff4efeea17ec3137d266ffc4a.stex"
+path="res://.import/room_mask.png-cf70b2f9f5d8f4a9c7cf6ccc3bbad5ce.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://spot.png"
-dest_files=[ "res://.import/spot.png-36b4dfbff4efeea17ec3137d266ffc4a.stex" ]
+source_file="res://sprites/lighting/room_mask.png"
+dest_files=[ "res://.import/room_mask.png-cf70b2f9f5d8f4a9c7cf6ccc3bbad5ce.stex" ]
 
 [params]
 
