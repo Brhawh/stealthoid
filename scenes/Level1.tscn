@@ -110,9 +110,16 @@ shape = SubResource( 5 )
 [node name="LeverArea2D" type="Area2D" parent="."]
 position = Vector2( 880, 112 )
 script = ExtResource( 8 )
+gates = [ NodePath("../GateArea2D"), NodePath("../GateArea2D2") ]
 
 [node name="CollisionLever" type="CollisionShape2D" parent="LeverArea2D"]
 shape = SubResource( 6 )
+
+[node name="GateArea2D" type="Area2D" parent="."]
+position = Vector2( 976, 240 )
+
+[node name="GateArea2D2" type="Area2D" parent="."]
+position = Vector2( 976, 272 )
 [connection signal="body_entered" from="Door1Area2D" to="Door1Area2D" method="_on_Area2D_body_entered"]
 [connection signal="body_entered" from="Door2Area2D" to="Door2Area2D" method="_on_Area2D_body_entered"]
 [connection signal="body_entered" from="LeverArea2D" to="LeverArea2D" method="_on_LeverArea2D_body_entered"]
