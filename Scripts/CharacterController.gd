@@ -1,6 +1,7 @@
 extends KinematicBody2D
 
 export (int) var speed = 200
+var lightLevel = 0
 
 var velocity = Vector2()
 
@@ -20,7 +21,14 @@ func get_input():
 func _physics_process(delta):
 	get_input()
 	velocity = move_and_slide(velocity)
-	
 
 func Door(var otherDoor, var offset):
 	position.y = get_node(otherDoor).get_position().y + offset 
+
+func _on_EnemyTorchLight_body_entered(body):
+	if body == self:
+		lightLevel = 1
+
+func _on_EnemyTorchLight_body_exited(body):
+	if body == self:
+		lightLevel = 0

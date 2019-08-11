@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=2]
+[gd_scene load_steps=19 format=2]
 
 [ext_resource path="res://Scripts/Camera.gd" type="Script" id=1]
 [ext_resource path="res://sprites/icon.png" type="Texture" id=2]
@@ -9,14 +9,15 @@
 [ext_resource path="res://Scripts/TileMap.gd" type="Script" id=7]
 [ext_resource path="res://Scripts/CompletionDoor.gd" type="Script" id=8]
 [ext_resource path="res://Scripts/LeverArea2D.gd" type="Script" id=9]
+[ext_resource path="res://Scripts/RotatingEnemyController.gd" type="Script" id=10]
 
-[sub_resource type="CanvasItemMaterial" id=2]
+[sub_resource type="CanvasItemMaterial" id=1]
 light_mode = 2
 
-[sub_resource type="RectangleShape2D" id=3]
+[sub_resource type="RectangleShape2D" id=2]
 extents = Vector2( 32.0145, 31.8105 )
 
-[sub_resource type="GDScript" id=4]
+[sub_resource type="GDScript" id=3]
 script/source = "extends Sprite
 
 # Declare member variables here. Examples:
@@ -32,14 +33,20 @@ func _ready():
 #	pass
 "
 
-[sub_resource type="ConvexPolygonShape2D" id=5]
+[sub_resource type="ConvexPolygonShape2D" id=4]
 points = PoolVector2Array( 0, -16, 16, 0, 0, 16, -16, 0 )
 
-[sub_resource type="RectangleShape2D" id=6]
+[sub_resource type="RectangleShape2D" id=5]
 extents = Vector2( 16.1165, 15.8638 )
 
-[sub_resource type="RectangleShape2D" id=7]
+[sub_resource type="RectangleShape2D" id=6]
 extents = Vector2( 15.9327, 15.9285 )
+
+[sub_resource type="ConvexPolygonShape2D" id=7]
+points = PoolVector2Array( 0, 0, 103.7, -438.1, -105.85, -437.15 )
+
+[sub_resource type="ConvexPolygonShape2D" id=8]
+points = PoolVector2Array( 0, 0, 500, 200, 500, -200 )
 
 [node name="Node2D" type="Node2D"]
 script = ExtResource( 1 )
@@ -48,7 +55,8 @@ script = ExtResource( 1 )
 color = Color( 0.27451, 0.27451, 0.27451, 1 )
 
 [node name="Sprite" type="Sprite" parent="."]
-material = SubResource( 2 )
+editor/display_folded = true
+material = SubResource( 1 )
 position = Vector2( 400, 500 )
 z_index = 2
 texture = ExtResource( 2 )
@@ -56,7 +64,7 @@ texture = ExtResource( 2 )
 [node name="Area2D" type="Area2D" parent="Sprite"]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Sprite/Area2D"]
-shape = SubResource( 3 )
+shape = SubResource( 2 )
 
 [node name="Character" type="KinematicBody2D" parent="."]
 position = Vector2( 48, 303.496 )
@@ -65,7 +73,7 @@ script = ExtResource( 3 )
 [node name="PlayerSprite" type="Sprite" parent="Character"]
 z_index = 2
 texture = ExtResource( 4 )
-script = SubResource( 4 )
+script = SubResource( 3 )
 
 [node name="Light2D" type="Light2D" parent="Character"]
 rotation = 1.5708
@@ -76,7 +84,7 @@ shadow_enabled = true
 shadow_color = Color( 1, 0, 0, 0 )
 
 [node name="PlayerCollisionShape2D" type="CollisionShape2D" parent="Character"]
-shape = SubResource( 5 )
+shape = SubResource( 4 )
 
 [node name="Camera2D" type="Camera2D" parent="Character"]
 current = true
@@ -97,6 +105,7 @@ tile_data = PoolIntArray( 0, 4, 0, 1, 4, 0, 2, 3, 0, 3, 3, 0, 4, 3, 0, 5, 2, 0, 
 script = ExtResource( 7 )
 
 [node name="Door1Area2D" type="Area2D" parent="."]
+editor/display_folded = true
 position = Vector2( 272, 464 )
 script = ExtResource( 8 )
 otherDoor = NodePath("../Door2Area2D")
@@ -104,9 +113,10 @@ offset = -38
 
 [node name="CollisionDoor1" type="CollisionShape2D" parent="Door1Area2D"]
 scale = Vector2( 1.1, 1.1 )
-shape = SubResource( 6 )
+shape = SubResource( 5 )
 
 [node name="Door2Area2D" type="Area2D" parent="."]
+editor/display_folded = true
 position = Vector2( 272, 112 )
 script = ExtResource( 8 )
 otherDoor = NodePath("../Door1Area2D")
@@ -114,21 +124,88 @@ offset = 38
 
 [node name="CollisionDoor2" type="CollisionShape2D" parent="Door2Area2D"]
 scale = Vector2( 1.1, 1.1 )
-shape = SubResource( 6 )
+shape = SubResource( 5 )
 
 [node name="LeverArea2D" type="Area2D" parent="."]
+editor/display_folded = true
 position = Vector2( 880, 112 )
 script = ExtResource( 9 )
 gates = [ NodePath("../GateArea2D"), NodePath("../GateArea2D2") ]
 
 [node name="CollisionLever" type="CollisionShape2D" parent="LeverArea2D"]
-shape = SubResource( 7 )
+shape = SubResource( 6 )
 
 [node name="GateArea2D" type="Position2D" parent="."]
 position = Vector2( 976, 240 )
 
 [node name="GateArea2D2" type="Position2D" parent="."]
 position = Vector2( 976, 272 )
+
+[node name="Enemy" type="KinematicBody2D" parent="."]
+position = Vector2( 619.198, 318.769 )
+script = ExtResource( 10 )
+
+[node name="EnemySprite" type="Sprite" parent="Enemy"]
+z_index = 2
+texture = ExtResource( 4 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="EnemyTorchLight" type="Area2D" parent="Enemy"]
+position = Vector2( 0.902466, 0.902466 )
+rotation = 1.5708
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Light2D" type="Light2D" parent="Enemy/EnemyTorchLight"]
+position = Vector2( -0.902435, 0.902466 )
+scale = Vector2( 0.6, 0.8 )
+texture = ExtResource( 5 )
+offset = Vector2( 0, -35 )
+shadow_enabled = true
+shadow_color = Color( 1, 0, 0, 0 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Enemy/EnemyTorchLight"]
+shape = SubResource( 7 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="PlayerCollisionShape2D" type="CollisionShape2D" parent="Enemy"]
+shape = SubResource( 4 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Camera2D" type="Camera2D" parent="Enemy"]
+position = Vector2( 2, 0 )
+current = true
+zoom = Vector2( 0.75, 0.75 )
+drag_margin_h_enabled = false
+drag_margin_v_enabled = false
+smoothing_enabled = true
+drag_margin_left = 0.0
+drag_margin_top = 0.0
+drag_margin_right = 0.0
+drag_margin_bottom = 0.0
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="EnemyViewRadius" type="Area2D" parent="Enemy"]
+visible = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Enemy/EnemyViewRadius"]
+shape = SubResource( 8 )
 [connection signal="body_entered" from="Door1Area2D" to="Door1Area2D" method="_on_Area2D_body_entered"]
 [connection signal="body_entered" from="Door2Area2D" to="Door2Area2D" method="_on_Area2D_body_entered"]
 [connection signal="body_entered" from="LeverArea2D" to="LeverArea2D" method="_on_LeverArea2D_body_entered"]
+[connection signal="body_entered" from="Enemy/EnemyTorchLight" to="Character" method="_on_EnemyTorchLight_body_entered"]
+[connection signal="body_exited" from="Enemy/EnemyTorchLight" to="Character" method="_on_EnemyTorchLight_body_exited"]
+[connection signal="body_entered" from="Enemy/EnemyViewRadius" to="Enemy" method="_on_EnemyViewRadius_body_entered"]
+[connection signal="body_exited" from="Enemy/EnemyViewRadius" to="Enemy" method="_on_EnemyViewRadius_body_exited"]
