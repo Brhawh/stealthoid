@@ -6,7 +6,6 @@ var lightLevel = 0
 var velocity = Vector2()
 
 func get_input():
-	look_at(get_global_mouse_position())
 	velocity = Vector2()
 	if Input.is_action_pressed('right'):
 		velocity.x += 1
@@ -17,6 +16,8 @@ func get_input():
 	if Input.is_action_pressed('up'):
 		velocity.y -= 1
 	velocity = velocity.normalized() * speed
+	if velocity.x != 0 or velocity.y != 0:
+		rotation = velocity.angle()
 
 func _physics_process(delta):
 	get_input()
