@@ -35,7 +35,6 @@ func _physics_process(delta):
 func detect_target():
 	hitPos = []
 	var space_state = get_world_2d().direct_space_state
-	print(target.name)
 	var target_extents = target.get_node("PlayerCollisionShape2D").shape.points
 	target_extents.append(target.position)
 	for pos in target_extents:
