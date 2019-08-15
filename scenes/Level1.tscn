@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=2]
+[gd_scene load_steps=22 format=2]
 
 [ext_resource path="res://Scripts/Camera.gd" type="Script" id=1]
 [ext_resource path="res://sprites/Tiles.tres" type="TileSet" id=2]
@@ -9,8 +9,9 @@
 [ext_resource path="res://Scripts/CompletionDoor.gd" type="Script" id=7]
 [ext_resource path="res://Scripts/LeverArea2D.gd" type="Script" id=8]
 [ext_resource path="res://Scripts/RotatingEnemyController.gd" type="Script" id=9]
-[ext_resource path="res://sprites/boogermonsterRed.png" type="Texture" id=10]
-[ext_resource path="res://sprites/lighting/light_cone.png" type="Texture" id=11]
+[ext_resource path="res://Scripts/RotateToAngle.gd" type="Script" id=10]
+[ext_resource path="res://sprites/boogermonsterRed.png" type="Texture" id=11]
+[ext_resource path="res://sprites/lighting/light_cone.png" type="Texture" id=12]
 
 [sub_resource type="CanvasItemMaterial" id=1]
 
@@ -143,9 +144,15 @@ position = Vector2( 687.284, 347.71 )
 z_as_relative = false
 script = ExtResource( 9 )
 
+[node name="Rotator" type="Node2D" parent="Enemy"]
+position = Vector2( -687.284, -347.71 )
+script = ExtResource( 10 )
+rotationAngles = [ 90.0, 180.0 ]
+rotationSpeed = 50.0
+
 [node name="EnemySprite" type="Sprite" parent="Enemy"]
 rotation = -1.5708
-texture = ExtResource( 10 )
+texture = ExtResource( 11 )
 __meta__ = {
 "_edit_lock_": true
 }
@@ -162,7 +169,7 @@ __meta__ = {
 light_mask = 3
 position = Vector2( -0.902435, 0.902466 )
 scale = Vector2( 0.6, 0.8 )
-texture = ExtResource( 11 )
+texture = ExtResource( 12 )
 offset = Vector2( 0, -35 )
 energy = 2.77
 shadow_enabled = true

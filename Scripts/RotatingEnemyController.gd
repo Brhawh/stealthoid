@@ -1,20 +1,11 @@
 extends KinematicBody2D
 
-var maxWaitTime = 5
-var facingRight = true
-var rotationSpeed = 30
-var currentWaitTime = 0
-var degToRotateEachTime = 180
-var currentRotation = 0
+onready var rotator = preload("RotateToAngle.gd").new()
 
 # PlayerDetection
 var target
 var hitPos
 var laserColour = Color(1.0, .329, .298)
-
-# Called when the node enters the scene tree for the first time.
-func _ready():
-	currentWaitTime = maxWaitTime
 	
 func _draw():
 	if target:
@@ -24,11 +15,6 @@ func _draw():
 
 func _physics_process(delta):
 	update()
-	if currentWaitTime > 0:
-			currentWaitTime -= delta
-	elif currentWaitTime <= 0:
-		turnToFaceOppositeDirection(delta)
-		
 	if target:
 		detect_target()
 	
@@ -45,21 +31,6 @@ func detect_target():
 				hitPos.append(result.position)
 				if target.lightLevel > 0:
 					print("Target Spotted")
-	
-func turnToFaceOppositeDirection(delta):
-	var degreesToRotate = rotationSpeed * delta
-	rotation_degrees += degreesToRotate
-	currentRotation += degreesToRotate
-	if currentRotation > degToRotateEachTime:
-		currentRotation = 0
-		if facingRight:
-			rotation_degrees = 180
-			facingRight = false
-		else: 
-			rotation_degrees = 0
-			facingRight = true
-		currentWaitTime = maxWaitTime
-		print("waiting")
 
 func _on_EnemyViewRadius_body_entered(body):
 	if body.name == "Character":
