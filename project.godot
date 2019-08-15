@@ -16,7 +16,7 @@ _global_script_class_icons={
 [application]
 
 config/name="SuperStealthyWealthyGame"
-run/main_scene="res://scenes/Level1.tscn"
+run/main_scene="res://scenes/Hub.tscn"
 config/icon="res://sprites/icon.png"
 
 [input]
