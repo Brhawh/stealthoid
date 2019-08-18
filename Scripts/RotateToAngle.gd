@@ -33,8 +33,10 @@ func rotateToAngle(delta, rotationTarget, shouldRotateClockwise):
 	var parentAngle = get_parent().rotation_degrees
 	var angleToRotate = rotationSpeed * delta
 	
-	updateCurrentAngle(parentAngle, angleToRotate, shouldRotateClockwise)
-	updateTargetAngle(parentAngle, angleToRotate, rotationTarget)
+	parentAngle = updateCurrentAngle(parentAngle, angleToRotate, shouldRotateClockwise)
+	
+	if abs(parentAngle + angleToRotate - rotationTarget) < angleToRotate:
+		updateTargetAngle(parentAngle, rotationTarget)
 		
 	get_parent().rotation_degrees = parentAngle
 	
@@ -47,14 +49,14 @@ func updateCurrentAngle(currentAngle, angleToRotate, shouldRotateClockwise):
 		currentAngle -= angleToRotate
 		if currentAngle < 0:
 			currentAngle = DEGREES_IN_CIRCLE - fmod(abs(currentAngle), DEGREES_IN_CIRCLE)
+	return currentAngle
 
-func updateTargetAngle(parentAngle, angleToRotate, rotationTarget):
-	if abs(parentAngle + angleToRotate - rotationTarget) < angleToRotate:
-		parentAngle = rotationTarget
-		if currentTargetIndex < rotationAngles.size() - 1:
-			currentTargetIndex += 1
-		elif repeat:
-			currentTargetIndex = 0
-		else:
-			currentTargetIndex = -1
-			targetAngle = null
+func updateTargetAngle(parentAngle, rotationTarget):
+	parentAngle = rotationTarget
+	if currentTargetIndex < rotationAngles.size() - 1:
+		currentTargetIndex += 1
+	elif repeat:
+		currentTargetIndex = 0
+	else:
+		currentTargetIndex = -1
+		targetAngle = null

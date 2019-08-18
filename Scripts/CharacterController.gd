@@ -25,11 +25,3 @@ func _physics_process(delta):
 
 func Door(var otherDoor, var offset):
 	position.y = get_node(otherDoor).get_position().y + offset 
-
-func _on_EnemyTorchLight_body_entered(body):
-	if body == self:
-		lightLevel = 1
-
-func _on_EnemyTorchLight_body_exited(body):
-	if body == self:
-		lightLevel = 0
