@@ -23,7 +23,6 @@ func _physics_process(delta):
 			playerSpotted = true
 		else:
 			playerSpotted = false
-		print(playerSpotted)
 
 func _on_EnemyViewRadius_body_entered(body):
 	if body.name == "Character":

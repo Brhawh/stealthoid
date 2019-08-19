@@ -151,8 +151,8 @@ position = Vector2( 976, 272 )
 
 [node name="Enemy" type="KinematicBody2D" parent="."]
 modulate = Color( 0.215686, 0.215686, 0.215686, 1 )
-position = Vector2( 531.773, 417.042 )
-rotation = 3.14159
+position = Vector2( 531.773, 409.676 )
+rotation = 3.72977
 z_as_relative = false
 script = ExtResource( 9 )
 
@@ -223,12 +223,6 @@ __meta__ = {
 "_edit_lock_": true
 }
 targetPath = NodePath("../../Character")
-
-[node name="RayCast2D" type="RayCast2D" parent="Enemy/Detector"]
-enabled = true
-__meta__ = {
-"_edit_lock_": true
-}
 [connection signal="body_entered" from="Door1Area2D" to="Door1Area2D" method="_on_Area2D_body_entered"]
 [connection signal="body_entered" from="Door2Area2D" to="Door2Area2D" method="_on_Area2D_body_entered"]
 [connection signal="body_entered" from="LeverArea2D" to="LeverArea2D" method="_on_LeverArea2D_body_entered"]

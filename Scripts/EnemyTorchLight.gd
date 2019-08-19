@@ -1,29 +1,30 @@
 extends Area2D
 
-# Declare member variables here. Examples:
-# var a = 2
-# var b = "text"
+var targetsInRange = []
 
-# Called when the node enters the scene tree for the first time.
-func _ready():
-	pass # Replace with function body.
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-#func _process(delta):
-#	pass
-
+func _physics_process(delta):
+	for target in targetsInRange:
+		var hitPos = []
+		var target_extents = get_node("../Detector").getCollisionShape2DExtentsOfTarget(target)
+		var spaceState = get_world_2d().direct_space_state
+		for pos in target_extents:
+			var result = spaceState.intersect_ray(global_position, target.global_position + pos, [get_parent()])
+			if result:
+				if result.collider.name == target.name:
+					hitPos.append(result.collider.position)
+		if hitPos.empty():
+			target.lightLevel = 0
+		else:
+			target.lightLevel = 1
 
 func _on_EnemyTorchLight_body_entered(body):
-	var space_state = get_parent().get_world_2d().direct_space_state
-	var result = space_state.intersect_ray(get_parent().position, body.position, [get_parent()], get_parent().collision_mask)
-	if result && result.collider.name == "Character":
-		body.lightLevel = 1
-		print("LightLevel increased")
+	if not body.get("lightLevel") == null:
+		targetsInRange.append(body)
 
 
 func _on_EnemyTorchLight_body_exited(body):
-	var space_state = get_parent().get_world_2d().direct_space_state
-	var result = space_state.intersect_ray(get_parent().position, body.position, [get_parent()], get_parent().collision_mask)
-	if result && result.collider.name == "Character":
+	if not body.get("lightLevel") == null:
+		var idx = targetsInRange.find(body)
 		body.lightLevel = 0
-		print("LightLevel decreased")
+		targetsInRange.remove(idx)
+	
