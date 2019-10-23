@@ -52,7 +52,7 @@ texture = ExtResource( 4 )
 script = SubResource( 1 )
 
 [node name="PlayerCollisionShape2D" type="CollisionShape2D" parent="Character"]
-scale = Vector2( -0.22, 1 )
+rotation = 3.14159
 shape = SubResource( 2 )
 
 [node name="Camera2D" type="Camera2D" parent="Character"]

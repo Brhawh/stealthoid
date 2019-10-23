@@ -100,7 +100,7 @@ __meta__ = {
 
 [node name="Camera2D" type="Camera2D" parent="Character"]
 current = true
-zoom = Vector2( 0.75, 0.75 )
+zoom = Vector2( 0.8, 0.8 )
 drag_margin_h_enabled = false
 drag_margin_v_enabled = false
 smoothing_enabled = true
@@ -159,9 +159,7 @@ script = ExtResource( 9 )
 [node name="Rotator" type="Node2D" parent="Enemy"]
 position = Vector2( -687.284, -347.71 )
 script = ExtResource( 10 )
-rotationAngles = [ 180.0, 90.0, 270.0, 180.0, 359.0 ]
 rotationSpeed = 50.0
-repeat = true
 
 [node name="EnemySprite" type="Sprite" parent="Enemy"]
 rotation = -1.5708
@@ -172,6 +170,7 @@ __meta__ = {
 
 [node name="EnemyTorchLight" type="Area2D" parent="Enemy"]
 editor/display_folded = true
+visible = false
 position = Vector2( 0.902466, 0.902466 )
 rotation = 1.5708
 collision_layer = 2
