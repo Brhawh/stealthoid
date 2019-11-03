@@ -1,6 +1,6 @@
 extends Node2D
 
-onready var tilemap = $TileMap
+onready var tilemap = $Navigation2D/TileMap
 onready var cam = $Character/Camera2D
 
 # Called when the node enters the scene tree for the first time.
