@@ -8,7 +8,7 @@ var nodeToRotate
 const DEGREES_IN_CIRCLE = 360
 
 func _ready():
-	var nodeToRotate = get_node(targetNodePath)
+	nodeToRotate = get_node(targetNodePath)
 
 func _physics_process(delta):
 	if nodeToRotate == null:
