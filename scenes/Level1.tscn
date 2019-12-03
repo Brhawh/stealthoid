@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=2]
+[gd_scene load_steps=25 format=2]
 
 [ext_resource path="res://Scripts/Camera.gd" type="Script" id=1]
 [ext_resource path="res://sprites/Tiles.tres" type="TileSet" id=2]
@@ -6,14 +6,15 @@
 [ext_resource path="res://sprites/icon.png" type="Texture" id=4]
 [ext_resource path="res://Scripts/CharacterController.gd" type="Script" id=5]
 [ext_resource path="res://sprites/boogermonsterGreen.png" type="Texture" id=6]
-[ext_resource path="res://Scripts/CompletionDoor.gd" type="Script" id=7]
-[ext_resource path="res://Scripts/LeverArea2D.gd" type="Script" id=8]
-[ext_resource path="res://Scripts/RotatingEnemyController.gd" type="Script" id=9]
-[ext_resource path="res://Scripts/RotateToAngle.gd" type="Script" id=10]
-[ext_resource path="res://sprites/boogermonsterRed.png" type="Texture" id=11]
-[ext_resource path="res://Scripts/EnemyTorchLight.gd" type="Script" id=12]
-[ext_resource path="res://sprites/lighting/light_cone.png" type="Texture" id=13]
-[ext_resource path="res://Scripts/Detector.gd" type="Script" id=14]
+[ext_resource path="res://sprites/lighting/light.png" type="Texture" id=7]
+[ext_resource path="res://Scripts/CompletionDoor.gd" type="Script" id=8]
+[ext_resource path="res://Scripts/LeverArea2D.gd" type="Script" id=9]
+[ext_resource path="res://Scripts/RotatingEnemyController.gd" type="Script" id=10]
+[ext_resource path="res://Scripts/RotateToAngle.gd" type="Script" id=11]
+[ext_resource path="res://sprites/boogermonsterRed.png" type="Texture" id=12]
+[ext_resource path="res://Scripts/EnemyTorchLight.gd" type="Script" id=13]
+[ext_resource path="res://sprites/lighting/light_cone.png" type="Texture" id=14]
+[ext_resource path="res://Scripts/Detector.gd" type="Script" id=15]
 
 [sub_resource type="CanvasItemMaterial" id=1]
 
@@ -58,10 +59,8 @@ points = PoolVector2Array( 0, 0, 500, 200, 500, -200 )
 script = ExtResource( 1 )
 
 [node name="Navigation2D" type="Navigation2D" parent="."]
-editor/display_folded = true
 position = Vector2( -6.10352e-005, -9.15527e-005 )
 rotation = 2.98023e-008
-scale = Vector2( 1, 1 )
 
 [node name="TileMap" type="TileMap" parent="Navigation2D"]
 material = SubResource( 1 )
@@ -85,7 +84,6 @@ texture = ExtResource( 4 )
 shape = SubResource( 3 )
 
 [node name="Character" type="KinematicBody2D" parent="."]
-editor/display_folded = true
 modulate = Color( 0.215686, 0.215686, 0.215686, 1 )
 position = Vector2( 193.447, 410.077 )
 script = ExtResource( 5 )
@@ -107,7 +105,7 @@ __meta__ = {
 
 [node name="Camera2D" type="Camera2D" parent="Character"]
 current = true
-zoom = Vector2( 0.75, 0.75 )
+zoom = Vector2( 0.8, 0.8 )
 drag_margin_h_enabled = false
 drag_margin_v_enabled = false
 smoothing_enabled = true
@@ -119,10 +117,15 @@ __meta__ = {
 "_edit_lock_": true
 }
 
+[node name="Light2D" type="Light2D" parent="Character"]
+scale = Vector2( 0.05, 0.05 )
+texture = ExtResource( 7 )
+shadow_enabled = true
+
 [node name="Door1Area2D" type="Area2D" parent="."]
 editor/display_folded = true
 position = Vector2( 272, 464 )
-script = ExtResource( 7 )
+script = ExtResource( 8 )
 otherDoor = NodePath("../Door2Area2D")
 offset = -38
 
@@ -133,7 +136,7 @@ shape = SubResource( 6 )
 [node name="Door2Area2D" type="Area2D" parent="."]
 editor/display_folded = true
 position = Vector2( 272, 112 )
-script = ExtResource( 7 )
+script = ExtResource( 8 )
 otherDoor = NodePath("../Door1Area2D")
 offset = 38
 
@@ -144,7 +147,7 @@ shape = SubResource( 6 )
 [node name="LeverArea2D" type="Area2D" parent="."]
 editor/display_folded = true
 position = Vector2( 880, 112 )
-script = ExtResource( 8 )
+script = ExtResource( 9 )
 gates = [ NodePath("../GateArea2D"), NodePath("../GateArea2D2") ]
 
 [node name="CollisionLever" type="CollisionShape2D" parent="LeverArea2D"]
@@ -161,21 +164,21 @@ modulate = Color( 0.215686, 0.215686, 0.215686, 1 )
 position = Vector2( 530, 410 )
 rotation = 5.26915
 z_as_relative = false
-script = ExtResource( 9 )
+script = ExtResource( 10 )
 
 [node name="Rotator" type="Node2D" parent="Enemy"]
 position = Vector2( -687.284, -347.71 )
-script = ExtResource( 10 )
+script = ExtResource( 11 )
 rotationSpeed = 50.0
 
 [node name="EnemySprite" type="Sprite" parent="Enemy"]
 rotation = -1.5708
-texture = ExtResource( 11 )
+texture = ExtResource( 12 )
 
 [node name="EnemyTorchLight" type="Area2D" parent="Enemy"]
 rotation = 1.5708
 collision_layer = 2
-script = ExtResource( 12 )
+script = ExtResource( 13 )
 __meta__ = {
 "_edit_lock_": true
 }
@@ -183,7 +186,7 @@ __meta__ = {
 [node name="Light2D" type="Light2D" parent="Enemy/EnemyTorchLight"]
 light_mask = 3
 scale = Vector2( 0.6, 0.8 )
-texture = ExtResource( 13 )
+texture = ExtResource( 14 )
 offset = Vector2( 0, -35 )
 energy = 2.77
 shadow_enabled = true
@@ -217,7 +220,7 @@ __meta__ = {
 }
 
 [node name="Detector" type="Node2D" parent="Enemy"]
-script = ExtResource( 14 )
+script = ExtResource( 15 )
 __meta__ = {
 "_edit_lock_": true
 }
