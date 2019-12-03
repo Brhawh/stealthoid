@@ -58,10 +58,8 @@ points = PoolVector2Array( 0, 0, 500, 200, 500, -200 )
 script = ExtResource( 1 )
 
 [node name="Navigation2D" type="Navigation2D" parent="."]
-editor/display_folded = true
 position = Vector2( -6.10352e-005, -9.15527e-005 )
 rotation = 2.98023e-008
-scale = Vector2( 1, 1 )
 
 [node name="TileMap" type="TileMap" parent="Navigation2D"]
 material = SubResource( 1 )
