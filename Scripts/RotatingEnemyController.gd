@@ -11,7 +11,7 @@ var playerSpotted = false
 var laserColour = Color(1.0, .329, .298)
 
 # Navigation
-var navPath
+var navPath = []
 var speed = 150.0
 	
 func _draw():
@@ -27,8 +27,12 @@ func _physics_process(delta):
 		if !hitPos.empty() && target.lightLevel > 0:
 			playerSpotted = true
 			navPath = navigator.get_simple_path(global_position, target.global_position)
+			look_at(target.position)
 		else:
+			if playerSpotted:
+				look_at(navPath[0])
 			playerSpotted = false
+			
 	if navPath:
 		moveAlongPath(delta)
 
@@ -52,5 +56,4 @@ func moveAlongPath(delta):
 			position = navPath[0]
 		moveDistance -= distToNext
 		startPoint = navPath[0]
-		look_at(navPath[0])
 		navPath.remove(0)
