@@ -7,6 +7,8 @@ var nodeToRotate
 
 const DEGREES_IN_CIRCLE = 360
 
+signal finishedRotating
+
 func _ready():
 	nodeToRotate = get_node(targetNodePath)
 
@@ -37,6 +39,7 @@ func rotateToAngle(delta, rotationTarget, shouldRotateClockwise):
 	
 	if abs(parentAngle + angleToRotate - rotationTarget) - 5 < angleToRotate:
 		targetRotation = null
+		emit_signal("finishedRotating")
 		
 	get_parent().rotation_degrees = parentAngle
 	
