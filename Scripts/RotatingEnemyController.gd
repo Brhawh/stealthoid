@@ -24,6 +24,11 @@ export(Vector2) var guardPostLocation
 
 # Searching behaviour
 var isSearching = false
+
+# Searching away from post
+var hasSearched = false
+var searchDirections = 4
+var searchWaitTime = 3.0
 	
 func _draw():
 	if target != null && playerSpotted:
@@ -53,9 +58,15 @@ func _physics_process(delta):
 	
 	var positionsInRange = positionsWithinRange(position, guardPostLocation, 5.0)
 	if !navPath && !isSearching and !positionsInRange:
-		navPath = navigator.get_simple_path(global_position, guardPostLocation)
+		#Reached last known location of player away from guard station
+		if hasSearched:
+			navPath = navigator.get_simple_path(global_position, guardPostLocation)
+			searchWaitTime = 3.0
+			hasSearched = false
+		else:
+			searchForPlayer(delta)
 	
-	if !navPath && target == null: # Should rotate
+	if !navPath && target == null && positionsInRange: # Should rotate
 		if rotator.targetRotation == null && !isWaiting: # Not currently rotating
 			rotator.targetRotation = rand_range(1,361)
 		elif rotator.targetRotation == null && isWaiting: #is rotating
@@ -63,6 +74,28 @@ func _physics_process(delta):
 			if waitTime < 0:
 				isWaiting = false
 				waitTime = 3.0
+				
+func searchForPlayer(delta):
+	if searchDirections != 0:
+		if searchWaitTime <= 0:
+			var randomDirection = randi()%4+1 #1 = right, 2 = down, 3 = left, 4 = up
+			print(randomDirection)
+			if randomDirection == 1:
+				rotation = Vector2(200, 0).angle()
+			elif randomDirection == 2:
+				rotation = Vector2(0, 200).angle()
+			elif randomDirection == 3:
+				rotation = Vector2(-200, 0).angle()
+			elif randomDirection == 4:
+				rotation = Vector2(0, -200).angle()
+			searchDirections = searchDirections - 1
+			if searchDirections == 0:
+				searchDirections = 4
+				hasSearched = true
+			searchWaitTime = 3.0
+		else:
+			searchWaitTime -= delta
+		
 				
 func positionsWithinRange(pos1, pos2, acceptableRange):
 	if abs(pos1.x - pos2.x) < acceptableRange && abs(pos1.y - pos2.y) < acceptableRange:

@@ -17,6 +17,7 @@ points = PoolVector2Array( 10, 10, 10, -10, -10, -10, -10, 10 )
 points = PoolVector2Array( 0, 0, 500, 200, 500, -200 )
 
 [node name="Enemy" type="KinematicBody2D"]
+editor/display_folded = true
 modulate = Color( 0.215686, 0.215686, 0.215686, 1 )
 position = Vector2( 530, 410 )
 rotation = 5.26915
