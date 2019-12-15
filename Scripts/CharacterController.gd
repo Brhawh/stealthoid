@@ -1,8 +1,8 @@
 extends KinematicBody2D
 
 export (int) var speed = 200
+export (Vector2) var zoomLevel = Vector2(0.8, 0.8)
 var lightLevel = 0
-
 var velocity = Vector2()
 
 func get_input():
