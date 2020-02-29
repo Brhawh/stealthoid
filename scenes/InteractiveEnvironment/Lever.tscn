@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://Scripts/LeverArea2D.gd" type="Script" id=1]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 15.9327, 15.9285 )
+
+[node name="LeverArea2D" type="Area2D"]
+editor/display_folded = true
+position = Vector2( 880, 112 )
+script = ExtResource( 1 )
+gates = [ NodePath("../GateArea2D"), NodePath("../GateArea2D2") ]
+
+[node name="CollisionLever" type="CollisionShape2D" parent="."]
+shape = SubResource( 1 )
+[connection signal="body_entered" from="." to="." method="_on_LeverArea2D_body_entered"]
