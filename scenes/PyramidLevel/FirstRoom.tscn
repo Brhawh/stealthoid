@@ -21,7 +21,8 @@ tile_data = PoolIntArray( -65522, 2, 0, -65521, 0, 0, -65520, 0, 0, -65519, 0, 0
 script = ExtResource( 2 )
 
 [node name="Character" parent="." instance=ExtResource( 3 )]
-position = Vector2( 856.054, 418.393 )
+position = Vector2( 529.567, 583.279 )
+rotation = 4.71239
 
 [node name="GuardedTreasure" parent="." instance=ExtResource( 4 )]
 position = Vector2( 221.719, 416.792 )
