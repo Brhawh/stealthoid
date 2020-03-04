@@ -17,7 +17,6 @@ points = PoolVector2Array( 10, 10, 10, -10, -10, -10, -10, 10 )
 points = PoolVector2Array( 0, 0, 500, 200, 500, -200 )
 
 [node name="Enemy" type="KinematicBody2D"]
-editor/display_folded = true
 modulate = Color( 0.215686, 0.215686, 0.215686, 1 )
 position = Vector2( 530, 410 )
 rotation = 5.26915
@@ -82,7 +81,6 @@ script = ExtResource( 6 )
 __meta__ = {
 "_edit_lock_": true
 }
-targetPath = NodePath("../../Character")
 [connection signal="finishedRotating" from="Rotator" to="." method="_on_Rotator_finishedRotating"]
 [connection signal="body_entered" from="EnemyTorchLight" to="EnemyTorchLight" method="_on_EnemyTorchLight_body_entered"]
 [connection signal="body_exited" from="EnemyTorchLight" to="EnemyTorchLight" method="_on_EnemyTorchLight_body_exited"]

@@ -1,9 +1,7 @@
 extends Node2D
 
-export(NodePath) var targetPath
-
-onready var target = get_node(targetPath)
-onready var tilemap = $"../../Navigation2D/TileMap"
+onready var target = null
+onready var tilemap = $"../../../Navigation2D/TileMap"
 
 func detect_target():
 	var hitPos = []

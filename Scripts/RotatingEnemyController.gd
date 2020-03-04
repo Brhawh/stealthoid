@@ -2,7 +2,7 @@ extends KinematicBody2D
 
 onready var rotator = $Rotator
 onready var detector = $Detector
-onready var navigator: Navigation2D = get_node("../Navigation2D")
+onready var navigator: Navigation2D = get_node("../../Navigation2D")
 
 # PlayerDetection
 var target = null
@@ -39,6 +39,7 @@ func _draw():
 func _physics_process(delta):
 	update()
 	if target != null:
+		detector.target = target
 		hitPos = detector.detect_target()
 		if !hitPos.empty() && target.lightLevel > 0: # Player is detected and visible
 			playerSpotted = true
