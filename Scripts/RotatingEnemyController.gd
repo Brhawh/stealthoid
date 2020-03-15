@@ -1,5 +1,8 @@
 extends KinematicBody2D
 
+export (Array, Vector2) var patrolPoints setget patrolPointsSet
+export (float) var speed setget speedSet
+
 onready var rotator = $Rotator
 onready var detector = $Detector
 onready var navigator: Navigation2D = get_node("../../Navigation2D")
@@ -12,7 +15,7 @@ var laserColour = Color(1.0, .329, .298)
 
 # Navigation
 var navPath = []
-var speed = 150.0
+#var speed = 150.0
 
 # Rotation tracking
 var rotationTarget
@@ -37,6 +40,9 @@ func _draw():
 			draw_line(Vector2(), (hit - position).rotated(-rotation), laserColour)
 
 func _physics_process(delta):
+	get_node("StateMachine")._physics_process(delta)
+	
+func save(delta):
 	update()
 	if target != null:
 		detector.target = target
@@ -132,3 +138,9 @@ func _on_EnemyViewRadius_body_exited(body):
 
 func _on_Rotator_finishedRotating():
 	isWaiting = true
+	
+func patrolPointsSet(patrolPoints):
+	get_node("StateMachine/Patrolling").patrolPoints = patrolPoints
+	
+func speedSet(speed):
+	get_node("StateMachine/Patrolling").speed = speed
