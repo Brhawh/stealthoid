@@ -35,7 +35,6 @@ extents = Vector2( 15.6925, 32.4422 )
 script = ExtResource( 1 )
 
 [node name="Navigation2D" type="Navigation2D" parent="."]
-editor/display_folded = true
 position = Vector2( -6.10352e-005, -9.15527e-005 )
 rotation = 2.98023e-008
 
