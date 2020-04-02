@@ -2,6 +2,7 @@ extends KinematicBody2D
 
 export (Array, Vector2) var patrolPoints setget patrolPointsSet
 export (float) var speed setget speedSet
+export (Array, float) var guardingDegrees setget guardingDegreesSet
 
 onready var rotator = $Rotator
 onready var detector = $Detector
@@ -23,7 +24,7 @@ var isWaiting = false
 var waitTime = 3.0
 
 # Original guard post
-export(Vector2) var guardPostLocation
+export(Vector2) var guardPostLocation setget guardLocationSet
 
 # Searching behaviour
 var isSearching = false
@@ -105,10 +106,7 @@ func searchForPlayer(delta):
 		
 				
 func positionsWithinRange(pos1, pos2, acceptableRange):
-	if abs(pos1.x - pos2.x) < acceptableRange && abs(pos1.y - pos2.y) < acceptableRange:
-		return true
-	else:
-		return false 
+	return (abs(pos1.x - pos2.x) < acceptableRange && abs(pos1.y - pos2.y) < acceptableRange)
 
 func moveAlongPath(delta):
 	var moveDistance = speed * delta
@@ -144,3 +142,9 @@ func patrolPointsSet(patrolPoints):
 	
 func speedSet(speed):
 	get_node("StateMachine/Patrolling").speed = speed
+	
+func guardingDegreesSet(degrees):
+	get_node("StateMachine/Guarding").rotationDegrees = degrees
+	
+func guardLocationSet(location):
+	get_node("StateMachine/Guarding").guardLocation = location

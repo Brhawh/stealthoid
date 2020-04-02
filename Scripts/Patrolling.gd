@@ -46,4 +46,5 @@ func targetNextPatrolPoint():
 	targetPatrolPoint = targetPatrolPoint + 1
 	if targetPatrolPoint > patrolPoints.size() - 1:
 		targetPatrolPoint = 0
+		exit("Guarding")
 	get_parent().get_parent().look_at(patrolPoints[targetPatrolPoint])

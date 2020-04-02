@@ -51,4 +51,5 @@ __meta__ = {
 position = Vector2( 217.284, 189.119 )
 patrolPoints = [ Vector2( 220, 190 ), Vector2( 320, 190 ), Vector2( 220, 320 ), Vector2( 320, 320 ) ]
 speed = 100.0
+guardingDegrees = [ 0.0, 90.0, 180.0, 270.0 ]
 guardPostLocation = Vector2( 220, 190 )
