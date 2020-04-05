@@ -34,7 +34,8 @@ func physics_process(delta):
 	else:
 		navPath = navigator.get_simple_path(get_parent().get_parent().global_position, guardLocation)
 		moveAlongPath(delta)
-		get_parent().get_parent().look_at(navPath[0])
+		if navPath.size() > 0:
+			get_parent().get_parent().look_at(navPath[0])
 		
 	if target != null:
 		detector.target = target
