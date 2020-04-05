@@ -3,10 +3,12 @@ extends KinematicBody2D
 export (Array, Vector2) var patrolPoints setget patrolPointsSet
 export (float) var speed setget speedSet
 export (Array, float) var guardingDegrees setget guardingDegreesSet
+export (NodePath) var chasingNavigatorPath
 
 onready var rotator = $Rotator
 onready var detector = $Detector
 onready var navigator: Navigation2D = get_node("../../Navigation2D")
+onready var fsm: StateMachine = get_node("StateMachine")
 
 # PlayerDetection
 var target = null
@@ -33,15 +35,23 @@ var isSearching = false
 var hasSearched = false
 var searchDirections = 4
 var searchWaitTime = 3.0
-	
-func _draw():
-	if target != null && playerSpotted:
-		for hit in hitPos:
-			draw_circle((hit - position).rotated(-rotation), 5, laserColour)
-			draw_line(Vector2(), (hit - position).rotated(-rotation), laserColour)
+
+func _ready():
+	chasingNavigatorSet(chasingNavigatorPath)
+	chasingDetectorSet(detector)
 
 func _physics_process(delta):
-	get_node("StateMachine")._physics_process(delta)
+	update()
+	fsm._physics_process(delta)
+	if target != null:
+		detector.target = target
+		hitPos = detector.detect_target()
+	
+func _draw():
+	if target:
+		for hit in hitPos:
+			draw_circle((hit - position).rotated(-rotation), 1, Color(255, 0, 0))
+			draw_line(Vector2(), (hit - position).rotated(-rotation), Color(255, 0, 0), 1)
 	
 func save(delta):
 	update()
@@ -114,10 +124,10 @@ func moveAlongPath(delta):
 	for i in range(navPath.size()):
 		var distToNext = startPoint.distance_to(navPath[0])
 		if moveDistance <= distToNext and moveDistance >- 0.0:
-			position = startPoint.linear_interpolate(navPath[0], moveDistance / distToNext)
+			get_parent().get_parent().position = startPoint.linear_interpolate(navPath[0], moveDistance / distToNext)
 			break
 		elif moveDistance < 0.0:
-			position = navPath[0]
+			get_parent().get_parent().position = navPath[0]
 		moveDistance -= distToNext
 		startPoint = navPath[0]
 		navPath.remove(0)
@@ -126,11 +136,13 @@ func rotateRandom():
 	rotator.targetRotation = rand_range(1,361) 
 
 func _on_EnemyViewRadius_body_entered(body):
-	if body.name == "Character":
+	if body.name == "Character" && (fsm.state.name == "Patrolling" || fsm.state.name == "Guarding"):
+		fsm.state.target = body
 		target = body
 
 func _on_EnemyViewRadius_body_exited(body):
-	if body == target:
+	if body.name == "Character" && (fsm.state.name == "Patrolling" || fsm.state.name == "Guarding"):
+		fsm.state.target = null
 		target = null
 		
 
@@ -142,9 +154,21 @@ func patrolPointsSet(patrolPoints):
 	
 func speedSet(speed):
 	get_node("StateMachine/Patrolling").speed = speed
+	get_node("StateMachine/Chasing").speed = speed
+	get_node("StateMachine/Guarding").speed = speed
 	
 func guardingDegreesSet(degrees):
 	get_node("StateMachine/Guarding").rotationDegrees = degrees
 	
 func guardLocationSet(location):
 	get_node("StateMachine/Guarding").guardLocation = location
+
+func chasingNavigatorSet(navigatorPath):
+	get_node("StateMachine/Chasing").navigator = get_node(navigatorPath)
+	get_node("StateMachine/Guarding").navigator = get_node(navigatorPath)
+	get_node("StateMachine/Patrolling").navigator = get_node(navigatorPath)
+	
+func chasingDetectorSet(detector):
+	get_node("StateMachine/Chasing").detector = detector
+	get_node("StateMachine/Patrolling").detector = detector
+	get_node("StateMachine/Guarding").detector = detector

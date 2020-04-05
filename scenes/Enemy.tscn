@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://Scripts/RotatingEnemyController.gd" type="Script" id=1]
 [ext_resource path="res://Scripts/RotateToAngle.gd" type="Script" id=2]
@@ -9,6 +9,7 @@
 [ext_resource path="res://Scripts/StateMachine.gd" type="Script" id=7]
 [ext_resource path="res://Scripts/Patrolling.gd" type="Script" id=8]
 [ext_resource path="res://scenes/Guarding.gd" type="Script" id=9]
+[ext_resource path="res://Scripts/Chasing.gd" type="Script" id=10]
 
 [sub_resource type="ConvexPolygonShape2D" id=1]
 points = PoolVector2Array( 0, 0, 103.7, -438.1, -105.85, -437.15 )
@@ -98,6 +99,7 @@ script = ExtResource( 8 )
 script = ExtResource( 9 )
 
 [node name="Chasing" type="Node" parent="StateMachine"]
+script = ExtResource( 10 )
 
 [node name="Searching" type="Node" parent="StateMachine"]
 [connection signal="finishedRotating" from="Rotator" to="." method="_on_Rotator_finishedRotating"]

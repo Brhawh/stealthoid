@@ -4,17 +4,22 @@ var fsm: StateMachine
 
 var rotationDegrees
 var targetRotationDegrees = 0
-var rotationSpeed = 50
+var rotationSpeed = 40
 var guardLocation
+var navigator
+var navPath
+var speed
+var detector
+var target
 
 const DEGREES_IN_CIRCLE = 360
 
 func enter():
-	print("Rotation Degrees: ", rotationDegrees)
-	print("Hello from Guarding State!")
-	yield(get_tree().create_timer(2.0), "timeout")
+	return
 
 func exit(next_state):
+	target = null
+	navPath = null
 	fsm.change_to(next_state)
 
 # Optional handler functions for game loop events
@@ -27,7 +32,16 @@ func physics_process(delta):
 	if positionsInRange:
 		rotateToNext(delta)
 	else:
-		moveTowardsGuardLocation(delta)
+		navPath = navigator.get_simple_path(get_parent().get_parent().global_position, guardLocation)
+		moveAlongPath(delta)
+		get_parent().get_parent().look_at(navPath[0])
+		
+	if target != null:
+		detector.target = target
+		var hitPos = detector.detect_target()
+		if !hitPos.empty() && target.lightLevel > 0:
+			get_node("../Chasing").target = target
+			exit("Chasing")
 	return delta
 
 func input(event):
@@ -85,11 +99,19 @@ func targetNextRotation():
 func positionsWithinRange(pos1, pos2, acceptableRange):
 	return (abs(pos1.x - pos2.x) < acceptableRange && abs(pos1.y - pos2.y) < acceptableRange)
 	
-func moveTowardsGuardLocation(delta):
-	var moveDistance = get_node("../Patrolling").speed * delta
+func moveAlongPath(delta):
+	var moveDistance = speed * delta
 	var startPoint = get_parent().get_parent().position
-	var distToNext = startPoint.distance_to(guardLocation)
-	if moveDistance <= distToNext and moveDistance > 0.0:
-		get_parent().get_parent().position = startPoint.linear_interpolate(guardLocation, moveDistance / distToNext)
-	elif moveDistance > distToNext:
-		get_parent().get_parent().position = guardLocation
+	# The reason for using a for loop here is so that if the first navPath point is the same position as the
+	# enemy's position then it will remove that one and try the next one instead until it finds a position that
+	# actually requires it to move. Otherwise the enemy doesn't move when it spots the player.
+	for i in navPath.size():
+		var distToNext = startPoint.distance_to(navPath[0])
+		if moveDistance <= distToNext and moveDistance >- 0.0:
+			get_parent().get_parent().position = startPoint.linear_interpolate(navPath[0], moveDistance / distToNext)
+			break
+		elif distToNext <= 5.0:
+			get_parent().get_parent().position = navPath[0]
+		moveDistance -= distToNext
+		startPoint = navPath[0]
+		navPath.remove(0)

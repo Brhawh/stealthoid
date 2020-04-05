@@ -9,7 +9,7 @@ var state: Object
 var history = []
 
 func _ready():
-	state = get_child(1)
+	state = get_child(0)
 	_enter_state()
 	
 func change_to(new_state):

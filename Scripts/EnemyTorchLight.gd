@@ -3,12 +3,13 @@ extends Area2D
 var targetsInRange = []
 
 func _physics_process(delta):
+	update()
 	for target in targetsInRange:
 		var hitPos = []
 		var target_extents = get_node("../Detector").getCollisionShape2DExtentsOfTarget(target)
 		var spaceState = get_world_2d().direct_space_state
 		for pos in target_extents:
-			var result = spaceState.intersect_ray(global_position, target.global_position + pos, [get_parent()])
+			var result = spaceState.intersect_ray(global_position, target.global_position + (pos * scale.x), [get_parent()])
 			if result:
 				if result.collider.name == target.name:
 					hitPos.append(result.collider.position)
