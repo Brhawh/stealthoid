@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/TreasureCoins.png-28582f31a07ca765c97132a104097c26.stex"
+path="res://.import/mummy(1).png-39497cc25d34b15cd86b2c47dcde4f25.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://sprites/TreasureCoins.png"
-dest_files=[ "res://.import/TreasureCoins.png-28582f31a07ca765c97132a104097c26.stex" ]
+source_file="res://sprites/Pyramid/mummy(1).png"
+dest_files=[ "res://.import/mummy(1).png-39497cc25d34b15cd86b2c47dcde4f25.stex" ]
 
 [params]
 
