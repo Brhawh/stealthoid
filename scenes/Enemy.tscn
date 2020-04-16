@@ -8,9 +8,11 @@
 [ext_resource path="res://Scripts/Detector.gd" type="Script" id=6]
 [ext_resource path="res://Scripts/StateMachine.gd" type="Script" id=7]
 [ext_resource path="res://Scripts/Patrolling.gd" type="Script" id=8]
-[ext_resource path="res://scenes/Guarding.gd" type="Script" id=9]
+[ext_resource path="res://Scripts/Guarding.gd" type="Script" id=9]
 [ext_resource path="res://Scripts/Chasing.gd" type="Script" id=10]
-[ext_resource path="res://scenes/Mover.gd" type="Script" id=11]
+[ext_resource path="res://Scripts/Mover.gd" type="Script" id=11]
+
+
 
 [sub_resource type="ConvexPolygonShape2D" id=1]
 points = PoolVector2Array( 0, 0, 103.7, -438.1, -105.85, -437.15 )
