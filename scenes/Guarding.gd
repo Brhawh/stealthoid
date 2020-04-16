@@ -11,6 +11,8 @@ var navPath
 var speed
 var detector
 var target
+onready var mover = get_node("../../Mover")
+onready var eldestParent = get_parent().get_parent()
 
 const DEGREES_IN_CIRCLE = 360
 
@@ -28,14 +30,14 @@ func process(delta):
 	return delta
 
 func physics_process(delta):
-	var positionsInRange = positionsWithinRange(get_parent().get_parent().position, guardLocation, 5.0)
+	var positionsInRange = positionsWithinRange(eldestParent.position, guardLocation, 5.0)
 	if positionsInRange:
 		rotateToNext(delta)
 	else:
-		navPath = navigator.get_simple_path(get_parent().get_parent().global_position, guardLocation)
-		moveAlongPath(delta)
+		navPath = navigator.get_simple_path(eldestParent.global_position, guardLocation)
+		navPath = mover.moveAlongPath(delta, speed, navPath, eldestParent)
 		if navPath.size() > 0:
-			get_parent().get_parent().look_at(navPath[0])
+			eldestParent.look_at(navPath[0])
 		
 	if target != null:
 		detector.target = target
@@ -58,7 +60,7 @@ func notification(what, flag = false):
 	return [what, flag]
 	
 func getShouldRotateClockwise():
-	var currentRotation = get_parent().get_parent().rotation_degrees
+	var currentRotation = eldestParent.rotation_degrees
 	var clockwiseAngle = 0
 	var antiClockwiseAngle = 0
 	if  currentRotation > rotationDegrees[targetRotationDegrees]:
@@ -70,7 +72,7 @@ func getShouldRotateClockwise():
 	return not(clockwiseAngle > antiClockwiseAngle)
 
 func rotateToNext(delta):
-	var parentAngle = get_parent().get_parent().rotation_degrees
+	var parentAngle = eldestParent.rotation_degrees
 	var angleToRotate = rotationSpeed * delta
 	
 	parentAngle = updateCurrentRotation(parentAngle, angleToRotate, getShouldRotateClockwise())
@@ -78,7 +80,7 @@ func rotateToNext(delta):
 	if abs(parentAngle + angleToRotate - rotationDegrees[targetRotationDegrees]) - 5 < angleToRotate:
 		targetNextRotation()
 		
-	get_parent().get_parent().rotation_degrees = parentAngle
+	eldestParent.rotation_degrees = parentAngle
 	
 func updateCurrentRotation(currentRotation, angleToRotate, shouldRotateClockwise):
 	if shouldRotateClockwise:
@@ -99,20 +101,3 @@ func targetNextRotation():
 		
 func positionsWithinRange(pos1, pos2, acceptableRange):
 	return (abs(pos1.x - pos2.x) < acceptableRange && abs(pos1.y - pos2.y) < acceptableRange)
-	
-func moveAlongPath(delta):
-	var moveDistance = speed * delta
-	var startPoint = get_parent().get_parent().position
-	# The reason for using a for loop here is so that if the first navPath point is the same position as the
-	# enemy's position then it will remove that one and try the next one instead until it finds a position that
-	# actually requires it to move. Otherwise the enemy doesn't move when it spots the player.
-	for i in navPath.size():
-		var distToNext = startPoint.distance_to(navPath[0])
-		if moveDistance <= distToNext and moveDistance >- 0.0:
-			get_parent().get_parent().position = startPoint.linear_interpolate(navPath[0], moveDistance / distToNext)
-			break
-		elif distToNext <= 5.0:
-			get_parent().get_parent().position = navPath[0]
-		moveDistance -= distToNext
-		startPoint = navPath[0]
-		navPath.remove(0)
