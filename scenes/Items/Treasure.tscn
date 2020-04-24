@@ -3,8 +3,6 @@
 [ext_resource path="res://Scripts/Treasure.gd" type="Script" id=1]
 [ext_resource path="res://sprites/Pyramid/TreasureCoins.png" type="Texture" id=2]
 
-
-
 [sub_resource type="CanvasItemMaterial" id=1]
 light_mode = 2
 
