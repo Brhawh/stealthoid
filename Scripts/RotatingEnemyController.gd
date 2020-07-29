@@ -9,6 +9,8 @@ export(Vector2) var guardPostLocation setget guardLocationSet
 onready var detector = $Detector
 onready var navigator: Navigation2D = get_node("../../Navigation2D")
 onready var fsm: StateMachine = get_node("StateMachine")
+var target
+signal targetChanged 
 
 func _ready():
 	chasingNavigatorSet(chasingNavigatorPath)
@@ -19,12 +21,16 @@ func _physics_process(delta):
 	fsm._physics_process(delta)
 
 func _on_EnemyViewRadius_body_entered(body):
-	if body.name == "Character" && (fsm.state.name == "Patrolling" || fsm.state.name == "Guarding"):
-		fsm.state.target = body
+	if body.name == "Character":
+		target = body
+		emit_signal("targetChanged")
+		print("target set to player")
 
 func _on_EnemyViewRadius_body_exited(body):
-	if body.name == "Character" && (fsm.state.name == "Patrolling" || fsm.state.name == "Guarding"):
-		fsm.state.target = null
+	if body.name == "Character":
+		target = null
+		emit_signal("targetChanged")
+		print("target set to null")
 	
 func patrolPointsSet(patrolPoints):
 	get_node("StateMachine/Patrolling").patrolPoints = patrolPoints
@@ -49,8 +55,8 @@ func chasingDetectorSet(detector):
 	get_node("StateMachine/Chasing").detector = detector
 	get_node("StateMachine/Patrolling").detector = detector
 	get_node("StateMachine/Guarding").detector = detector
+	get_node("StateMachine/Attacking").detector = detector
 	
 func detectSound(soundSource):
 	get_node("StateMachine/Chasing").target = soundSource
 	fsm.state.exit("Chasing")
-	

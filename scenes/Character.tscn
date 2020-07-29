@@ -8,8 +8,8 @@
 [ext_resource path="res://sprites/CharacterFire2.png" type="Texture" id=6]
 [ext_resource path="res://sprites/CharacterFire3.png" type="Texture" id=7]
 [ext_resource path="res://Scripts/StateMachine.gd" type="Script" id=8]
-[ext_resource path="res://scenes/Walking.gd" type="Script" id=9]
-[ext_resource path="res://scenes/Running.gd" type="Script" id=10]
+[ext_resource path="res://Scripts/Walking.gd" type="Script" id=9]
+[ext_resource path="res://Scripts/Running.gd" type="Script" id=10]
 [ext_resource path="res://Scripts/SoundEmitter.gd" type="Script" id=11]
 
 [sub_resource type="RectangleShape2D" id=1]

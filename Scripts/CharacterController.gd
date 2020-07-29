@@ -28,6 +28,10 @@ func _physics_process(delta):
 	get_input()
 	velocity = move_and_slide(velocity)
 
+func death():
+	print("reload")
+	get_tree().reload_current_scene()
+
 func Door(var otherDoor, var offset):
 	position.y = get_node(otherDoor).get_position().y + offset 
 	
