@@ -10,7 +10,7 @@ var navigator
 var navPath
 var speed
 var detector
-var target
+onready var target = get_parent().get_parent().target
 onready var mover = get_node("../../Mover")
 onready var eldestParent = get_parent().get_parent()
 
@@ -20,7 +20,6 @@ func enter():
 	return
 
 func exit(next_state):
-	target = null
 	navPath = null
 	fsm.change_to(next_state)
 
@@ -40,10 +39,9 @@ func physics_process(delta):
 			eldestParent.look_at(navPath[0])
 		
 	if target != null:
-		detector.target = target
-		var hitPos = detector.detect_target()
+		var hitPos = detector.detect_target(target)
 		if !hitPos.empty() && target.lightLevel > 0:
-			get_node("../Chasing").target = target
+			#get_node("../Chasing").target = target
 			exit("Chasing")
 	return delta
 
@@ -101,3 +99,7 @@ func targetNextRotation():
 		
 func positionsWithinRange(pos1, pos2, acceptableRange):
 	return (abs(pos1.x - pos2.x) < acceptableRange && abs(pos1.y - pos2.y) < acceptableRange)
+
+
+func _on_Enemy_targetChanged():
+	target = get_parent().get_parent().target

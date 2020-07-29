@@ -61,5 +61,5 @@ shadow_enabled = true
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 frames = SubResource( 2 )
 animation = "Torch"
-frame = 2
+frame = 1
 playing = true

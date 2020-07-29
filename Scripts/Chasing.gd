@@ -5,12 +5,11 @@ var fsm: StateMachine
 var navigator
 var detector
 var speed = 50
-var target
+onready var target = get_parent().get_parent().target
 var navPath
 
 func enter():
 	navPath = navigator.get_simple_path(get_parent().get_parent().global_position, target.global_position)
-	detector.target = target
 	return
 
 func exit(next_state):
@@ -23,13 +22,19 @@ func physics_process(delta):
 	if navPath.size() > 0:
 		get_parent().get_parent().look_at(navPath[0])
 		moveAlongPath(delta)
-	var hitPos = detector.detect_target()
-	if !hitPos.empty() && target.lightLevel > 0:
-		navPath = navigator.get_simple_path(get_parent().get_parent().global_position, target.global_position)
-		get_parent().get_parent().look_at(target.position)
+	if target != null:
+		var hitPos = detector.detect_target(target)
+		if !hitPos.empty() && target.lightLevel > 0:
+			navPath = navigator.get_simple_path(get_parent().get_parent().global_position, target.global_position)
+			get_parent().get_parent().look_at(target.position)
+			var distanceToTarget = get_parent().get_parent().global_position.distance_to(target.global_position)
+			if distanceToTarget < 30:
+				exit("Attacking")
+		else:
+			if navPath.size() <= 0:
+				fsm.back()
 	else:
-		if navPath.size() <= 0:
-			fsm.back()
+		fsm.back()
 	return delta
 
 func input(event):
@@ -60,3 +65,7 @@ func moveAlongPath(delta):
 		moveDistance -= distToNext
 		startPoint = navPath[0]
 		navPath.remove(0)
+
+
+func _on_Enemy_targetChanged():
+	target = get_parent().get_parent().target

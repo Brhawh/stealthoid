@@ -1,8 +1,8 @@
-[gd_scene load_steps=15 format=2]
+[gd_scene load_steps=19 format=2]
 
 [ext_resource path="res://Scripts/RotatingEnemyController.gd" type="Script" id=1]
 [ext_resource path="res://Scripts/RotateToAngle.gd" type="Script" id=2]
-[ext_resource path="res://sprites/boogermonsterRed.png" type="Texture" id=3]
+[ext_resource path="res://sprites/Pyramid/mummy.png" type="Texture" id=3]
 [ext_resource path="res://Scripts/EnemyTorchLight.gd" type="Script" id=4]
 [ext_resource path="res://sprites/lighting/light_cone.png" type="Texture" id=5]
 [ext_resource path="res://Scripts/Detector.gd" type="Script" id=6]
@@ -11,16 +11,25 @@
 [ext_resource path="res://Scripts/Guarding.gd" type="Script" id=9]
 [ext_resource path="res://Scripts/Chasing.gd" type="Script" id=10]
 [ext_resource path="res://Scripts/Mover.gd" type="Script" id=11]
+[ext_resource path="res://sprites/Pyramid/mummy(2).png" type="Texture" id=12]
+[ext_resource path="res://sprites/Pyramid/mummy(1).png" type="Texture" id=13]
+[ext_resource path="res://Scripts/Attacking.gd" type="Script" id=14]
 
-
-
-[sub_resource type="ConvexPolygonShape2D" id=1]
-points = PoolVector2Array( 0, 0, 103.7, -438.1, -105.85, -437.15 )
+[sub_resource type="SpriteFrames" id=1]
+animations = [ {
+"frames": [ ExtResource( 3 ), ExtResource( 13 ), ExtResource( 12 ) ],
+"loop": true,
+"name": "default",
+"speed": 10.0
+} ]
 
 [sub_resource type="ConvexPolygonShape2D" id=2]
-points = PoolVector2Array( 10, 10, 10, -10, -10, -10, -10, 10 )
+points = PoolVector2Array( 0, 0, 103.7, -438.1, -105.85, -437.15 )
 
 [sub_resource type="ConvexPolygonShape2D" id=3]
+points = PoolVector2Array( 10, 10, 10, -10, -10, -10, -10, 10 )
+
+[sub_resource type="ConvexPolygonShape2D" id=4]
 points = PoolVector2Array( 0, 0, 500, 200, 500, -200 )
 
 [node name="Enemy" type="KinematicBody2D"]
@@ -35,13 +44,13 @@ position = Vector2( -687.284, -347.71 )
 script = ExtResource( 2 )
 rotationSpeed = 50.0
 
-[node name="EnemySprite" type="Sprite" parent="."]
+[node name="EnemySprite" type="AnimatedSprite" parent="."]
 rotation = -1.5708
-scale = Vector2( 0.5, 0.5 )
-texture = ExtResource( 3 )
+frames = SubResource( 1 )
+frame = 2
+playing = true
 
 [node name="EnemyTorchLight" type="Area2D" parent="."]
-editor/display_folded = true
 rotation = 1.5708
 collision_layer = 2
 script = ExtResource( 4 )
@@ -63,27 +72,26 @@ __meta__ = {
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="EnemyTorchLight"]
 scale = Vector2( 0.5, 0.5 )
-shape = SubResource( 1 )
+shape = SubResource( 2 )
 __meta__ = {
 "_edit_lock_": true
 }
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 scale = Vector2( 0.5, 0.5 )
-shape = SubResource( 2 )
+shape = SubResource( 3 )
 __meta__ = {
 "_edit_lock_": true
 }
 
 [node name="EnemyViewRadius" type="Area2D" parent="."]
-editor/display_folded = true
 collision_layer = 2
 __meta__ = {
 "_edit_lock_": true
 }
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="EnemyViewRadius"]
-shape = SubResource( 3 )
+shape = SubResource( 4 )
 __meta__ = {
 "_edit_lock_": true
 }
@@ -106,8 +114,15 @@ script = ExtResource( 9 )
 [node name="Chasing" type="Node" parent="StateMachine"]
 script = ExtResource( 10 )
 
+[node name="Attacking" type="Node" parent="StateMachine"]
+script = ExtResource( 14 )
+
 [node name="Mover" type="Node" parent="."]
 script = ExtResource( 11 )
+[connection signal="targetChanged" from="." to="StateMachine/Patrolling" method="_on_Enemy_targetChanged"]
+[connection signal="targetChanged" from="." to="StateMachine/Guarding" method="_on_Enemy_targetChanged"]
+[connection signal="targetChanged" from="." to="StateMachine/Chasing" method="_on_Enemy_targetChanged"]
+[connection signal="targetChanged" from="." to="StateMachine/Attacking" method="_on_Enemy_targetChanged"]
 [connection signal="finishedRotating" from="Rotator" to="." method="_on_Rotator_finishedRotating"]
 [connection signal="body_entered" from="EnemyTorchLight" to="EnemyTorchLight" method="_on_EnemyTorchLight_body_entered"]
 [connection signal="body_exited" from="EnemyTorchLight" to="EnemyTorchLight" method="_on_EnemyTorchLight_body_exited"]
