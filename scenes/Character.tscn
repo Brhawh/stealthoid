@@ -12,6 +12,9 @@
 [ext_resource path="res://Scripts/Running.gd" type="Script" id=10]
 [ext_resource path="res://Scripts/SoundEmitter.gd" type="Script" id=11]
 
+[sub_resource type="CircleShape2D" id=3]
+radius = 30.0
+
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 7.68188, 6.88452 )
 
@@ -28,15 +31,17 @@ animations = [ {
 "speed": 5.0
 } ]
 
-[sub_resource type="CircleShape2D" id=3]
-radius = 30.0
-
 [node name="Character" type="KinematicBody2D"]
 modulate = Color( 0.505882, 0.505882, 0.505882, 1 )
 position = Vector2( 193.896, 410.167 )
 script = ExtResource( 1 )
 speed = 100
 zoomLevel = Vector2( 0.2, 0.2 )
+
+[node name="SoundRadiusArea2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="SoundRadiusArea2D"]
+shape = SubResource( 3 )
 
 [node name="PlayerCollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource( 1 )
@@ -68,6 +73,7 @@ shadow_enabled = true
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 frames = SubResource( 2 )
 animation = "Torch"
+frame = 1
 playing = true
 
 [node name="StateMachine" type="Node" parent="."]
@@ -81,11 +87,5 @@ script = ExtResource( 10 )
 
 [node name="SoundEmitter" type="Node" parent="."]
 script = ExtResource( 11 )
-
-[node name="SoundRadiusArea2D" type="Area2D" parent="SoundEmitter"]
-position = Vector2( 193.896, 410.167 )
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="SoundEmitter/SoundRadiusArea2D"]
-shape = SubResource( 3 )
-[connection signal="body_entered" from="SoundEmitter/SoundRadiusArea2D" to="SoundEmitter" method="_on_SoundRadiusArea2D_body_entered"]
-[connection signal="body_exited" from="SoundEmitter/SoundRadiusArea2D" to="SoundEmitter" method="_on_SoundRadiusArea2D_body_exited"]
+[connection signal="body_entered" from="SoundRadiusArea2D" to="SoundEmitter" method="_on_SoundRadiusArea2D_body_entered"]
+[connection signal="body_exited" from="SoundRadiusArea2D" to="SoundEmitter" method="_on_SoundRadiusArea2D_body_exited"]
