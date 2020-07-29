@@ -49,3 +49,8 @@ func chasingDetectorSet(detector):
 	get_node("StateMachine/Chasing").detector = detector
 	get_node("StateMachine/Patrolling").detector = detector
 	get_node("StateMachine/Guarding").detector = detector
+	
+func detectSound(soundSource):
+	get_node("StateMachine/Chasing").target = soundSource
+	fsm.state.exit("Chasing")
+	

@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://Scripts/CharacterController.gd" type="Script" id=1]
 [ext_resource path="res://Scripts/Camera2D.gd" type="Script" id=2]
@@ -7,6 +7,10 @@
 [ext_resource path="res://sprites/CharacterFire1.png" type="Texture" id=5]
 [ext_resource path="res://sprites/CharacterFire2.png" type="Texture" id=6]
 [ext_resource path="res://sprites/CharacterFire3.png" type="Texture" id=7]
+[ext_resource path="res://Scripts/StateMachine.gd" type="Script" id=8]
+[ext_resource path="res://scenes/Walking.gd" type="Script" id=9]
+[ext_resource path="res://scenes/Running.gd" type="Script" id=10]
+[ext_resource path="res://Scripts/SoundEmitter.gd" type="Script" id=11]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 7.68188, 6.88452 )
@@ -23,6 +27,9 @@ animations = [ {
 "name": "Torch",
 "speed": 5.0
 } ]
+
+[sub_resource type="CircleShape2D" id=3]
+radius = 30.0
 
 [node name="Character" type="KinematicBody2D"]
 modulate = Color( 0.505882, 0.505882, 0.505882, 1 )
@@ -61,5 +68,24 @@ shadow_enabled = true
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 frames = SubResource( 2 )
 animation = "Torch"
-frame = 2
 playing = true
+
+[node name="StateMachine" type="Node" parent="."]
+script = ExtResource( 8 )
+
+[node name="Walking" type="Node" parent="StateMachine"]
+script = ExtResource( 9 )
+
+[node name="Running" type="Node" parent="StateMachine"]
+script = ExtResource( 10 )
+
+[node name="SoundEmitter" type="Node" parent="."]
+script = ExtResource( 11 )
+
+[node name="SoundRadiusArea2D" type="Area2D" parent="SoundEmitter"]
+position = Vector2( 193.896, 410.167 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="SoundEmitter/SoundRadiusArea2D"]
+shape = SubResource( 3 )
+[connection signal="body_entered" from="SoundEmitter/SoundRadiusArea2D" to="SoundEmitter" method="_on_SoundRadiusArea2D_body_entered"]
+[connection signal="body_exited" from="SoundEmitter/SoundRadiusArea2D" to="SoundEmitter" method="_on_SoundRadiusArea2D_body_exited"]
