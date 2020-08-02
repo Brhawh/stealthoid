@@ -35,8 +35,8 @@ func death():
 func Door(var otherDoor, var offset):
 	position.y = get_node(otherDoor).get_position().y + offset 
 	
-func startRunning():
+func setToRunningSpeed():
 	speed = runningSpeed
 	
-func stopRunning():
+func setToWalkingSpeed():
 	speed = walkingSpeed

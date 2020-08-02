@@ -3,16 +3,11 @@ extends Node
 var fsm: StateMachine
 
 onready var eldestParent = get_parent().get_parent()
-onready var soundEmitter = get_node("../../SoundEmitter")
 
 func enter():
-	eldestParent.setToRunningSpeed()
-	soundEmitter.setRunningState()
-	soundEmitter.startEmittingSound()
 	return
 
 func exit(next_state):
-	soundEmitter.stopEmittingSound()
 	fsm.change_to(next_state)
 	return next_state
 
@@ -21,10 +16,10 @@ func process(delta):
 	return delta
 
 func physics_process(delta):
-	if eldestParent.velocity and Input.is_action_just_released("run"):
+	if eldestParent.velocity and Input.is_action_pressed("run"):
+		exit("Running")
+	elif eldestParent.velocity:
 		exit("Walking")
-	elif !eldestParent.velocity:
-		exit("Idle")
 	return delta
 
 func input(event):

@@ -6,6 +6,8 @@ var runningRadius = 120
 var runningTime = 0.5
 var walkingTime = 1.0
 
+var currentTime
+
 var enemies = []
 var _timer = null
 
@@ -16,20 +18,25 @@ func _init():
 	_timer.connect("timeout", self, "_on_Timer_timeout")
 	_timer.set_wait_time(1.0)
 	_timer.set_one_shot(false) # Make sure it loops
-	_timer.start()
 
 func _on_Timer_timeout():
 	emitSound()
 
-func setWalkingRadius():
+func setWalkingState():
 	get_node("../SoundRadiusArea2D/CollisionShape2D").shape.radius = walkingRadius
-	_timer.set_wait_time(walkingTime)
+	currentTime = walkingTime
+	
+func setRunningState():
+	get_node("../SoundRadiusArea2D/CollisionShape2D").shape.radius = runningRadius
+	currentTime = runningTime
+	
+func startEmittingSound():
+	emitSound()
+	_timer.set_wait_time(currentTime)
 	_timer.start()
 	
-func setRunningRadius():
-	get_node("../SoundRadiusArea2D/CollisionShape2D").shape.radius = runningRadius
-	_timer.set_wait_time(runningTime)
-	_timer.start()
+func stopEmittingSound():
+	_timer.stop()
 
 func _on_SoundRadiusArea2D_body_entered(body):
 	print(body.name, "entered")
