@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=16 format=2]
 
 [ext_resource path="res://Scripts/CharacterController.gd" type="Script" id=1]
 [ext_resource path="res://Scripts/Camera2D.gd" type="Script" id=2]
@@ -7,11 +7,19 @@
 [ext_resource path="res://sprites/CharacterFire1.png" type="Texture" id=5]
 [ext_resource path="res://sprites/CharacterFire2.png" type="Texture" id=6]
 [ext_resource path="res://sprites/CharacterFire3.png" type="Texture" id=7]
+[ext_resource path="res://Scripts/StateMachine.gd" type="Script" id=8]
+[ext_resource path="res://Scripts/Walking.gd" type="Script" id=9]
+[ext_resource path="res://Scripts/Running.gd" type="Script" id=10]
+[ext_resource path="res://Scripts/SoundEmitter.gd" type="Script" id=11]
+[ext_resource path="res://Scripts/Idle.gd" type="Script" id=12]
 
-[sub_resource type="RectangleShape2D" id=1]
+[sub_resource type="CircleShape2D" id=1]
+radius = 120.0
+
+[sub_resource type="RectangleShape2D" id=2]
 extents = Vector2( 7.68188, 6.88452 )
 
-[sub_resource type="SpriteFrames" id=2]
+[sub_resource type="SpriteFrames" id=3]
 animations = [ {
 "frames": [ ExtResource( 4 ) ],
 "loop": true,
@@ -31,8 +39,13 @@ script = ExtResource( 1 )
 speed = 100
 zoomLevel = Vector2( 0.2, 0.2 )
 
-[node name="PlayerCollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="SoundRadiusArea2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="SoundRadiusArea2D"]
 shape = SubResource( 1 )
+
+[node name="PlayerCollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource( 2 )
 __meta__ = {
 "_edit_lock_": true
 }
@@ -59,7 +72,24 @@ energy = 1.5
 shadow_enabled = true
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
-frames = SubResource( 2 )
+frames = SubResource( 3 )
 animation = "Torch"
-frame = 1
+frame = 2
 playing = true
+
+[node name="StateMachine" type="Node" parent="."]
+script = ExtResource( 8 )
+
+[node name="Walking" type="Node" parent="StateMachine"]
+script = ExtResource( 9 )
+
+[node name="Running" type="Node" parent="StateMachine"]
+script = ExtResource( 10 )
+
+[node name="Idle" type="Node" parent="StateMachine"]
+script = ExtResource( 12 )
+
+[node name="SoundEmitter" type="Node" parent="."]
+script = ExtResource( 11 )
+[connection signal="body_entered" from="SoundRadiusArea2D" to="SoundEmitter" method="_on_SoundRadiusArea2D_body_entered"]
+[connection signal="body_exited" from="SoundRadiusArea2D" to="SoundEmitter" method="_on_SoundRadiusArea2D_body_exited"]

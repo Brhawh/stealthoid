@@ -24,13 +24,11 @@ func _on_EnemyViewRadius_body_entered(body):
 	if body.name == "Character":
 		target = body
 		emit_signal("targetChanged")
-		print("target set to player")
 
 func _on_EnemyViewRadius_body_exited(body):
 	if body.name == "Character":
 		target = null
 		emit_signal("targetChanged")
-		print("target set to null")
 	
 func patrolPointsSet(patrolPoints):
 	get_node("StateMachine/Patrolling").patrolPoints = patrolPoints
@@ -56,3 +54,8 @@ func chasingDetectorSet(detector):
 	get_node("StateMachine/Patrolling").detector = detector
 	get_node("StateMachine/Guarding").detector = detector
 	get_node("StateMachine/Attacking").detector = detector
+	
+func detectSound(soundSource):
+	if fsm.state.name != "Chasing":
+		get_node("StateMachine/Chasing").target = soundSource
+		fsm.state.exit("Chasing")
