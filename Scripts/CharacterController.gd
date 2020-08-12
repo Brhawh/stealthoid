@@ -1,13 +1,13 @@
 extends KinematicBody2D
 
-export (int) var speed = 200
 export (Vector2) var zoomLevel = Vector2(0.8, 0.8)
 onready var fsm: StateMachine = get_node("StateMachine")
 var lightLevel = 0
 var velocity = Vector2()
 
-var walkingSpeed = 50
-var runningSpeed = 100
+var speed = 200
+export (int) var walkingSpeed = 60
+export (int) var runningSpeed = 120
 
 func get_input():
 	velocity = Vector2()
