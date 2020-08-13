@@ -5,6 +5,7 @@ var fsm: StateMachine
 var navigator
 var detector
 var hasAttacked = false
+var canMove = true
 var _timer
 onready var target = get_parent().get_parent().target
 const ATTACK = preload("res://scenes/Attack.tscn")
@@ -35,7 +36,8 @@ func physics_process(delta):
 				attackTimer()
 		else:
 			#print("You died")
-			exit("Chasing")
+			if canMove:
+			 exit("Chasing")
 	else:
 		exit("Patrolling")
 	return delta
@@ -54,16 +56,18 @@ func notification(what, flag = false):
 
 func attackTimer():
 	hasAttacked = true
+	canMove = false
 	_timer = Timer.new()
 	add_child(_timer)
 
 	_timer.connect("timeout", self, "_on_Timer_timeout")
-	_timer.set_wait_time(0.5)
+	_timer.set_wait_time(1)
 	_timer.set_one_shot(true) # Make sure it loops
 	_timer.start()
 
 func _on_Timer_timeout():
 	hasAttacked = false
+	canMove = true
 
 func _on_Enemy_targetChanged():
 	target = get_parent().get_parent().target

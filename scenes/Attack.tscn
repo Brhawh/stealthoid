@@ -14,7 +14,7 @@ animations = [ {
 "frames": [ ExtResource( 8 ), ExtResource( 7 ), ExtResource( 5 ), ExtResource( 6 ), ExtResource( 3 ), ExtResource( 1 ), ExtResource( 4 ) ],
 "loop": true,
 "name": "default",
-"speed": 12.0
+"speed": 6.0
 } ]
 
 [node name="Attack" type="AnimatedSprite"]
