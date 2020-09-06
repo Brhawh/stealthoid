@@ -28,11 +28,10 @@ func physics_process(delta):
 		navPath = navigator.get_simple_path(eldestParent.global_position, patrolPoints[targetPatrolPoint])
 		navPath = mover.moveAlongPath(delta, speed, navPath, eldestParent)
 		if navPath.size() == 0:
-			var reachedEnd = targetNextPatrolPoint()
-			if reachedEnd:
+			if reachedEnd():
 				exit("Guarding")
 		else:
-			eldestParent.look_at(navPath[0])
+			eldestParent.rotation = lerp(eldestParent.rotation, eldestParent.global_position.direction_to(navPath[0]).angle(), 0.1)
 			
 	if target != null:
 		var hitPos = detector.detect_target(target)
@@ -53,7 +52,7 @@ func unhandled_key_input(event):
 func notification(what, flag = false):
 	return [what, flag]
 		
-func targetNextPatrolPoint():
+func reachedEnd():
 	targetPatrolPoint = targetPatrolPoint + 1
 	if targetPatrolPoint > patrolPoints.size() - 1:
 		targetPatrolPoint = 0

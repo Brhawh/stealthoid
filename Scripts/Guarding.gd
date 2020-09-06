@@ -36,7 +36,10 @@ func physics_process(delta):
 		navPath = navigator.get_simple_path(eldestParent.global_position, guardLocation)
 		navPath = mover.moveAlongPath(delta, speed, navPath, eldestParent)
 		if navPath.size() > 0:
-			eldestParent.look_at(navPath[0])
+			var targetAngle = eldestParent.global_position.direction_to(navPath[0]).angle()
+			if targetAngle < 0:
+				targetAngle = PI * 2 + targetAngle
+			eldestParent.rotation = lerp(eldestParent.rotation, targetAngle, 0.03)
 		
 	if target != null:
 		var hitPos = detector.detect_target(target)
@@ -68,28 +71,11 @@ func getShouldRotateClockwise():
 		clockwiseAngle = rotationDegrees[targetRotationDegrees] - currentRotation
 		antiClockwiseAngle = DEGREES_IN_CIRCLE - rotationDegrees[targetRotationDegrees] + currentRotation
 	return not(clockwiseAngle > antiClockwiseAngle)
-
+	
 func rotateToNext(delta):
-	var parentAngle = eldestParent.rotation_degrees
-	var angleToRotate = rotationSpeed * delta
-	
-	parentAngle = updateCurrentRotation(parentAngle, angleToRotate, getShouldRotateClockwise())
-	
-	if abs(parentAngle + angleToRotate - rotationDegrees[targetRotationDegrees]) - 5 < angleToRotate:
+	eldestParent.rotation_degrees = lerp(eldestParent.rotation_degrees, rotationDegrees[targetRotationDegrees], 0.03)
+	if abs(rotationDegrees[targetRotationDegrees] - eldestParent.rotation_degrees) <= 5:
 		targetNextRotation()
-		
-	eldestParent.rotation_degrees = parentAngle
-	
-func updateCurrentRotation(currentRotation, angleToRotate, shouldRotateClockwise):
-	if shouldRotateClockwise:
-		currentRotation += angleToRotate
-		if currentRotation >= DEGREES_IN_CIRCLE:
-			currentRotation = fmod(currentRotation, DEGREES_IN_CIRCLE)
-	else:
-		currentRotation -= angleToRotate
-		if currentRotation < 0:
-			currentRotation = DEGREES_IN_CIRCLE - fmod(abs(currentRotation), DEGREES_IN_CIRCLE)
-	return currentRotation
 	
 func targetNextRotation():
 	targetRotationDegrees = targetRotationDegrees + 1
@@ -99,7 +85,6 @@ func targetNextRotation():
 		
 func positionsWithinRange(pos1, pos2, acceptableRange):
 	return (abs(pos1.x - pos2.x) < acceptableRange && abs(pos1.y - pos2.y) < acceptableRange)
-
 
 func _on_Enemy_targetChanged():
 	target = get_parent().get_parent().target
