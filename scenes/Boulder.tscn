@@ -11,7 +11,7 @@
 [sub_resource type="CircleShape2D" id=1]
 radius = 13.6274
 
-[sub_resource type="SpriteFrames" id=3]
+[sub_resource type="SpriteFrames" id=2]
 animations = [ {
 "frames": [ ExtResource( 2 ), ExtResource( 5 ), ExtResource( 1 ), ExtResource( 3 ), ExtResource( 7 ), ExtResource( 4 ) ],
 "loop": true,
@@ -21,7 +21,7 @@ animations = [ {
 "frames": [ ExtResource( 4 ), ExtResource( 7 ), ExtResource( 3 ), ExtResource( 1 ), ExtResource( 5 ), ExtResource( 2 ) ],
 "loop": true,
 "name": "left",
-"speed": 15.0
+"speed": 30.0
 } ]
 
 [node name="Boulder" type="KinematicBody2D"]
@@ -35,8 +35,8 @@ shape = SubResource( 1 )
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 modulate = Color( 0.207843, 0.207843, 0.207843, 1 )
 position = Vector2( -23.5592, 21.8329 )
-frames = SubResource( 3 )
+frames = SubResource( 2 )
 animation = "left"
-frame = 3
+frame = 2
 playing = true
 offset = Vector2( 23.8434, -21.8329 )
