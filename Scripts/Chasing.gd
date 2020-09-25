@@ -4,15 +4,23 @@ var fsm: StateMachine
 
 var navigator
 var detector
-var speed = 50
-onready var target = get_parent().get_parent().target
-onready var mover = get_node("../../Mover")
+var speed
+var target: KinematicBody2D
+var mover
 var navPath
+var positionNode
 
-onready var eldestParent = get_parent().get_parent()
+func _init(_positionNode, _mover, _target, _speed, _detector, _navigator):
+	positionNode = _positionNode
+	mover = _mover
+	target = _target
+	speed = _speed
+	detector = _detector
+	navigator = _navigator
+	
 
 func enter():
-	navPath = navigator.get_simple_path(eldestParent.global_position, target.global_position)
+	navPath = navigator.get_simple_path(positionNode.global_position, target.global_position)
 	return
 
 func exit(next_state):
@@ -24,13 +32,13 @@ func process(delta):
 func physics_process(delta):
 	if navPath.size() > 0:
 		get_parent().get_parent().look_at(navPath[0])
-		navPath = mover.moveAlongPath(delta, speed, navPath, eldestParent)
+		navPath = mover.moveAlongPath(delta, speed, navPath, positionNode)
 	if target != null:
 		var hitPos = detector.detect_target(target)
 		if !hitPos.empty() && target.lightLevel > 0:
-			navPath = navigator.get_simple_path(eldestParent.global_position, target.global_position)
-			eldestParent.look_at(target.position)
-			var distanceToTarget = eldestParent.global_position.distance_to(target.global_position)
+			navPath = navigator.get_simple_path(positionNode.global_position, target.global_position)
+			positionNode.look_at(target.position)
+			var distanceToTarget = positionNode.global_position.distance_to(target.global_position)
 			if distanceToTarget < 30:
 				exit("Attacking")
 		else:
@@ -71,4 +79,4 @@ func notification(what, flag = false):
 
 
 func _on_Enemy_targetChanged():
-	target = get_parent().get_parent().target
+	target = positionNode.target

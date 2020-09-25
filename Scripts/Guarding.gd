@@ -10,11 +10,21 @@ var navigator
 var navPath
 var speed
 var detector
-onready var target = get_parent().get_parent().target
-onready var mover = get_node("../../Mover")
-onready var eldestParent = get_parent().get_parent()
+onready var target
+onready var mover
+onready var positionNode
 
 const DEGREES_IN_CIRCLE = 360
+
+func _init(_navigator, _positionNode, _mover, _target, _detector, _speed, _guardLocation, _rotationDegrees):
+	navigator = _navigator
+	positionNode = _positionNode
+	mover = _mover
+	target = _target
+	detector = _detector
+	speed = _speed
+	guardLocation = _guardLocation
+	rotationDegrees = _rotationDegrees
 
 func enter():
 	return
@@ -29,17 +39,17 @@ func process(delta):
 	return delta
 
 func physics_process(delta):
-	var positionsInRange = positionsWithinRange(eldestParent.position, guardLocation, 5.0)
+	var positionsInRange = positionsWithinRange(positionNode.position, guardLocation, 5.0)
 	if positionsInRange:
 		rotateToNext(delta)
 	else:
-		navPath = navigator.get_simple_path(eldestParent.global_position, guardLocation)
-		navPath = mover.moveAlongPath(delta, speed, navPath, eldestParent)
+		navPath = navigator.get_simple_path(positionNode.global_position, guardLocation)
+		navPath = mover.moveAlongPath(delta, speed, navPath, positionNode)
 		if navPath.size() > 0:
-			var targetAngle = eldestParent.global_position.direction_to(navPath[0]).angle()
+			var targetAngle = positionNode.global_position.direction_to(navPath[0]).angle()
 			if targetAngle < 0:
 				targetAngle = PI * 2 + targetAngle
-			eldestParent.rotation = lerp(eldestParent.rotation, targetAngle, 0.03)
+			positionNode.rotation = lerp(positionNode.rotation, targetAngle, 0.1)
 		
 	if target != null:
 		var hitPos = detector.detect_target(target)
@@ -61,7 +71,7 @@ func notification(what, flag = false):
 	return [what, flag]
 	
 func getShouldRotateClockwise():
-	var currentRotation = eldestParent.rotation_degrees
+	var currentRotation = positionNode.rotation_degrees
 	var clockwiseAngle = 0
 	var antiClockwiseAngle = 0
 	if  currentRotation > rotationDegrees[targetRotationDegrees]:
@@ -73,9 +83,10 @@ func getShouldRotateClockwise():
 	return not(clockwiseAngle > antiClockwiseAngle)
 	
 func rotateToNext(delta):
-	eldestParent.rotation_degrees = lerp(eldestParent.rotation_degrees, rotationDegrees[targetRotationDegrees], 0.03)
-	if abs(rotationDegrees[targetRotationDegrees] - eldestParent.rotation_degrees) <= 5:
+	positionNode.rotation_degrees = lerp(positionNode.rotation_degrees, rotationDegrees[targetRotationDegrees], 0.03)
+	if abs(rotationDegrees[targetRotationDegrees] - positionNode.rotation_degrees) <= 5:
 		targetNextRotation()
+	return delta
 	
 func targetNextRotation():
 	targetRotationDegrees = targetRotationDegrees + 1

@@ -7,8 +7,13 @@ var detector
 var hasAttacked = false
 var canMove = true
 var _timer
-onready var target = get_parent().get_parent().target
+var target
 const ATTACK = preload("res://scenes/Attack.tscn")
+
+func _init(_target, _navigator, _detector):
+	target = _target
+	navigator = _navigator
+	detector = _detector
 
 func enter():
 	return

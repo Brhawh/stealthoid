@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://Scripts/RotatingEnemyController.gd" type="Script" id=1]
 [ext_resource path="res://Scripts/RotateToAngle.gd" type="Script" id=2]
@@ -6,14 +6,9 @@
 [ext_resource path="res://Scripts/EnemyTorchLight.gd" type="Script" id=4]
 [ext_resource path="res://sprites/lighting/light_cone.png" type="Texture" id=5]
 [ext_resource path="res://Scripts/Detector.gd" type="Script" id=6]
-[ext_resource path="res://Scripts/StateMachine.gd" type="Script" id=7]
-[ext_resource path="res://Scripts/Patrolling.gd" type="Script" id=8]
-[ext_resource path="res://Scripts/Guarding.gd" type="Script" id=9]
-[ext_resource path="res://Scripts/Chasing.gd" type="Script" id=10]
 [ext_resource path="res://Scripts/Mover.gd" type="Script" id=11]
 [ext_resource path="res://sprites/Pyramid/mummy(2).png" type="Texture" id=12]
 [ext_resource path="res://sprites/Pyramid/mummy(1).png" type="Texture" id=13]
-[ext_resource path="res://Scripts/Attacking.gd" type="Script" id=14]
 
 [sub_resource type="SpriteFrames" id=1]
 animations = [ {
@@ -101,27 +96,8 @@ __meta__ = {
 "_edit_lock_": true
 }
 
-[node name="StateMachine" type="Node" parent="."]
-script = ExtResource( 7 )
-
-[node name="Patrolling" type="Node" parent="StateMachine"]
-script = ExtResource( 8 )
-
-[node name="Guarding" type="Node" parent="StateMachine"]
-script = ExtResource( 9 )
-
-[node name="Chasing" type="Node" parent="StateMachine"]
-script = ExtResource( 10 )
-
-[node name="Attacking" type="Node" parent="StateMachine"]
-script = ExtResource( 14 )
-
 [node name="Mover" type="Node" parent="."]
 script = ExtResource( 11 )
-[connection signal="targetChanged" from="." to="StateMachine/Chasing" method="_on_Enemy_targetChanged"]
-[connection signal="targetChanged" from="." to="StateMachine/Patrolling" method="_on_Enemy_targetChanged"]
-[connection signal="targetChanged" from="." to="StateMachine/Guarding" method="_on_Enemy_targetChanged"]
-[connection signal="targetChanged" from="." to="StateMachine/Attacking" method="_on_Enemy_targetChanged"]
 [connection signal="finishedRotating" from="Rotator" to="." method="_on_Rotator_finishedRotating"]
 [connection signal="body_entered" from="EnemyTorchLight" to="EnemyTorchLight" method="_on_EnemyTorchLight_body_entered"]
 [connection signal="body_exited" from="EnemyTorchLight" to="EnemyTorchLight" method="_on_EnemyTorchLight_body_exited"]

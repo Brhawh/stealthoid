@@ -8,9 +8,18 @@ var targetPatrolPoint = 0
 var navPath
 var navigator
 var detector
-onready var target = get_parent().get_parent().target
-onready var mover = get_node("../../Mover")
-onready var eldestParent = get_parent().get_parent()
+var target
+var mover
+var positionNode
+
+func _init(_patrolPoints, _mover, _target, _detector, _navigator, _positionNode, _speed):
+	patrolPoints = _patrolPoints
+	mover = _mover
+	target = _target
+	detector = _detector
+	navigator = _navigator
+	positionNode = _positionNode
+	speed = _speed
 
 func enter():
 	return
@@ -24,14 +33,14 @@ func process(delta):
 	return delta
 
 func physics_process(delta):
-	if !patrolPoints.empty():
-		navPath = navigator.get_simple_path(eldestParent.global_position, patrolPoints[targetPatrolPoint])
-		navPath = mover.moveAlongPath(delta, speed, navPath, eldestParent)
+	if !patrolPoints.empty() and navigator != null:
+		navPath = navigator.get_simple_path(positionNode.global_position, patrolPoints[targetPatrolPoint])
+		navPath = mover.moveAlongPath(delta, speed, navPath, positionNode)
 		if navPath.size() == 0:
 			if reachedEnd():
 				exit("Guarding")
 		else:
-			eldestParent.rotation = lerp(eldestParent.rotation, eldestParent.global_position.direction_to(navPath[0]).angle(), 0.1)
+			positionNode.rotation = lerp(positionNode.rotation, positionNode.global_position.direction_to(navPath[0]).angle(), 0.1)
 			
 	if target != null:
 		var hitPos = detector.detect_target(target)
@@ -61,4 +70,4 @@ func reachedEnd():
 
 
 func _on_Enemy_targetChanged():
-	target = get_parent().get_parent().target
+	target = positionNode.target
