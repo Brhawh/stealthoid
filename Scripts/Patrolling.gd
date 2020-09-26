@@ -25,7 +25,6 @@ func enter():
 	return
 
 func exit(next_state):
-	navPath = null
 	fsm.change_to(next_state)
 
 func process(delta):

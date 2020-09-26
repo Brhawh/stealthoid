@@ -36,7 +36,6 @@ animations = [ {
 modulate = Color( 0.505882, 0.505882, 0.505882, 1 )
 position = Vector2( 193.896, 410.167 )
 script = ExtResource( 1 )
-speed = 100
 zoomLevel = Vector2( 0.2, 0.2 )
 
 [node name="SoundRadiusArea2D" type="Area2D" parent="."]
@@ -74,7 +73,6 @@ shadow_enabled = true
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 frames = SubResource( 3 )
 animation = "Torch"
-frame = 2
 playing = true
 
 [node name="StateMachine" type="Node" parent="."]

@@ -45,7 +45,7 @@ func physics_process(delta):
 			if navPath.size() <= 0:
 				fsm.back()
 	else:
-		fsm.back()
+		exit("Investigating")
 	return delta
 
 func input(event):

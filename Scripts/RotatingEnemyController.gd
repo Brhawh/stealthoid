@@ -64,8 +64,7 @@ func createStateMachine():
 	attackingNode.name = "Attacking"
 	
 	#Create investigating state
-	var investigatingNode = Node.new()
-	investigatingNode.set_script(load("res://Scripts/Investigating.gd"))
+	var investigatingNode = preload("res://Scripts/Investigating.gd").new(navigator, self, speed, mover)
 	investigatingNode.name = "Investigating"
 	
 	stateMachine.add_child(patrollingNode)
