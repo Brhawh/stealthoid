@@ -8,6 +8,9 @@ var speed
 var mover
 var investigatePoints = null
 var targetInvestigatePoint = 0
+var paused = false
+
+var _timer
 
 func _init(_navigator, _positionNode, _speed, _mover):
 	navigator = _navigator
@@ -31,22 +34,26 @@ func enter():
 		var nav2D = tileSet.tile_get_navigation_polygon(cellId)
 		if nav2D != null:
 			investigatePoints.append(tileMap.map_to_world(cellCoords + direction) + tileMap.cell_size / 2)
-	print(investigatePoints)
 	return
 
 func exit(next_state):
+	investigatePoints = null
+	targetInvestigatePoint = 0
+	paused = false
 	fsm.change_to(next_state)
 
 func process(delta):
 	return delta
 
 func physics_process(delta):
-	if !investigatePoints.empty() and navigator != null:
+	if !investigatePoints.empty() and navigator != null && !paused:
 		var navPath = navigator.get_simple_path(positionNode.global_position, investigatePoints[targetInvestigatePoint])
 		navPath = mover.moveAlongPath(delta, speed, navPath, positionNode)
 		if navPath.size() == 0:
 			if reachedEnd():
-				exit("Guarding")
+				pause("returnToGuarding")
+			else:
+				pause("_on_Timer_timeout")
 		else:
 			positionNode.rotation = lerp(positionNode.rotation, positionNode.global_position.direction_to(navPath[0]).angle(), 0.1)
 	return delta
@@ -69,3 +76,20 @@ func reachedEnd():
 		targetInvestigatePoint = 0
 		return true
 	return false
+	
+func _on_Timer_timeout():
+	paused = false
+	
+func returnToGuarding():
+	exit("Guarding")
+	paused = false
+	
+func pause(timeoutFunc):
+	_timer = Timer.new()
+	add_child(_timer)
+
+	_timer.connect("timeout", self, timeoutFunc)
+	_timer.set_wait_time(2)
+	_timer.set_one_shot(true) # Make sure it loops
+	_timer.start()
+	paused = true

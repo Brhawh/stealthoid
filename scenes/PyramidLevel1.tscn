@@ -779,6 +779,7 @@ patrolPoints = [ Vector2( 754, 690 ), Vector2( 754, 754 ), Vector2( 690, 754 ) ]
 speed = 25.0
 guardingDegrees = [ 90.0, 0.0 ]
 guardPostLocation = Vector2( 690, 690 )
+targetPath = NodePath("../Character")
 
 [node name="Character" parent="." instance=ExtResource( 2 )]
 position = Vector2( 718.524, 809.206 )

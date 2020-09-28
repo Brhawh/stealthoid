@@ -42,6 +42,7 @@ rotationSpeed = 50.0
 [node name="EnemySprite" type="AnimatedSprite" parent="."]
 rotation = -1.5708
 frames = SubResource( 1 )
+frame = 2
 playing = true
 
 [node name="EnemyTorchLight" type="Area2D" parent="."]
@@ -101,5 +102,5 @@ script = ExtResource( 11 )
 [connection signal="finishedRotating" from="Rotator" to="." method="_on_Rotator_finishedRotating"]
 [connection signal="body_entered" from="EnemyTorchLight" to="EnemyTorchLight" method="_on_EnemyTorchLight_body_entered"]
 [connection signal="body_exited" from="EnemyTorchLight" to="EnemyTorchLight" method="_on_EnemyTorchLight_body_exited"]
-[connection signal="body_entered" from="EnemyViewRadius" to="." method="_on_EnemyViewRadius_body_entered"]
-[connection signal="body_exited" from="EnemyViewRadius" to="." method="_on_EnemyViewRadius_body_exited"]
+[connection signal="body_entered" from="EnemyViewRadius" to="Detector" method="_on_EnemyViewRadius_body_entered"]
+[connection signal="body_exited" from="EnemyViewRadius" to="Detector" method="_on_EnemyViewRadius_body_exited"]

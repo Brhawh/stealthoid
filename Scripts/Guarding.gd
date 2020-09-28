@@ -9,19 +9,18 @@ var guardLocation
 var navigator
 var navPath
 var speed
-var detector
-onready var target
+var paused
 onready var mover
 onready var positionNode
 
+var _timer
+
 const DEGREES_IN_CIRCLE = 360
 
-func _init(_navigator, _positionNode, _mover, _target, _detector, _speed, _guardLocation, _rotationDegrees):
+func _init(_navigator, _positionNode, _mover, _speed, _guardLocation, _rotationDegrees):
 	navigator = _navigator
 	positionNode = _positionNode
 	mover = _mover
-	target = _target
-	detector = _detector
 	speed = _speed
 	guardLocation = _guardLocation
 	rotationDegrees = _rotationDegrees
@@ -30,18 +29,16 @@ func enter():
 	return
 
 func exit(next_state):
+	paused = false
 	navPath = null
+	targetRotationDegrees = 0
 	fsm.change_to(next_state)
-
-# Optional handler functions for game loop events
-func process(delta):
-	# Add handler code here
-	return delta
 
 func physics_process(delta):
 	var positionsInRange = positionsWithinRange(positionNode.position, guardLocation, 5.0)
 	if positionsInRange:
-		rotateToNext(delta)
+		if !paused:
+			rotateToNext(delta)
 	else:
 		navPath = navigator.get_simple_path(positionNode.global_position, guardLocation)
 		navPath = mover.moveAlongPath(delta, speed, navPath, positionNode)
@@ -49,13 +46,7 @@ func physics_process(delta):
 			var targetAngle = positionNode.global_position.direction_to(navPath[0]).angle()
 			if targetAngle < 0:
 				targetAngle = PI * 2 + targetAngle
-			positionNode.rotation = lerp(positionNode.rotation, targetAngle, 0.1)
-		
-	if target != null:
-		var hitPos = detector.detect_target(target)
-		if !hitPos.empty() && target.lightLevel > 0:
-			#get_node("../Chasing").target = target
-			exit("Chasing")
+			positionNode.rotation = lerp(positionNode.rotation, targetAngle, 0.08)
 	return delta
 
 func input(event):
@@ -70,22 +61,10 @@ func unhandled_key_input(event):
 func notification(what, flag = false):
 	return [what, flag]
 	
-func getShouldRotateClockwise():
-	var currentRotation = positionNode.rotation_degrees
-	var clockwiseAngle = 0
-	var antiClockwiseAngle = 0
-	if  currentRotation > rotationDegrees[targetRotationDegrees]:
-		clockwiseAngle = DEGREES_IN_CIRCLE - currentRotation + rotationDegrees[targetRotationDegrees]
-		antiClockwiseAngle = currentRotation - rotationDegrees[targetRotationDegrees]
-	else:
-		clockwiseAngle = rotationDegrees[targetRotationDegrees] - currentRotation
-		antiClockwiseAngle = DEGREES_IN_CIRCLE - rotationDegrees[targetRotationDegrees] + currentRotation
-	return not(clockwiseAngle > antiClockwiseAngle)
-	
 func rotateToNext(delta):
-	positionNode.rotation_degrees = lerp(positionNode.rotation_degrees, rotationDegrees[targetRotationDegrees], 0.03)
+	positionNode.rotation_degrees = lerp(positionNode.rotation_degrees, rotationDegrees[targetRotationDegrees], 0.08)
 	if abs(rotationDegrees[targetRotationDegrees] - positionNode.rotation_degrees) <= 5:
-		targetNextRotation()
+		pause("targetNextRotation")
 	return delta
 	
 func targetNextRotation():
@@ -93,9 +72,17 @@ func targetNextRotation():
 	if targetRotationDegrees > rotationDegrees.size() - 1:
 		targetRotationDegrees = 0
 		exit("Patrolling")
-		
+	paused = false
+
 func positionsWithinRange(pos1, pos2, acceptableRange):
 	return (abs(pos1.x - pos2.x) < acceptableRange && abs(pos1.y - pos2.y) < acceptableRange)
+	
+func pause(timeoutFunc):
+	_timer = Timer.new()
+	add_child(_timer)
 
-func _on_Enemy_targetChanged():
-	target = get_parent().get_parent().target
+	_timer.connect("timeout", self, timeoutFunc)
+	_timer.set_wait_time(2)
+	_timer.set_one_shot(true) # Make sure it loops
+	_timer.start()
+	paused = true

@@ -2,23 +2,17 @@ extends Node
 
 var fsm: StateMachine
 
-var navigator
-var detector
 var hasAttacked = false
 var canMove = true
 var _timer
-var target
+var target = null
 const ATTACK = preload("res://scenes/Attack.tscn")
-
-func _init(_target, _navigator, _detector):
-	target = _target
-	navigator = _navigator
-	detector = _detector
 
 func enter():
 	return
 
 func exit(next_state):
+	target = null
 	fsm.change_to(next_state)
 
 func process(delta):
@@ -73,6 +67,3 @@ func attackTimer():
 func _on_Timer_timeout():
 	hasAttacked = false
 	canMove = true
-
-func _on_Enemy_targetChanged():
-	target = get_parent().get_parent().target

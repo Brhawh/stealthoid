@@ -7,16 +7,12 @@ var speed = 100
 var targetPatrolPoint = 0
 var navPath
 var navigator
-var detector
-var target
 var mover
 var positionNode
 
-func _init(_patrolPoints, _mover, _target, _detector, _navigator, _positionNode, _speed):
+func _init(_patrolPoints, _mover, _navigator, _positionNode, _speed):
 	patrolPoints = _patrolPoints
 	mover = _mover
-	target = _target
-	detector = _detector
 	navigator = _navigator
 	positionNode = _positionNode
 	speed = _speed
@@ -39,13 +35,7 @@ func physics_process(delta):
 			if reachedEnd():
 				exit("Guarding")
 		else:
-			positionNode.rotation = lerp(positionNode.rotation, positionNode.global_position.direction_to(navPath[0]).angle(), 0.1)
-			
-	if target != null:
-		var hitPos = detector.detect_target(target)
-		if !hitPos.empty() && target.lightLevel > 0:
-			#get_node("../Chasing").target = target
-			exit("Chasing")
+			positionNode.rotation = lerp(positionNode.rotation, positionNode.global_position.direction_to(navPath[0]).angle(), 0.08)
 	return delta
 
 func input(event):
@@ -66,7 +56,3 @@ func reachedEnd():
 		targetPatrolPoint = 0
 		return true
 	return false
-
-
-func _on_Enemy_targetChanged():
-	target = positionNode.target
