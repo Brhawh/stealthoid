@@ -20,7 +20,7 @@ func _init(_navigator, _positionNode, _speed, _mover):
 
 func enter():
 	#get tile enemy is on
-	var tileMap = navigator.get_node("TileMap")
+	var tileMap = navigator.get_node("../TileMap")
 	var tileSet = tileMap.tile_set
 	var cellCoords = tileMap.world_to_map(positionNode.position)
 	var cell = tileMap.get_cellv(cellCoords)
@@ -55,7 +55,7 @@ func physics_process(delta):
 			else:
 				pause("_on_Timer_timeout")
 		else:
-			positionNode.rotation = lerp(positionNode.rotation, positionNode.global_position.direction_to(navPath[0]).angle(), 0.1)
+			positionNode.rotation = lerp(positionNode.rotation, positionNode.global_position.direction_to(navPath[0]).angle(), 0.08)
 	return delta
 
 func input(event):
