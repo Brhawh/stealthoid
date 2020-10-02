@@ -5,8 +5,10 @@
 [ext_resource path="res://sprites/Pyramid/boulder3.png" type="Texture" id=3]
 [ext_resource path="res://sprites/Pyramid/boulder1.png" type="Texture" id=4]
 [ext_resource path="res://sprites/Pyramid/boulder5.png" type="Texture" id=5]
-[ext_resource path="res://scenes/Boulder.gd" type="Script" id=6]
+[ext_resource path="res://Scripts/Boulder.gd" type="Script" id=6]
 [ext_resource path="res://sprites/Pyramid/boulder2.png" type="Texture" id=7]
+
+
 
 [sub_resource type="CircleShape2D" id=1]
 radius = 13.6274

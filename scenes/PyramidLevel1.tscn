@@ -835,7 +835,7 @@ chasingNavigatorPath = NodePath("../Navigation2D")
 guardPostLocation = Vector2( 690, 690 )
 
 [node name="Character" parent="." instance=ExtResource( 2 )]
-position = Vector2( 832.274, 720.093 )
+position = Vector2( 550.277, 787.428 )
 zoomLevel = Vector2( 0.3, 0.3 )
 
 [node name="Boulder1" parent="." instance=ExtResource( 3 )]
