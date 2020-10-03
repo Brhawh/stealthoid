@@ -2,12 +2,10 @@ extends Node
 
 var fsm: StateMachine
 
-var navigator
-var detector
 var hasAttacked = false
 var canMove = true
 var _timer
-onready var target = get_parent().get_parent().target
+var target = null
 const ATTACK = preload("res://scenes/Attack.tscn")
 var characterController = load("res://scripts/CharacterController.gd").new()
 
@@ -15,6 +13,7 @@ func enter():
 	return
 
 func exit(next_state):
+	target = null
 	fsm.change_to(next_state)
 
 func process(delta):
@@ -35,7 +34,7 @@ func physics_process(delta):
 				add_child(attack)
 				# lock movement of enemy
 				attackTimer()
-				#get_tree().change_scene("res://scenes/PyramidLevel1.tscn")
+				get_tree().change_scene("res://scenes/GameOver.tscn")
 				#characterController.death()
 		else:
 			if canMove:
@@ -70,6 +69,3 @@ func attackTimer():
 func _on_Timer_timeout():
 	hasAttacked = false
 	canMove = true
-
-func _on_Enemy_targetChanged():
-	target = get_parent().get_parent().target

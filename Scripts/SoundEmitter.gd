@@ -39,12 +39,10 @@ func stopEmittingSound():
 	_timer.stop()
 
 func _on_SoundRadiusArea2D_body_entered(body):
-	print(body.name, "entered")
 	if body.has_method("detectSound"):
 		enemies.append(body)
 
 func _on_SoundRadiusArea2D_body_exited(body):
-	print(body.name, "exited")
 	if body.has_method("detectSound"):
 		enemies.erase(body)
 	

@@ -15,6 +15,7 @@ func _physics_process(delta):
 			target.lightLevel = 0
 		else:
 			target.lightLevel = 1
+	return delta
 
 func _on_EnemyTorchLight_body_entered(body):
 	if not body.get("lightLevel") == null:
