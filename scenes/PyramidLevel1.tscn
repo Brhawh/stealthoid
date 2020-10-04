@@ -790,22 +790,23 @@ guardPostLocation = Vector2( 690, 690 )
 targetPath = NodePath("../Character")
 
 [node name="Character" parent="." instance=ExtResource( 2 )]
-position = Vector2( 843.024, 833.206 )
+position = Vector2( 831.303, 496.561 )
 zoomLevel = Vector2( 0.3, 0.3 )
 
-[node name="Boulder1" parent="." instance=ExtResource( 3 )]
-position = Vector2( 735, 528 )
-speed = 1.2
-destination = Vector2( 926, 528 )
-initial = Vector2( 735, 528 )
+[node name="Boulder" parent="." instance=ExtResource( 3 )]
+position = Vector2( 754.678, 464.107 )
+speed = 1.0
+destination = Vector2( 912, 464 )
+initial = Vector2( 754, 464 )
 
 [node name="Boulder2" parent="." instance=ExtResource( 3 )]
-position = Vector2( 753, 464 )
-destination = Vector2( 912, 464 )
-initial = Vector2( 753, 464 )
+position = Vector2( 740, 528 )
+speed = 1.0
+destination = Vector2( 926, 528 )
+initial = Vector2( 740, 528 )
 
 [node name="Boulder3" parent="." instance=ExtResource( 3 )]
 position = Vector2( 785, 400 )
-speed = 0.8
+speed = 1.0
 destination = Vector2( 880, 400 )
 initial = Vector2( 785, 400 )

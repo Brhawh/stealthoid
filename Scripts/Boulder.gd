@@ -8,7 +8,6 @@ var initialJourney = true
 func _ready():
 	pass
 
-
 func _process(delta):
 	if initialJourney:
 		position.x += speed
@@ -21,3 +20,8 @@ func _process(delta):
 			initialJourney = true
 			$AnimatedSprite.animation = "right"
 	return delta
+
+func _on_Area2D_body_entered(body):
+	if body.get_name() == "Character":
+		print("blam")
+		get_tree().change_scene("res://scenes/GameOver.tscn")
