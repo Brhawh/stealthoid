@@ -794,19 +794,16 @@ position = Vector2( 831.303, 496.561 )
 zoomLevel = Vector2( 0.3, 0.3 )
 
 [node name="Boulder" parent="." instance=ExtResource( 3 )]
-position = Vector2( 754.678, 464.107 )
-speed = 1.0
+position = Vector2( 738.061, 528.437 )
 destination = Vector2( 912, 464 )
 initial = Vector2( 754, 464 )
 
 [node name="Boulder2" parent="." instance=ExtResource( 3 )]
-position = Vector2( 740, 528 )
-speed = 1.0
+position = Vector2( 753.508, 463.877 )
 destination = Vector2( 926, 528 )
 initial = Vector2( 740, 528 )
 
 [node name="Boulder3" parent="." instance=ExtResource( 3 )]
-position = Vector2( 785, 400 )
-speed = 1.0
+position = Vector2( 785.405, 400.019 )
 destination = Vector2( 880, 400 )
 initial = Vector2( 785, 400 )
