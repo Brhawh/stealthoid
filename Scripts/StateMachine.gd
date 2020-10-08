@@ -52,5 +52,6 @@ func _unhandled_key_input(event):
 		state.unhandled_key_input(event)
 
 func _notification(what):
-	if state && state.has_method("notification"):
-		state.notification(what)
+	if state && is_instance_valid(state):
+		if state.has_method("notification"):
+			state.notification(what)

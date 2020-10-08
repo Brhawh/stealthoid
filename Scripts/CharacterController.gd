@@ -23,14 +23,14 @@ func get_input():
 	if velocity.x != 0 or velocity.y != 0:
 		rotation = velocity.angle()
 
+func death():
+	#get_tree().change_scene("res://scenes/PyramidLevel1.tscn")
+	pass
+
 func _physics_process(delta):
 	fsm._physics_process(delta)
 	get_input()
 	velocity = move_and_slide(velocity)
-
-func death():
-	print("reload")
-	get_tree().reload_current_scene()
 
 func Door(var otherDoor, var offset):
 	position.y = get_node(otherDoor).get_position().y + offset 

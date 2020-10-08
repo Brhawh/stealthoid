@@ -7,6 +7,7 @@ var canMove = true
 var _timer
 var target = null
 const ATTACK = preload("res://scenes/Attack.tscn")
+var characterController = load("res://scripts/CharacterController.gd").new()
 
 func enter():
 	return
@@ -33,8 +34,9 @@ func physics_process(delta):
 				add_child(attack)
 				# lock movement of enemy
 				attackTimer()
+				get_tree().change_scene("res://scenes/GameOver.tscn")
+				#characterController.death()
 		else:
-			#print("You died")
 			if canMove:
 			 exit("Chasing")
 	else:
