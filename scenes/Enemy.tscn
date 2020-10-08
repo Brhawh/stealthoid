@@ -59,6 +59,7 @@ scale = Vector2( 0.3, 0.4 )
 texture = ExtResource( 5 )
 offset = Vector2( 0, -35 )
 energy = 2.77
+mode = 2
 shadow_enabled = true
 shadow_color = Color( 1, 0, 0, 0 )
 __meta__ = {

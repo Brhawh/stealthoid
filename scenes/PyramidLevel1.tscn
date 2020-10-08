@@ -768,7 +768,7 @@ outlines = [ PoolVector2Array( 617.135, 713.677, 617.803, 855.837, 677.203, 855.
 [node name="Node2D" type="Node2D"]
 
 [node name="TileMap" type="TileMap" parent="."]
-modulate = Color( 0.207843, 0.207843, 0.207843, 1 )
+modulate = Color( 0.294118, 0.294118, 0.294118, 1 )
 tile_set = SubResource( 43 )
 cell_size = Vector2( 16, 16 )
 format = 1
@@ -781,6 +781,7 @@ script = ExtResource( 5 )
 navpoly = SubResource( 44 )
 
 [node name="Enemy" parent="." instance=ExtResource( 4 )]
+modulate = Color( 0.337255, 0.337255, 0.337255, 1 )
 position = Vector2( 688.013, 689.596 )
 rotation = -1.01404
 patrolPoints = [ Vector2( 754, 690 ), Vector2( 754, 754 ), Vector2( 690, 754 ) ]
@@ -790,11 +791,12 @@ guardPostLocation = Vector2( 690, 690 )
 targetPath = NodePath("../Character")
 
 [node name="Character" parent="." instance=ExtResource( 2 )]
-position = Vector2( 843.024, 833.206 )
+modulate = Color( 0.411765, 0.411765, 0.411765, 1 )
+position = Vector2( 820.79, 693.445 )
 zoomLevel = Vector2( 0.3, 0.3 )
 
 [node name="Boulder1" parent="." instance=ExtResource( 3 )]
-position = Vector2( 735, 528 )
+position = Vector2( 839.132, 523.88 )
 speed = 1.2
 destination = Vector2( 926, 528 )
 initial = Vector2( 735, 528 )

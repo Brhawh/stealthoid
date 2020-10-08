@@ -2,7 +2,7 @@
 
 [ext_resource path="res://Scripts/CharacterController.gd" type="Script" id=1]
 [ext_resource path="res://Scripts/Camera2D.gd" type="Script" id=2]
-[ext_resource path="res://sprites/lighting/light.png" type="Texture" id=3]
+[ext_resource path="res://sprites/lighting/FirePointLight.png" type="Texture" id=3]
 [ext_resource path="res://sprites/CharacterNoFire.png" type="Texture" id=4]
 [ext_resource path="res://sprites/CharacterFire1.png" type="Texture" id=5]
 [ext_resource path="res://sprites/CharacterFire2.png" type="Texture" id=6]
@@ -12,6 +12,8 @@
 [ext_resource path="res://Scripts/Running.gd" type="Script" id=10]
 [ext_resource path="res://Scripts/SoundEmitter.gd" type="Script" id=11]
 [ext_resource path="res://Scripts/Idle.gd" type="Script" id=12]
+
+
 
 [sub_resource type="CircleShape2D" id=1]
 radius = 120.0
@@ -66,8 +68,8 @@ __meta__ = {
 position = Vector2( 7, -2 )
 scale = Vector2( 0.1, 0.1 )
 texture = ExtResource( 3 )
-color = Color( 1, 0.447059, 0, 1 )
 energy = 1.5
+mode = 2
 shadow_enabled = true
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
