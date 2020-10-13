@@ -768,7 +768,6 @@ outlines = [ PoolVector2Array( 617.135, 713.677, 617.803, 855.837, 677.203, 855.
 [node name="Node2D" type="Node2D"]
 
 [node name="TileMap" type="TileMap" parent="."]
-modulate = Color( 0.207843, 0.207843, 0.207843, 1 )
 tile_set = SubResource( 43 )
 cell_size = Vector2( 16, 16 )
 format = 1
@@ -790,7 +789,7 @@ guardPostLocation = Vector2( 690, 690 )
 targetPath = NodePath("../Character")
 
 [node name="Character" parent="." instance=ExtResource( 2 )]
-position = Vector2( 831.303, 496.561 )
+position = Vector2( 831.553, 496.561 )
 zoomLevel = Vector2( 0.3, 0.3 )
 
 [node name="Boulder" parent="." instance=ExtResource( 3 )]
@@ -807,3 +806,6 @@ initial = Vector2( 740, 528 )
 position = Vector2( 785.405, 400.019 )
 destination = Vector2( 880, 400 )
 initial = Vector2( 785, 400 )
+
+[node name="CanvasModulate" type="CanvasModulate" parent="."]
+color = Color( 0.27451, 0.27451, 0.27451, 1 )

@@ -14,7 +14,7 @@
 [ext_resource path="res://Scripts/Idle.gd" type="Script" id=12]
 
 [sub_resource type="CircleShape2D" id=1]
-radius = 120.0
+radius = 60.0
 
 [sub_resource type="RectangleShape2D" id=2]
 extents = Vector2( 7.68188, 6.88452 )
@@ -33,7 +33,6 @@ animations = [ {
 } ]
 
 [node name="Character" type="KinematicBody2D"]
-modulate = Color( 0.505882, 0.505882, 0.505882, 1 )
 position = Vector2( 193.896, 410.167 )
 script = ExtResource( 1 )
 zoomLevel = Vector2( 0.2, 0.2 )
@@ -66,7 +65,6 @@ __meta__ = {
 position = Vector2( 7, -2 )
 scale = Vector2( 0.1, 0.1 )
 texture = ExtResource( 3 )
-energy = 1.5
 mode = 2
 shadow_enabled = true
 

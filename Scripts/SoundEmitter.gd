@@ -1,7 +1,7 @@
 extends Node
 
-var walkingRadius = 60
-var runningRadius = 120
+var walkingRadius = 30
+var runningRadius = 60
 
 var runningTime = 0.5
 var walkingTime = 1.0
@@ -49,3 +49,11 @@ func _on_SoundRadiusArea2D_body_exited(body):
 func emitSound():
 	for enemy in enemies:
 		enemy.detectSound(get_parent())
+	
+	var particleNode = preload("res://scenes/Particles/StepIndicatorParticles.tscn").instance()
+	var particleMaterial = preload("res://scenes/Particles/StepIndicatorParticles.tres")
+	particleMaterial.initial_velocity = get_node("../SoundRadiusArea2D/CollisionShape2D").shape.radius 
+	particleNode.process_material = particleMaterial
+	get_parent().get_parent().add_child(particleNode)
+	particleNode.global_position = get_parent().global_position
+	particleNode.emitting = true

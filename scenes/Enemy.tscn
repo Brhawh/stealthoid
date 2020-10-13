@@ -42,7 +42,7 @@ rotationSpeed = 50.0
 [node name="EnemySprite" type="AnimatedSprite" parent="."]
 rotation = -1.5708
 frames = SubResource( 1 )
-frame = 2
+frame = 1
 playing = true
 
 [node name="EnemyTorchLight" type="Area2D" parent="."]
@@ -58,7 +58,6 @@ light_mask = 3
 scale = Vector2( 0.3, 0.4 )
 texture = ExtResource( 5 )
 offset = Vector2( 0, -35 )
-energy = 2.77
 mode = 2
 shadow_enabled = true
 shadow_color = Color( 1, 0, 0, 0 )
