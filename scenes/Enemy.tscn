@@ -1,10 +1,10 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://Scripts/RotatingEnemyController.gd" type="Script" id=1]
 [ext_resource path="res://Scripts/RotateToAngle.gd" type="Script" id=2]
 [ext_resource path="res://sprites/Pyramid/mummy.png" type="Texture" id=3]
 [ext_resource path="res://Scripts/EnemyTorchLight.gd" type="Script" id=4]
-[ext_resource path="res://sprites/lighting/light_cone.png" type="Texture" id=5]
+[ext_resource path="res://sprites/lighting/FirePointLight.png" type="Texture" id=5]
 [ext_resource path="res://Scripts/Detector.gd" type="Script" id=6]
 [ext_resource path="res://Scripts/Mover.gd" type="Script" id=11]
 [ext_resource path="res://sprites/Pyramid/mummy(2).png" type="Texture" id=12]
@@ -18,17 +18,10 @@ animations = [ {
 "speed": 10.0
 } ]
 
-[sub_resource type="ConvexPolygonShape2D" id=2]
-points = PoolVector2Array( 0, 0, 103.7, -438.1, -105.85, -437.15 )
-
-[sub_resource type="ConvexPolygonShape2D" id=3]
-points = PoolVector2Array( 10, 10, 10, -10, -10, -10, -10, 10 )
-
-[sub_resource type="ConvexPolygonShape2D" id=4]
-points = PoolVector2Array( 0, 0, 500, 200, 500, -200 )
+[sub_resource type="CircleShape2D" id=2]
+radius = 54.59
 
 [node name="Enemy" type="KinematicBody2D"]
-modulate = Color( 0.215686, 0.215686, 0.215686, 1 )
 position = Vector2( 530, 410 )
 rotation = 5.26915
 z_as_relative = false
@@ -42,8 +35,10 @@ rotationSpeed = 50.0
 [node name="EnemySprite" type="AnimatedSprite" parent="."]
 rotation = -1.5708
 frames = SubResource( 1 )
-frame = 1
 playing = true
+__meta__ = {
+"_edit_lock_": true
+}
 
 [node name="EnemyTorchLight" type="Area2D" parent="."]
 rotation = 1.5708
@@ -55,29 +50,17 @@ __meta__ = {
 
 [node name="Light2D" type="Light2D" parent="EnemyTorchLight"]
 light_mask = 3
-scale = Vector2( 0.3, 0.4 )
+position = Vector2( -5.49121, -4.09106 )
+scale = Vector2( 0.1, 0.1 )
 texture = ExtResource( 5 )
-offset = Vector2( 0, -35 )
+offset = Vector2( -33.89, -35 )
 mode = 2
 shadow_enabled = true
 shadow_color = Color( 1, 0, 0, 0 )
-__meta__ = {
-"_edit_lock_": true
-}
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="EnemyTorchLight"]
-scale = Vector2( 0.5, 0.5 )
+position = Vector2( -7.4751, -6.09546 )
 shape = SubResource( 2 )
-__meta__ = {
-"_edit_lock_": true
-}
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-scale = Vector2( 0.5, 0.5 )
-shape = SubResource( 3 )
-__meta__ = {
-"_edit_lock_": true
-}
 
 [node name="EnemyViewRadius" type="Area2D" parent="."]
 collision_layer = 2
@@ -85,11 +68,8 @@ __meta__ = {
 "_edit_lock_": true
 }
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="EnemyViewRadius"]
-shape = SubResource( 4 )
-__meta__ = {
-"_edit_lock_": true
-}
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="EnemyViewRadius"]
+polygon = PoolVector2Array( 500, -200, 500, 200, 0, 0 )
 
 [node name="Detector" type="Node2D" parent="."]
 script = ExtResource( 6 )
@@ -99,6 +79,14 @@ __meta__ = {
 
 [node name="Mover" type="Node" parent="."]
 script = ExtResource( 11 )
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+position = Vector2( 0.0364475, -0.15353 )
+scale = Vector2( 1.00429, 1.01204 )
+polygon = PoolVector2Array( 5, 8, 5, -8, -5, -8, -5, 8 )
+__meta__ = {
+"_edit_lock_": true
+}
 [connection signal="finishedRotating" from="Rotator" to="." method="_on_Rotator_finishedRotating"]
 [connection signal="body_entered" from="EnemyTorchLight" to="EnemyTorchLight" method="_on_EnemyTorchLight_body_entered"]
 [connection signal="body_exited" from="EnemyTorchLight" to="EnemyTorchLight" method="_on_EnemyTorchLight_body_exited"]

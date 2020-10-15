@@ -2,6 +2,7 @@ extends KinematicBody2D
 
 export (Vector2) var zoomLevel = Vector2(0.8, 0.8)
 onready var fsm: StateMachine = get_node("StateMachine")
+onready var fireTorchLightNode = get_node("FireTorchLight")
 var lightLevel = 0
 var velocity = Vector2()
 
@@ -22,6 +23,13 @@ func get_input():
 	velocity = velocity.normalized() * speed
 	if velocity.x != 0 or velocity.y != 0:
 		rotation = velocity.angle()
+	if Input.is_action_just_pressed("toggle_light"):
+		if fireTorchLightNode.visible:
+			fireTorchLightNode.hide()
+			lightLevel = 0
+		else:
+			fireTorchLightNode.show()
+			lightLevel = 1
 
 func death():
 	#get_tree().change_scene("res://scenes/PyramidLevel1.tscn")

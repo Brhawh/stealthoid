@@ -61,7 +61,7 @@ __meta__ = {
 "_edit_lock_": true
 }
 
-[node name="Light2D" type="Light2D" parent="."]
+[node name="FireTorchLight" type="Light2D" parent="."]
 position = Vector2( 7, -2 )
 scale = Vector2( 0.1, 0.1 )
 texture = ExtResource( 3 )
