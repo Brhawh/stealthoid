@@ -1,6 +1,6 @@
 extends Node
 
-var fsm: StateMachine
+var fsm: EnemyStateMachine
 
 var rotationDegrees
 var targetRotationDegrees = 0
@@ -17,13 +17,13 @@ var _timer
 
 const DEGREES_IN_CIRCLE = 360
 
-func _init(_navigator, _positionNode, _mover, _speed, _guardLocation, _rotationDegrees):
-	navigator = _navigator
-	positionNode = _positionNode
-	mover = _mover
-	speed = _speed
-	guardLocation = _guardLocation
-	rotationDegrees = _rotationDegrees
+func setUp(parentNode):
+	navigator = parentNode.navigator
+	positionNode = parentNode
+	mover = parentNode.mover
+	speed = parentNode.speed
+	guardLocation = parentNode.guardPostLocation
+	rotationDegrees = parentNode.guardingDegrees
 
 func enter():
 	return
@@ -48,18 +48,6 @@ func physics_process(delta):
 				targetAngle = PI * 2 + targetAngle
 			positionNode.rotation = lerp(positionNode.rotation, targetAngle, 0.08)
 	return delta
-
-func input(event):
-	return event
-
-func unhandled_input(event):
-	return event
-
-func unhandled_key_input(event):
-	return event
-
-func notification(what, flag = false):
-	return [what, flag]
 	
 func rotateToNext(delta):
 	positionNode.rotation_degrees = lerp(positionNode.rotation_degrees, rotationDegrees[targetRotationDegrees], 0.08)

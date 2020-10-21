@@ -1,6 +1,6 @@
 extends Node
 
-var fsm: StateMachine
+var fsm: EnemyStateMachine
 
 var navigator
 var speed
@@ -8,12 +8,12 @@ var mover
 var navPath
 var positionNode
 var target = null
-
-func _init(_positionNode, _mover, _speed, _navigator):
-	positionNode = _positionNode
-	mover = _mover
-	speed = _speed
-	navigator = _navigator
+	
+func setUp(parentNode):
+	positionNode = parentNode
+	mover = parentNode.mover
+	speed = parentNode.speed
+	navigator = parentNode.navigator
 
 func enter():
 	navPath = navigator.get_simple_path(positionNode.global_position, target.global_position)
@@ -42,18 +42,6 @@ func physics_process(delta):
 	else:
 		fsm.back()
 	return delta
-
-func input(event):
-	return event
-
-func unhandled_input(event):
-	return event
-
-func unhandled_key_input(event):
-	return event
-
-func notification(what, flag = false):
-	return [what, flag]
 
 func handleTargetDetected(_target):
 	target = _target

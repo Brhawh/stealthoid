@@ -1,6 +1,6 @@
 extends Node
 
-var fsm: StateMachine
+var fsm: EnemyStateMachine
 
 var hasAttacked = false
 var canMove = true
@@ -9,15 +9,15 @@ var target = null
 const ATTACK = preload("res://scenes/Attack.tscn")
 var characterController = load("res://scripts/CharacterController.gd").new()
 
+func setUp(parentNode):
+	target = get_node("../../" + parentNode.targetPath)
+
 func enter():
 	return
 
 func exit(next_state):
 	target = null
 	fsm.change_to(next_state)
-
-func process(delta):
-	return delta
 
 func physics_process(delta):
 	if target != null:
@@ -42,18 +42,6 @@ func physics_process(delta):
 	else:
 		exit("Patrolling")
 	return delta
-
-func input(event):
-	return event
-
-func unhandled_input(event):
-	return event
-
-func unhandled_key_input(event):
-	return event
-
-func notification(what, flag = false):
-	return [what, flag]
 
 func attackTimer():
 	hasAttacked = true

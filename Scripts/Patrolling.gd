@@ -1,6 +1,6 @@
 extends Node
 
-var fsm: StateMachine
+var fsm: EnemyStateMachine
 
 var patrolPoints = []
 var speed = 100
@@ -9,13 +9,13 @@ var navPath
 var navigator
 var mover
 var positionNode
-
-func _init(_patrolPoints, _mover, _navigator, _positionNode, _speed):
-	patrolPoints = _patrolPoints
-	mover = _mover
-	navigator = _navigator
-	positionNode = _positionNode
-	speed = _speed
+	
+func setUp(parentNode: EnemyController):
+	patrolPoints = parentNode.patrolPoints
+	speed = parentNode.speed
+	navigator = parentNode.navigator
+	mover = parentNode.mover
+	positionNode = parentNode
 
 func enter():
 	return
@@ -37,18 +37,6 @@ func physics_process(delta):
 		else:
 			positionNode.rotation = lerp(positionNode.rotation, positionNode.global_position.direction_to(navPath[0]).angle(), 0.08)
 	return delta
-
-func input(event):
-	return event
-
-func unhandled_input(event):
-	return event
-
-func unhandled_key_input(event):
-	return event
-
-func notification(what, flag = false):
-	return [what, flag]
 		
 func reachedEnd():
 	targetPatrolPoint = targetPatrolPoint + 1

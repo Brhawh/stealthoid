@@ -1,6 +1,6 @@
 extends Node
 
-var fsm: StateMachine
+var fsm: EnemyStateMachine
 
 var positionNode
 var navigator
@@ -11,12 +11,12 @@ var targetInvestigatePoint = 0
 var paused = false
 
 var _timer
-
-func _init(_navigator, _positionNode, _speed, _mover):
-	navigator = _navigator
-	positionNode = _positionNode
-	speed = _speed
-	mover = _mover
+	
+func setUp(parentNode):
+	positionNode = parentNode
+	mover = parentNode.mover
+	speed = parentNode.speed
+	navigator = parentNode.navigator
 
 func enter():
 	#get tile enemy is on
@@ -42,9 +42,6 @@ func exit(next_state):
 	paused = false
 	fsm.change_to(next_state)
 
-func process(delta):
-	return delta
-
 func physics_process(delta):
 	if !investigatePoints.empty() and navigator != null && !paused:
 		var navPath = navigator.get_simple_path(positionNode.global_position, investigatePoints[targetInvestigatePoint])
@@ -57,18 +54,6 @@ func physics_process(delta):
 		else:
 			positionNode.rotation = lerp(positionNode.rotation, positionNode.global_position.direction_to(navPath[0]).angle(), 0.08)
 	return delta
-
-func input(event):
-	return event
-
-func unhandled_input(event):
-	return event
-
-func unhandled_key_input(event):
-	return event
-
-func notification(what, flag = false):
-	return [what, flag]
 	
 func reachedEnd():
 	targetInvestigatePoint = targetInvestigatePoint + 1

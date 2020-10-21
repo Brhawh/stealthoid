@@ -1,5 +1,7 @@
 extends "res://Scripts/StateMachine.gd"
 
+class_name EnemyStateMachine
+
 func handleTargetDetected(target):
 	if state.name != "Chasing":
 		get_node("Chasing").target = target

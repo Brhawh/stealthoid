@@ -36,7 +36,7 @@ func death():
 	pass
 
 func _physics_process(delta):
-	fsm._physics_process(delta)
+	fsm.physics_process(delta)
 	get_input()
 	velocity = move_and_slide(velocity)
 
