@@ -16,15 +16,15 @@ light_mode = 2
 
 [sub_resource type="SpriteFrames" id=3]
 animations = [ {
-"frames": [ ExtResource( 4 ), ExtResource( 7 ), ExtResource( 3 ), ExtResource( 1 ), ExtResource( 5 ), ExtResource( 2 ) ],
-"loop": true,
-"name": "left",
-"speed": 30.0
-}, {
 "frames": [ ExtResource( 2 ), ExtResource( 5 ), ExtResource( 1 ), ExtResource( 3 ), ExtResource( 7 ), ExtResource( 4 ) ],
 "loop": true,
 "name": "right",
 "speed": 15.0
+}, {
+"frames": [ ExtResource( 4 ), ExtResource( 7 ), ExtResource( 3 ), ExtResource( 1 ), ExtResource( 5 ), ExtResource( 2 ) ],
+"loop": true,
+"name": "left",
+"speed": 30.0
 } ]
 
 [sub_resource type="CircleShape2D" id=4]
@@ -43,7 +43,7 @@ material = SubResource( 2 )
 position = Vector2( -23.5592, 21.8329 )
 frames = SubResource( 3 )
 animation = "left"
-frame = 3
+frame = 5
 playing = true
 offset = Vector2( 23.8434, -21.8329 )
 
