@@ -5,6 +5,7 @@
 [ext_resource path="res://scenes/Boulder.tscn" type="PackedScene" id=3]
 [ext_resource path="res://scenes/Enemy.tscn" type="PackedScene" id=4]
 [ext_resource path="res://Scripts/PyramidTileMap.gd" type="Script" id=5]
+[ext_resource path="res://sprites/Pyramid/pyramid1_navpoly_7er.tres" type="NavigationPolygon" id=6]
 
 [sub_resource type="ConvexPolygonShape2D" id=1]
 points = PoolVector2Array( 0, 0, 16, 0, 16, 16, 0, 16 )
@@ -760,11 +761,6 @@ polygons = [ PoolIntArray( 0, 1, 2, 3 ) ]
 } ]
 30/z_index = 0
 
-[sub_resource type="NavigationPolygon" id=44]
-vertices = PoolVector2Array( 897.75, 737.75, 898.75, 765, 861.25, 765.25, 818.5, 765.25, 740, 764.75, 862, 738.25, 739.75, 867, 782, 866, 818.5, 866.25, 861.75, 867, 811.434, 889.134, 790.118, 889.243, 920.451, 889.37, 899, 829.25, 899, 802.75, 922.5, 675.5, 898.5, 866.75, 898.25, 701.5, 677, 678.25, 862.5, 701.75, 818.75, 701.5, 781, 700.75, 677.528, 837.375, 676.193, 730.588, 700.75, 828.75, 702, 867.25, 819, 738.5, 781.25, 738.75, 739.25, 738.5, 701.5, 764.25, 702, 738.75, 861.25, 829.25, 818.25, 829.75, 818.75, 802.25, 861.75, 802.25, 782.5, 765.75, 738, 701.75, 739.5, 802.5, 782, 803.75, 782.25, 829.5, 739, 829.5, 701.25, 803.25, 702, 701.5, 676.5, 712.75, 617.135, 713.677, 634.479, 730.254, 617.803, 855.837, 634.813, 837.709, 677.203, 855.837, 678.538, 888.541, 810.726, 905.888, 790.493, 905.35 )
-polygons = [ PoolIntArray( 0, 1, 2, 3, 4, 5 ), PoolIntArray( 6, 7, 8, 9, 10, 11 ), PoolIntArray( 12, 13, 14, 15 ), PoolIntArray( 15, 14, 1 ), PoolIntArray( 16, 13, 12 ), PoolIntArray( 17, 15, 1, 0 ), PoolIntArray( 16, 12, 10, 9 ), PoolIntArray( 18, 15, 17, 19, 20, 21 ), PoolIntArray( 22, 23, 24, 25 ), PoolIntArray( 26, 5, 4, 27 ), PoolIntArray( 27, 4, 28, 21 ), PoolIntArray( 28, 4, 29, 30 ), PoolIntArray( 31, 9, 8, 32, 33 ), PoolIntArray( 2, 34, 31, 33, 3 ), PoolIntArray( 4, 3, 35 ), PoolIntArray( 21, 28, 36 ), PoolIntArray( 37, 4, 35, 38 ), PoolIntArray( 38, 39, 7, 6, 40, 37 ), PoolIntArray( 14, 13, 31, 34 ), PoolIntArray( 38, 33, 32, 39 ), PoolIntArray( 41, 37, 40, 24 ), PoolIntArray( 41, 24, 23, 29 ), PoolIntArray( 42, 30, 29, 23, 43 ), PoolIntArray( 5, 26, 20, 19 ), PoolIntArray( 18, 21, 36, 42 ), PoolIntArray( 43, 18, 42 ), PoolIntArray( 44, 43, 23, 45 ), PoolIntArray( 46, 44, 45, 47 ), PoolIntArray( 48, 46, 47, 22 ), PoolIntArray( 48, 22, 25, 49 ), PoolIntArray( 11, 49, 25, 6 ), PoolIntArray( 11, 10, 50, 51 ) ]
-outlines = [ PoolVector2Array( 617.135, 713.677, 617.803, 855.837, 677.203, 855.837, 678.538, 888.541, 790.118, 889.243, 790.493, 905.35, 810.726, 905.888, 811.434, 889.134, 920.451, 889.37, 922.5, 675.5, 677, 678.25, 676.5, 712.75 ), PoolVector2Array( 634.479, 730.254, 676.193, 730.588, 677.528, 837.375, 634.813, 837.709 ), PoolVector2Array( 702, 701.5, 702, 738.75, 739.25, 738.5, 738, 701.75 ), PoolVector2Array( 781, 700.75, 781.25, 738.75, 819, 738.5, 818.75, 701.5 ), PoolVector2Array( 862.5, 701.75, 862, 738.25, 897.75, 737.75, 898.25, 701.5 ), PoolVector2Array( 701.5, 764.25, 740, 764.75, 739.5, 802.5, 701.25, 803.25 ), PoolVector2Array( 700.75, 828.75, 702, 867.25, 739.75, 867, 739, 829.5 ), PoolVector2Array( 782.5, 765.75, 782, 803.75, 818.75, 802.25, 818.5, 765.25 ), PoolVector2Array( 782.25, 829.5, 818.25, 829.75, 818.5, 866.25, 782, 866 ), PoolVector2Array( 861.25, 829.25, 861.75, 867, 898.5, 866.75, 899, 829.25 ), PoolVector2Array( 861.25, 765.25, 861.75, 802.25, 899, 802.75, 898.75, 765 ) ]
-
 [node name="Node2D" type="Node2D"]
 
 [node name="TileMap" type="TileMap" parent="."]
@@ -777,11 +773,10 @@ script = ExtResource( 5 )
 [node name="Navigation2D" type="Navigation2D" parent="."]
 
 [node name="NavigationPolygonInstance" type="NavigationPolygonInstance" parent="Navigation2D"]
-navpoly = SubResource( 44 )
+navpoly = ExtResource( 6 )
 
 [node name="Enemy" parent="." instance=ExtResource( 4 )]
-position = Vector2( 688.013, 689.596 )
-rotation = -1.01404
+position = Vector2( 688.338, 690.551 )
 patrolPoints = [ Vector2( 754, 690 ), Vector2( 754, 754 ), Vector2( 690, 754 ) ]
 speed = 50.0
 guardingDegrees = [ 90.0, 0.0 ]
@@ -816,7 +811,7 @@ guardPostLocation = Vector2( 910, 880 )
 targetPath = NodePath("../Character")
 
 [node name="Character" parent="." instance=ExtResource( 2 )]
-position = Vector2( 401.001, 785.723 )
+position = Vector2( 834.063, 151.267 )
 zoomLevel = Vector2( 0.3, 0.3 )
 
 [node name="Boulder" parent="." instance=ExtResource( 3 )]
