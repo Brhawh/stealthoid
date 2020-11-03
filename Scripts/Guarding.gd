@@ -10,6 +10,7 @@ var navigator
 var navPath
 var speed
 var paused
+var rotationHandler
 onready var mover
 onready var positionNode
 
@@ -24,6 +25,7 @@ func setUp(parentNode):
 	speed = parentNode.speed
 	guardLocation = parentNode.guardPostLocation
 	rotationDegrees = parentNode.guardingDegrees
+	rotationHandler = parentNode.rotationHandler
 
 func enter():
 	return
@@ -46,12 +48,14 @@ func physics_process(delta):
 			var targetAngle = positionNode.global_position.direction_to(navPath[0]).angle()
 			if targetAngle < 0:
 				targetAngle = PI * 2 + targetAngle
-			positionNode.rotation = lerp(positionNode.rotation, targetAngle, 0.08)
+			positionNode.rotation = rotationHandler.lerpAngle(positionNode.rotation, targetAngle, 0.08)
 	return delta
 	
 func rotateToNext(delta):
-	positionNode.rotation_degrees = lerp(positionNode.rotation_degrees, rotationDegrees[targetRotationDegrees], 0.08)
-	if abs(rotationDegrees[targetRotationDegrees] - positionNode.rotation_degrees) <= 5:
+	var oldRotation = positionNode.rotation
+	var newRotation = rotationHandler.lerpAngle(oldRotation, deg2rad(rotationDegrees[targetRotationDegrees]), 0.08)
+	positionNode.rotation = newRotation
+	if abs(rad2deg(newRotation - oldRotation)) <= 0.1:
 		pause("targetNextRotation")
 	return delta
 	

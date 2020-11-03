@@ -9,6 +9,7 @@ var navPath
 var navigator
 var mover
 var positionNode
+var rotationHandler
 	
 func setUp(parentNode: EnemyController):
 	patrolPoints = parentNode.patrolPoints
@@ -16,6 +17,7 @@ func setUp(parentNode: EnemyController):
 	navigator = parentNode.navigator
 	mover = parentNode.mover
 	positionNode = parentNode
+	rotationHandler = parentNode.rotationHandler
 
 func enter():
 	return
@@ -24,7 +26,6 @@ func exit(next_state):
 	fsm.change_to(next_state)
 
 func process(delta):
-	# Add handler code here
 	return delta
 
 func physics_process(delta):
@@ -35,7 +36,7 @@ func physics_process(delta):
 			if reachedEnd():
 				exit("Guarding")
 		else:
-			positionNode.rotation = lerp(positionNode.rotation, positionNode.global_position.direction_to(navPath[0]).angle(), 0.08)
+			positionNode.rotation = rotationHandler.lerpAngle(positionNode.rotation, positionNode.global_position.direction_to(navPath[0]).angle(), 0.08)
 	return delta
 		
 func reachedEnd():

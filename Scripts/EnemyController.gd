@@ -12,6 +12,8 @@ onready var navigator = $"../Navigation2D"
 onready var fsm: StateMachine = $"StateMachine"
 onready var mover = $"Mover"
 
+var rotationHandler = load("res://Scripts/RotationHandler.gd").new()
+
 func _ready():
 	get_node("Detector").setupTargetHandling(fsm, get_node(targetPath))
 	for state in fsm.get_children():

@@ -9,6 +9,7 @@ var mover
 var investigatePoints = null
 var targetInvestigatePoint = 0
 var paused = false
+var rotationHandler
 
 var _timer
 	
@@ -17,6 +18,7 @@ func setUp(parentNode):
 	mover = parentNode.mover
 	speed = parentNode.speed
 	navigator = parentNode.navigator
+	rotationHandler = parentNode.rotationHandler
 
 func enter():
 	#get tile enemy is on
@@ -52,7 +54,7 @@ func physics_process(delta):
 			else:
 				pause("_on_Timer_timeout")
 		else:
-			positionNode.rotation = lerp(positionNode.rotation, positionNode.global_position.direction_to(navPath[0]).angle(), 0.08)
+			positionNode.rotation = rotationHandler.lerpAngle(positionNode.rotation, positionNode.global_position.direction_to(navPath[0]).angle(), 0.08)
 	return delta
 	
 func reachedEnd():
