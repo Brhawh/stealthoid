@@ -12,8 +12,8 @@ export (int) var walkingSpeed = 60
 export (int) var runningSpeed = 120
 
 func _ready():
-	if fireTorchLightNode.visible:
-		lightSourceCounter += 1
+	fsm.state = fsm.get_children()[0]
+	fsm._enter_state()
 
 func get_input():
 	velocity = Vector2()
@@ -28,17 +28,6 @@ func get_input():
 	velocity = velocity.normalized() * speed
 	if velocity.x != 0 or velocity.y != 0:
 		rotation = velocity.angle()
-	if Input.is_action_just_pressed("toggle_light"):
-		if fireTorchLightNode.visible:
-			fireTorchLightNode.hide()
-			lightSourceCounter -= 1
-		else:
-			fireTorchLightNode.show()
-			lightSourceCounter += 1
-	if lightSourceCounter > 0:
-		lightLevel = 1
-	else:
-		lightLevel = 0
 
 func death():
 	#get_tree().change_scene("res://scenes/PyramidLevel1.tscn")
@@ -57,3 +46,9 @@ func setToRunningSpeed():
 	
 func setToWalkingSpeed():
 	speed = walkingSpeed
+	
+func addLight(lightLevelToAdd):
+	lightLevel += lightLevelToAdd
+	
+func removeLight(lightLevelToRemove):
+	lightLevel -= lightLevelToRemove

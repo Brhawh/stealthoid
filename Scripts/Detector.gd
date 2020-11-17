@@ -3,15 +3,17 @@ extends Node2D
 var targetHandler
 var target
 var targetInArea = false
+var visionLightLevel
 
-func setupTargetHandling(_targetHandler, _target):
+func setupTargetHandling(_targetHandler, _target, _visionLightLevel):
 	targetHandler = _targetHandler
 	target = _target
+	visionLightLevel = _visionLightLevel
 	
 func _physics_process(delta):
 	if target != null && targetInArea:
 		var hitPos = detect_target()
-		if !hitPos.empty() && target.lightLevel > 0:
+		if !hitPos.empty() && target.lightLevel >= visionLightLevel:
 			targetHandler.handleTargetDetected(target)
 		else:
 			targetHandler.handleTargetLost()

@@ -778,36 +778,52 @@ navpoly = ExtResource( 6 )
 [node name="Enemy" parent="." instance=ExtResource( 4 )]
 position = Vector2( 688, 688 )
 patrolPoints = [ Vector2( 760, 688 ), Vector2( 760, 752 ), Vector2( 688, 752 ) ]
-speed = 50.0
+speed = 25.0
 guardingDegrees = [ 90.0, 0.0 ]
 guardPostLocation = Vector2( 688, 688 )
 targetPath = NodePath("../Character")
+minLightLevel = 10.0
+maxLightLevel = 50.0
+baseSpeed = 25.0
+visionLightLevel = 10.0
 
 [node name="Enemy2" parent="." instance=ExtResource( 4 )]
 position = Vector2( 688, 880 )
 patrolPoints = [ Vector2( 760, 880 ), Vector2( 760, 816 ), Vector2( 688, 816 ) ]
-speed = 50.0
+speed = 25.0
 guardingDegrees = [ 270.0, 0.0 ]
 guardPostLocation = Vector2( 688, 880 )
 targetPath = NodePath("../Character")
+minLightLevel = 10.0
+maxLightLevel = 50.0
+baseSpeed = 25.0
+visionLightLevel = 10.0
 
 [node name="Enemy3" parent="." instance=ExtResource( 4 )]
 position = Vector2( 912, 688 )
 rotation = 3.14159
 patrolPoints = [ Vector2( 840, 688 ), Vector2( 840, 752 ), Vector2( 912, 752 ) ]
-speed = 50.0
+speed = 25.0
 guardingDegrees = [ 90.0, 180.0 ]
 guardPostLocation = Vector2( 912, 688 )
 targetPath = NodePath("../Character")
+minLightLevel = 10.0
+maxLightLevel = 50.0
+baseSpeed = 25.0
+visionLightLevel = 10.0
 
 [node name="Enemy4" parent="." instance=ExtResource( 4 )]
 position = Vector2( 912, 880 )
 rotation = 3.14159
 patrolPoints = [ Vector2( 840, 880 ), Vector2( 840, 816 ), Vector2( 912, 816 ) ]
-speed = 50.0
+speed = 25.0
 guardingDegrees = [ 270.0, 180.0 ]
 guardPostLocation = Vector2( 912, 880 )
 targetPath = NodePath("../Character")
+minLightLevel = 10.0
+maxLightLevel = 50.0
+baseSpeed = 25.0
+visionLightLevel = 10.0
 
 [node name="Character" parent="." instance=ExtResource( 2 )]
 position = Vector2( 622.051, 786.99 )
@@ -830,3 +846,6 @@ initial = Vector2( 785, 400 )
 
 [node name="CanvasModulate" type="CanvasModulate" parent="."]
 color = Color( 0.27451, 0.27451, 0.27451, 1 )
+
+[node name="Position2D" type="Position2D" parent="."]
+position = Vector2( 688, 688 )

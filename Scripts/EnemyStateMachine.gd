@@ -11,4 +11,4 @@ func handleTargetDetected(target):
 
 func handleTargetLost():
 	if state.name == "Chasing":
-		get_node("Chasing").target = null
+		state.handleTargetLost()

@@ -3,22 +3,18 @@ extends Node
 var fsm: EnemyStateMachine
 
 var positionNode
-var navigator
-var speed
 var mover
+var navigator
 var investigatePoints = null
 var targetInvestigatePoint = 0
 var paused = false
-var rotationHandler
 
 var _timer
 	
 func setUp(parentNode):
 	positionNode = parentNode
 	mover = parentNode.mover
-	speed = parentNode.speed
 	navigator = parentNode.navigator
-	rotationHandler = parentNode.rotationHandler
 
 func enter():
 	#get tile enemy is on
@@ -36,6 +32,9 @@ func enter():
 		var nav2D = tileSet.tile_get_navigation_polygon(cellId)
 		if nav2D != null:
 			investigatePoints.append(tileMap.map_to_world(cellCoords + direction) + tileMap.cell_size / 2)
+			
+	mover.targetHandler = self
+	mover.targetPosition = investigatePoints[targetInvestigatePoint]
 	return
 
 func exit(next_state):
@@ -45,16 +44,6 @@ func exit(next_state):
 	fsm.change_to(next_state)
 
 func physics_process(delta):
-	if !investigatePoints.empty() and navigator != null && !paused:
-		var navPath = navigator.get_simple_path(positionNode.global_position, investigatePoints[targetInvestigatePoint])
-		navPath = mover.moveAlongPath(delta, speed, navPath, positionNode)
-		if navPath.size() == 0:
-			if reachedEnd():
-				pause("returnToGuarding")
-			else:
-				pause("_on_Timer_timeout")
-		else:
-			positionNode.rotation = rotationHandler.lerpAngle(positionNode.rotation, positionNode.global_position.direction_to(navPath[0]).angle(), 0.08)
 	return delta
 	
 func reachedEnd():
@@ -65,6 +54,8 @@ func reachedEnd():
 	return false
 	
 func _on_Timer_timeout():
+	if investigatePoints != null:
+		mover.targetPosition = investigatePoints[targetInvestigatePoint]
 	paused = false
 	
 func returnToGuarding():
@@ -80,3 +71,9 @@ func pause(timeoutFunc):
 	_timer.set_one_shot(true) # Make sure it loops
 	_timer.start()
 	paused = true
+	
+func reachedTargetPosition():
+	if reachedEnd():
+		pause("returnToGuarding")
+	else:
+		pause("_on_Timer_timeout")

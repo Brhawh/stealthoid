@@ -26,14 +26,16 @@ animations = [ {
 [sub_resource type="CircleShape2D" id=2]
 radius = 54.59
 
-[node name="Enemy" type="KinematicBody2D"]
+[node name="Enemy" type="KinematicBody2D" groups=[
+"light_trackers",
+]]
 z_as_relative = false
 script = ExtResource( 1 )
+visionLightLevel = 9.0
 
 [node name="EnemySprite" type="AnimatedSprite" parent="."]
 rotation = -1.5708
 frames = SubResource( 1 )
-frame = 1
 playing = true
 __meta__ = {
 "_edit_lock_": true
@@ -97,7 +99,7 @@ script = ExtResource( 7 )
 
 [node name="Attacking" type="Node" parent="StateMachine"]
 script = ExtResource( 15 )
-[connection signal="body_entered" from="EnemyTorchLight" to="EnemyTorchLight" method="_on_EnemyTorchLight_body_entered"]
-[connection signal="body_exited" from="EnemyTorchLight" to="EnemyTorchLight" method="_on_EnemyTorchLight_body_exited"]
+[connection signal="body_entered" from="EnemyTorchLight" to="EnemyTorchLight" method="_on_Area2D_body_entered"]
+[connection signal="body_exited" from="EnemyTorchLight" to="EnemyTorchLight" method="_on_Area2D_body_exited"]
 [connection signal="body_entered" from="EnemyViewRadius" to="Detector" method="_on_EnemyViewRadius_body_entered"]
 [connection signal="body_exited" from="EnemyViewRadius" to="Detector" method="_on_EnemyViewRadius_body_exited"]
