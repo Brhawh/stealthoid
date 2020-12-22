@@ -14,12 +14,12 @@ func setUp(parentNode):
 
 func enter():
 	mover.targetHandler = self
-	mover.targetNode = target
+	mover.chaseTarget(target)
 	return
 
 func exit(next_state):
 	target = null
-	mover.targetNode = null
+	mover.stopMoving()
 	fsm.change_to(next_state)
 
 func process(delta):
@@ -37,7 +37,7 @@ func handleTargetDetected(_target):
 	target = _target
 	
 func handleTargetLost():
-	mover.targetNode = null
+	mover.clearTarget()
 	target = null
 	
 func reachedTargetPosition():

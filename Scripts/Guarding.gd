@@ -25,7 +25,7 @@ func setUp(parentNode):
 
 func enter():
 	mover.targetHandler = self
-	mover.targetPosition = guardLocation
+	mover.setTargetPosition(guardLocation)
 	atGuardLocation = false
 	return
 

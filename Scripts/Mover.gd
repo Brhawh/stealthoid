@@ -2,9 +2,9 @@ extends Node
 
 var targetPosition
 var targetNode
+var navPath
 var movingNode
 var navNode
-var navPath
 var rotationHandler
 var updatePathRange = 20
 
@@ -53,3 +53,21 @@ func moveTowardsTarget(delta):
 		movingNode.global_position = navPath[0]
 		return true
 	return false
+	
+func chaseTarget(nodeToChase):
+	targetPosition = null
+	navPath = null
+	targetNode = nodeToChase
+	
+func clearTarget():
+	targetNode = null
+	
+func stopMoving():
+	targetPosition = null
+	targetNode = null
+	navPath = null
+	
+func setTargetPosition(positionToMoveTo):
+	navPath = null
+	targetNode = null
+	targetPosition = positionToMoveTo

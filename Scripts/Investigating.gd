@@ -34,7 +34,7 @@ func enter():
 			investigatePoints.append(tileMap.map_to_world(cellCoords + direction) + tileMap.cell_size / 2)
 			
 	mover.targetHandler = self
-	mover.targetPosition = investigatePoints[targetInvestigatePoint]
+	mover.setTargetPosition(investigatePoints[targetInvestigatePoint])
 	return
 
 func exit(next_state):
@@ -55,10 +55,11 @@ func reachedEnd():
 	
 func _on_Timer_timeout():
 	if investigatePoints != null:
-		mover.targetPosition = investigatePoints[targetInvestigatePoint]
+		mover.setTargetPosition(investigatePoints[targetInvestigatePoint])
 	paused = false
 	
 func returnToGuarding():
+	mover.stopMoving()
 	exit("Guarding")
 	paused = false
 	

@@ -15,7 +15,7 @@ func setUp(parentNode: EnemyController):
 func enter():
 	mover.targetHandler = self
 	if patrolPoints.size() > 0:
-		mover.targetPosition = patrolPoints[targetPatrolPoint]
+		mover.setTargetPosition(patrolPoints[targetPatrolPoint])
 	return
 
 func exit(next_state):
@@ -32,7 +32,7 @@ func reachedTargetPosition():
 	if reachedEnd():
 		exit("Guarding")
 	else:
-		mover.targetPosition = patrolPoints[targetPatrolPoint]
+		mover.setTargetPosition(patrolPoints[targetPatrolPoint])
 		
 func reachedEnd():
 	targetPatrolPoint = targetPatrolPoint + 1
