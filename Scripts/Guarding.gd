@@ -36,7 +36,10 @@ func exit(next_state):
 
 func physics_process(delta):
 	if atGuardLocation and !paused:
-		rotateToNext(delta)
+		if rotationDegrees.size() > 0:
+			rotateToNext(delta)
+		else:
+			exit("Patrolling")
 	return delta
 	
 func rotateToNext(delta):
