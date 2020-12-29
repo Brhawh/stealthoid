@@ -42,6 +42,8 @@ func physics_process(delta):
 					targetHandler.reachedTargetPosition()
 
 func moveTowardsTarget(delta):
+	if movingNode.speed <= 0:
+		return false
 	var moveDistance = movingNode.speed * delta
 	var startPoint = movingNode.global_position
 	var distToTarget = startPoint.distance_to(navPath[0])

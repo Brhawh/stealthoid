@@ -16,6 +16,7 @@ export(float) var minLightLevel
 export(float) var maxLightLevel
 export(float) var baseSpeed
 export(float) var visionLightLevel
+export(bool) var lightActivated
 var lightLevel = 0
 
 var rotationHandler = load("res://Scripts/RotationHandler.gd").new()
@@ -28,6 +29,9 @@ func _ready():
 		state.setUp(self)
 	fsm.state = states[0]
 	fsm._enter_state()
+	
+	if !lightActivated:
+		remove_child(get_node("EnemyTorchLight"))
 
 func _physics_process(delta):
 	fsm.physics_process(delta)
