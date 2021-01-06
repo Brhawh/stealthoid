@@ -28,7 +28,7 @@ func process(delta):
 func physics_process(delta):
 	if target != null:
 		var distanceToTarget = positionNode.global_position.distance_to(target.global_position)
-		if distanceToTarget < 30:
+		if distanceToTarget < 20:
 			fsm.get_node("Attacking").target = target
 			exit("Attacking")
 	return delta

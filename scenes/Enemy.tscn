@@ -36,6 +36,7 @@ visionLightLevel = 9.0
 [node name="EnemySprite" type="AnimatedSprite" parent="."]
 rotation = -1.5708
 frames = SubResource( 1 )
+frame = 1
 playing = true
 __meta__ = {
 "_edit_lock_": true

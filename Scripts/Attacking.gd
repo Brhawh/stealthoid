@@ -8,6 +8,7 @@ var _timer
 var target = null
 const ATTACK = preload("res://scenes/Attack.tscn")
 var characterController = load("res://scripts/CharacterController.gd").new()
+var distanceToTarget
 
 func setUp(parentNode):
 	target = get_node("../../" + parentNode.targetPath)
@@ -21,7 +22,7 @@ func exit(next_state):
 
 func physics_process(delta):
 	if target != null:
-		var distanceToTarget = get_parent().get_parent().global_position.distance_to(target.global_position)
+		distanceToTarget = get_parent().get_parent().global_position.distance_to(target.global_position)
 		if distanceToTarget < 20:
 			if !hasAttacked:
 				#spawn attack sprite
@@ -34,8 +35,6 @@ func physics_process(delta):
 				add_child(attack)
 				# lock movement of enemy
 				attackTimer()
-				get_tree().change_scene("res://scenes/GameOver.tscn")
-				#characterController.death()
 		else:
 			if canMove:
 			 exit("Chasing")
@@ -50,10 +49,19 @@ func attackTimer():
 	add_child(_timer)
 
 	_timer.connect("timeout", self, "_on_Timer_timeout")
-	_timer.set_wait_time(1)
+	_timer.set_wait_time(0.3)
 	_timer.set_one_shot(true) # Make sure it loops
 	_timer.start()
-
+	
 func _on_Timer_timeout():
 	hasAttacked = false
 	canMove = true
+	
+	if distanceToTarget < 20:
+		get_tree().change_scene("res://scenes/GameOver.tscn")
+
+func handleTargetDetected(_target):
+	target = _target
+
+func handleTargetLost():
+	target = null

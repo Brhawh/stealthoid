@@ -3,12 +3,15 @@ extends "res://Scripts/StateMachine.gd"
 class_name EnemyStateMachine
 
 func handleTargetDetected(target):
-	if state.name != "Chasing":
+	if state.name != "Chasing" && state.name != "Attacking":
 		get_node("Chasing").target = target
+		get_node("Attacking").target = target
 		state.exit("Chasing")
 	else:
 		state.handleTargetDetected(target)
 
 func handleTargetLost():
 	if state.name == "Chasing":
+		state.handleTargetLost()
+	if state.name == "Attacking":
 		state.handleTargetLost()

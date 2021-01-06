@@ -786,6 +786,7 @@ minLightLevel = 10.0
 maxLightLevel = 50.0
 baseSpeed = 25.0
 visionLightLevel = 10.0
+lightActivated = true
 
 [node name="Enemy2" parent="." instance=ExtResource( 4 )]
 position = Vector2( 688, 880 )
@@ -798,6 +799,7 @@ minLightLevel = 10.0
 maxLightLevel = 50.0
 baseSpeed = 25.0
 visionLightLevel = 10.0
+lightActivated = true
 
 [node name="Enemy3" parent="." instance=ExtResource( 4 )]
 position = Vector2( 912, 688 )
@@ -811,6 +813,7 @@ minLightLevel = 10.0
 maxLightLevel = 50.0
 baseSpeed = 25.0
 visionLightLevel = 10.0
+lightActivated = true
 
 [node name="Enemy4" parent="." instance=ExtResource( 4 )]
 position = Vector2( 912, 880 )
@@ -824,6 +827,7 @@ minLightLevel = 10.0
 maxLightLevel = 50.0
 baseSpeed = 25.0
 visionLightLevel = 10.0
+lightActivated = true
 
 [node name="Character" parent="." instance=ExtResource( 2 )]
 position = Vector2( 622.051, 786.99 )
