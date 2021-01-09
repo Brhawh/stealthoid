@@ -1,0 +1,7 @@
+[gd_resource type="NavigationPolygon" format=2]
+
+[resource]
+resource_name = "Optimized_NP"
+vertices = PoolVector2Array( 176, 55, 193, 55, 193, 73, 176, 73, 135, 80, 135, 48, 169, 80, 169, 105, 169.852, 76.653, 134.018, 83.5757, 23, 23, 169, 23, 169, 48, 128, 41, 172.653, 54.148, 172.424, 73.9821, 169.982, 51.5757, 134.148, 44.653, 131.347, 86.148, 128, 87, 23, 105, 64, 87, 60.4243, 86.0179, 57.852, 83.347, 57, 80, 57, 48, 57.9821, 44.4243, 60.653, 41.852, 64, 41, 131.576, 41.9821 )
+polygons = [ PoolIntArray( 0, 1, 2, 3 ), PoolIntArray( 4, 5, 6, 7 ), PoolIntArray( 8, 6, 5 ), PoolIntArray( 9, 4, 7 ), PoolIntArray( 10, 11, 12, 13 ), PoolIntArray( 14, 15, 8, 5, 16 ), PoolIntArray( 14, 0, 3, 15 ), PoolIntArray( 12, 16, 5, 17 ), PoolIntArray( 18, 9, 7 ), PoolIntArray( 19, 18, 7 ), PoolIntArray( 19, 7, 20, 21 ), PoolIntArray( 22, 21, 20 ), PoolIntArray( 23, 22, 20 ), PoolIntArray( 23, 20, 10, 24 ), PoolIntArray( 25, 24, 10 ), PoolIntArray( 26, 25, 10 ), PoolIntArray( 27, 26, 10 ), PoolIntArray( 28, 27, 10 ), PoolIntArray( 12, 17, 29 ), PoolIntArray( 13, 28, 10 ), PoolIntArray( 13, 12, 29 ) ]
+outlines = [ PoolVector2Array( 169, 48, 169.982, 51.5757, 172.653, 54.148, 176, 55, 193, 55, 193, 73, 176, 73, 172.424, 73.9821, 169.852, 76.653, 169, 80, 169, 105, 23, 105, 23, 23, 169, 23 ), PoolVector2Array( 131.576, 41.9821, 134.148, 44.653, 135, 48, 135, 80, 134.018, 83.5757, 131.347, 86.148, 128, 87, 64, 87, 60.4243, 86.0179, 57.852, 83.347, 57, 80, 57, 48, 57.9821, 44.4243, 60.653, 41.852, 64, 41, 128, 41 ) ]
