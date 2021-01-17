@@ -22,7 +22,6 @@ var lightLevel = 0
 var rotationHandler = load("res://Scripts/RotationHandler.gd").new()
 
 func _ready():
-	speed = baseSpeed
 	get_node("Detector").setupTargetHandling(fsm, get_node(targetPath), visionLightLevel)
 	mover.setUp(self, navigator, rotationHandler)
 	var states = fsm.get_children()
@@ -33,6 +32,8 @@ func _ready():
 	
 	if !lightActivated:
 		remove_child(get_node("EnemyTorchLight"))
+	else:
+		addLight(get_node("EnemyTorchLight").lightLevelEmitted)
 
 func _physics_process(delta):
 	fsm.physics_process(delta)
