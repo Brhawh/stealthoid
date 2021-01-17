@@ -38,12 +38,12 @@ func _ready():
 func _physics_process(delta):
 	fsm.physics_process(delta)
 	mover.physics_process(delta)
-	
+
 func detectSound(soundSource):
 	if fsm.state.name != "Chasing":
-		get_node("StateMachine/Chasing").target = soundSource
 		fsm.state.exit("Chasing")
-		
+	fsm.get_node("Chasing").chaseSound(soundSource)
+
 func addLight(lightLevelToAdd):
 	lightLevel += lightLevelToAdd
 	updateSpeed()
@@ -51,7 +51,7 @@ func addLight(lightLevelToAdd):
 func removeLight(lightLevelToRemove):
 	lightLevel -= lightLevelToRemove
 	updateSpeed()
-		
+	
 func updateSpeed():
 	if lightLevel > maxLightLevel:
 		speed = baseSpeed + maxLightLevel

@@ -13,9 +13,9 @@ onready var indicator_sprite = $"../StateIndicatorSprite"
 
 func handleTargetDetected(target):
 	if state.name != "Chasing" && state.name != "Attacking":
-		get_node("Chasing").target = target
 		get_node("Attacking").target = target
 		state.exit("Chasing")
+		get_node("Chasing").handleTargetDetected(target)
 	else:
 		state.handleTargetDetected(target)
 

@@ -14,7 +14,6 @@ func setUp(parentNode):
 
 func enter():
 	mover.targetHandler = self
-	mover.setTargetPosition(target.global_position)
 	return
 
 func exit(next_state):
@@ -35,6 +34,7 @@ func physics_process(delta):
 
 func handleTargetDetected(_target):
 	target = _target
+	mover.chaseTarget(_target)
 	
 func handleTargetLost():
 	mover.clearTarget()
@@ -42,3 +42,7 @@ func handleTargetLost():
 	
 func reachedTargetPosition():
 	exit("Investigating")
+	
+func chaseSound(soundSource):
+	if target == null:
+		mover.setTargetPosition(soundSource.global_position)
