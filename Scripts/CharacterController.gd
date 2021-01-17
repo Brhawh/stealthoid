@@ -15,6 +15,9 @@ func _ready():
 	remove_child(fireTorchLightNode)
 	fsm.state = fsm.get_children()[0]
 	fsm._enter_state()
+	
+	if has_node("FireTorchLight"):
+		addLight(get_node("FireTorchLight").lightLevelEmitted)
 
 func get_input():
 	velocity = Vector2()
