@@ -14,7 +14,7 @@ func setUp(parentNode):
 
 func enter():
 	mover.targetHandler = self
-	mover.chaseTarget(target)
+	mover.setTargetPosition(target.global_position)
 	return
 
 func exit(next_state):

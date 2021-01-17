@@ -26,7 +26,7 @@ guardPostLocation = Vector2( 40, 32 )
 targetPath = NodePath("../Character")
 minLightLevel = 10.0
 maxLightLevel = 20.0
-baseSpeed = 10.0
+baseSpeed = 30.0
 visionLightLevel = 10.0
 lightActivated = true
 

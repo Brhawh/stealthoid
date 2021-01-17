@@ -1,6 +1,7 @@
-[gd_scene load_steps=17 format=2]
+[gd_scene load_steps=18 format=2]
 
 [ext_resource path="res://Scripts/EnemyController.gd" type="Script" id=1]
+[ext_resource path="res://Assets/patrolling_indicator.png" type="Texture" id=2]
 [ext_resource path="res://sprites/Pyramid/mummy.png" type="Texture" id=3]
 [ext_resource path="res://Scripts/EnemyTorchLight.gd" type="Script" id=4]
 [ext_resource path="res://sprites/lighting/FirePointLight.png" type="Texture" id=5]
@@ -36,7 +37,6 @@ visionLightLevel = 9.0
 [node name="EnemySprite" type="AnimatedSprite" parent="."]
 rotation = -1.5708
 frames = SubResource( 1 )
-frame = 1
 playing = true
 __meta__ = {
 "_edit_lock_": true
@@ -100,6 +100,11 @@ script = ExtResource( 7 )
 
 [node name="Attacking" type="Node" parent="StateMachine"]
 script = ExtResource( 15 )
+
+[node name="StateIndicatorSprite" type="Sprite" parent="."]
+position = Vector2( -10, 0 )
+scale = Vector2( 0.5, 0.5 )
+texture = ExtResource( 2 )
 [connection signal="body_entered" from="EnemyTorchLight" to="EnemyTorchLight" method="_on_Area2D_body_entered"]
 [connection signal="body_exited" from="EnemyTorchLight" to="EnemyTorchLight" method="_on_Area2D_body_exited"]
 [connection signal="body_entered" from="EnemyViewRadius" to="Detector" method="_on_EnemyViewRadius_body_entered"]
