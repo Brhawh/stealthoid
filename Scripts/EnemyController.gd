@@ -32,6 +32,7 @@ func _ready():
 	
 	if !lightActivated:
 		remove_child(get_node("EnemyTorchLight"))
+		updateSpeed()
 	else:
 		addLight(get_node("EnemyTorchLight").lightLevelEmitted)
 
