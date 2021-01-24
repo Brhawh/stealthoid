@@ -44,7 +44,7 @@ func physics_process(delta):
 	
 func rotateToNext(delta):
 	var oldRotation = positionNode.rotation
-	var newRotation = rotationHandler.lerpAngle(oldRotation, deg2rad(rotationDegrees[targetRotationDegrees]), 0.08)
+	var newRotation = rotationHandler.lerpAngle(oldRotation, deg2rad(rotationDegrees[targetRotationDegrees]), positionNode.speed)
 	positionNode.rotation = newRotation
 	if abs(rad2deg(newRotation - oldRotation)) <= 0.1:
 		pause("targetNextRotation")
