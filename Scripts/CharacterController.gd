@@ -3,13 +3,13 @@ extends KinematicBody2D
 export (Vector2) var zoomLevel = Vector2(0.8, 0.8)
 onready var fsm: StateMachine = get_node("StateMachine")
 onready var fireTorchLightNode = get_node("FireTorchLight")
-var lightLevel = 0
-var lightSourceCounter = 0
 var velocity = Vector2()
 
 var speed = 200
 export (int) var walkingSpeed = 60
 export (int) var runningSpeed = 120
+
+var lightTracker = load("res://Scripts/LightTracker.gd").new()
 
 func _ready():
 	remove_child(fireTorchLightNode)
@@ -17,7 +17,7 @@ func _ready():
 	fsm._enter_state()
 	
 	if has_node("FireTorchLight"):
-		addLight(get_node("FireTorchLight").lightLevelEmitted)
+		lightTracker.addLight(get_node("FireTorchLight").lightLevelEmitted)
 
 func get_input():
 	velocity = Vector2()
@@ -50,9 +50,3 @@ func setToRunningSpeed():
 	
 func setToWalkingSpeed():
 	speed = walkingSpeed
-	
-func addLight(lightLevelToAdd):
-	lightLevel += lightLevelToAdd
-	
-func removeLight(lightLevelToRemove):
-	lightLevel -= lightLevelToRemove

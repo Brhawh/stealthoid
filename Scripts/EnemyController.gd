@@ -17,24 +17,30 @@ export(float) var maxLightLevel
 export(float) var baseSpeed
 export(float) var visionLightLevel
 export(bool) var lightActivated
-var lightLevel = 0
 
+var lightTracker = load("res://Scripts/LightTracker.gd").new()
 var rotationHandler = load("res://Scripts/RotationHandler.gd").new()
 
 func _ready():
+	# Set up enemy component nodes
 	get_node("Detector").setupTargetHandling(fsm, get_node(targetPath), visionLightLevel)
 	mover.setUp(self, navigator, rotationHandler)
+	
+	# Set up finite state machine
 	var states = fsm.get_children()
 	for state in states:
 		state.setUp(self)
 	fsm.state = states[0]
 	fsm._enter_state()
 	
+	# Set up lightTracker
+	lightTracker.connect("lightUpdated", self, "updateSpeed")
+	
 	if !lightActivated:
 		remove_child(get_node("EnemyTorchLight"))
-		updateSpeed()
+		lightTracker.lightUpdated()
 	else:
-		addLight(get_node("EnemyTorchLight").lightLevelEmitted)
+		lightTracker.addLight(get_node("EnemyTorchLight").lightLevelEmitted)
 
 func _physics_process(delta):
 	fsm.physics_process(delta)
@@ -44,16 +50,8 @@ func detectSound(soundSource):
 	if fsm.state.name != "Chasing":
 		fsm.state.exit("Chasing")
 	fsm.get_node("Chasing").chaseSound(soundSource)
-
-func addLight(lightLevelToAdd):
-	lightLevel += lightLevelToAdd
-	updateSpeed()
 	
-func removeLight(lightLevelToRemove):
-	lightLevel -= lightLevelToRemove
-	updateSpeed()
-	
-func updateSpeed():
+func updateSpeed(lightLevel):
 	if lightLevel > maxLightLevel:
 		speed = baseSpeed + maxLightLevel
 	elif lightLevel < minLightLevel:

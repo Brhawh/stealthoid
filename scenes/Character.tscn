@@ -12,7 +12,7 @@
 [ext_resource path="res://Scripts/Running.gd" type="Script" id=10]
 [ext_resource path="res://Scripts/SoundEmitter.gd" type="Script" id=11]
 [ext_resource path="res://Scripts/Idle.gd" type="Script" id=12]
-[ext_resource path="res://Scripts/EnemyTorchLight.gd" type="Script" id=13]
+[ext_resource path="res://Scripts/TorchLight.gd" type="Script" id=13]
 
 [sub_resource type="CircleShape2D" id=1]
 radius = 60.0
@@ -72,7 +72,7 @@ __meta__ = {
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 frames = SubResource( 3 )
 animation = "Torch"
-frame = 2
+frame = 1
 playing = true
 
 [node name="StateMachine" type="Node" parent="."]
