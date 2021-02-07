@@ -47,9 +47,10 @@ func _physics_process(delta):
 	mover.physics_process(delta)
 
 func detectSound(soundSource):
-	if fsm.state.name != "Chasing":
+	var currentState = fsm.state.name
+	if currentState != "Chasing" and currentState != "Sleeping":
 		fsm.state.exit("Chasing")
-	fsm.get_node("Chasing").chaseSound(soundSource)
+		fsm.get_node("Chasing").chaseSound(soundSource)
 	
 func updateSpeed(lightLevel):
 	if lightLevel > maxLightLevel:
@@ -58,3 +59,8 @@ func updateSpeed(lightLevel):
 		speed = baseSpeed
 	else:
 		speed = baseSpeed + lightLevel
+		
+	if speed <= 0:
+		fsm.enterSleep()
+	else:
+		fsm.wakeUp()

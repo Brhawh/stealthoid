@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=2]
+[gd_scene load_steps=19 format=2]
 
 [ext_resource path="res://Scripts/EnemyController.gd" type="Script" id=1]
 [ext_resource path="res://Assets/patrolling_indicator.png" type="Texture" id=2]
@@ -15,6 +15,7 @@
 [ext_resource path="res://sprites/Pyramid/mummy(1).png" type="Texture" id=13]
 [ext_resource path="res://Scripts/Patrolling.gd" type="Script" id=14]
 [ext_resource path="res://Scripts/Attacking.gd" type="Script" id=15]
+[ext_resource path="res://Scripts/Sleeping.gd" type="Script" id=16]
 
 [sub_resource type="SpriteFrames" id=1]
 animations = [ {
@@ -37,7 +38,6 @@ visionLightLevel = 9.0
 [node name="EnemySprite" type="AnimatedSprite" parent="."]
 rotation = -1.5708
 frames = SubResource( 1 )
-frame = 1
 playing = true
 __meta__ = {
 "_edit_lock_": true
@@ -101,6 +101,9 @@ script = ExtResource( 7 )
 
 [node name="Attacking" type="Node" parent="StateMachine"]
 script = ExtResource( 15 )
+
+[node name="Sleeping" type="Node" parent="StateMachine"]
+script = ExtResource( 16 )
 
 [node name="StateIndicatorSprite" type="Sprite" parent="."]
 position = Vector2( -10, 0 )

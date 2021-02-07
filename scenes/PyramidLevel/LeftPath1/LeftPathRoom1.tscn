@@ -29,7 +29,6 @@ current_navigation_polygon = ExtResource( 5 )
 navpoly = SubResource( 1 )
 
 [node name="Enemy" parent="." instance=ExtResource( 3 )]
-visible = false
 position = Vector2( 32, 32 )
 patrolPoints = [ Vector2( 352, 32 ) ]
 guardPostLocation = Vector2( 32, 32 )
@@ -40,7 +39,6 @@ visionLightLevel = 10.0
 lightActivated = true
 
 [node name="Enemy2" parent="." instance=ExtResource( 3 )]
-visible = false
 position = Vector2( 352, 192 )
 rotation = -3.14159
 patrolPoints = [ Vector2( 32, 192 ) ]
@@ -53,9 +51,9 @@ visionLightLevel = 10.0
 lightActivated = true
 
 [node name="Enemy3" parent="." instance=ExtResource( 3 )]
-visible = false
 position = Vector2( 320, 88 )
 rotation = 1.5708
+guardingDegrees = [ 90.0 ]
 guardPostLocation = Vector2( 320, 88 )
 targetPath = NodePath("../Character")
 minLightLevel = 10.0
@@ -63,7 +61,6 @@ maxLightLevel = 20.0
 visionLightLevel = 10.0
 
 [node name="Enemy4" parent="." instance=ExtResource( 3 )]
-visible = false
 position = Vector2( 256, 88 )
 rotation = 1.5708
 guardPostLocation = Vector2( 256, 88 )
@@ -73,7 +70,6 @@ maxLightLevel = 20.0
 visionLightLevel = 10.0
 
 [node name="Enemy5" parent="." instance=ExtResource( 3 )]
-visible = false
 position = Vector2( 192, 88 )
 rotation = 1.5708
 guardPostLocation = Vector2( 192, 88 )
@@ -83,7 +79,6 @@ maxLightLevel = 20.0
 visionLightLevel = 10.0
 
 [node name="Enemy6" parent="." instance=ExtResource( 3 )]
-visible = false
 position = Vector2( 128, 88 )
 rotation = 1.5708
 guardPostLocation = Vector2( 128, 88 )
@@ -93,7 +88,6 @@ maxLightLevel = 20.0
 visionLightLevel = 10.0
 
 [node name="Enemy7" parent="." instance=ExtResource( 3 )]
-visible = false
 position = Vector2( 64, 88 )
 rotation = 1.5708
 guardPostLocation = Vector2( 64, 88 )
@@ -103,7 +97,6 @@ maxLightLevel = 20.0
 visionLightLevel = 10.0
 
 [node name="Enemy8" parent="." instance=ExtResource( 3 )]
-visible = false
 position = Vector2( 64, 136 )
 rotation = 4.71239
 guardPostLocation = Vector2( 64, 136 )
@@ -113,7 +106,6 @@ maxLightLevel = 20.0
 visionLightLevel = 10.0
 
 [node name="Enemy9" parent="." instance=ExtResource( 3 )]
-visible = false
 position = Vector2( 128, 136 )
 rotation = 4.71239
 guardPostLocation = Vector2( 128, 136 )
@@ -123,7 +115,6 @@ maxLightLevel = 20.0
 visionLightLevel = 10.0
 
 [node name="Enemy10" parent="." instance=ExtResource( 3 )]
-visible = false
 position = Vector2( 192, 136 )
 rotation = 4.71239
 guardPostLocation = Vector2( 192, 136 )
@@ -133,7 +124,6 @@ maxLightLevel = 20.0
 visionLightLevel = 10.0
 
 [node name="Enemy11" parent="." instance=ExtResource( 3 )]
-visible = false
 position = Vector2( 256, 136 )
 rotation = 4.71239
 guardPostLocation = Vector2( 256, 136 )
@@ -143,7 +133,6 @@ maxLightLevel = 20.0
 visionLightLevel = 10.0
 
 [node name="Enemy12" parent="." instance=ExtResource( 3 )]
-visible = false
 position = Vector2( 320, 136 )
 rotation = 4.71239
 guardPostLocation = Vector2( 320, 136 )
@@ -186,7 +175,7 @@ visionLightLevel = 10.0
 lightActivated = true
 
 [node name="Character" parent="." instance=ExtResource( 4 )]
-position = Vector2( 32, 112 )
+position = Vector2( 392, 112 )
 rotation = -3.14159
 
 [node name="CanvasModulate" type="CanvasModulate" parent="."]
