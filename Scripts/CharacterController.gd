@@ -43,10 +43,15 @@ func _physics_process(delta):
 	velocity = move_and_slide(velocity)
 
 func Door(var otherDoor, var offset):
-	position.y = get_node(otherDoor).get_position().y + offset 
+	position.y = get_node(otherDoor).get_position().y + offset
+	
+func updateAnimationSpeed(animationSpeed = 1):
+	$AnimatedSprite.speed_scale = animationSpeed
 	
 func setToRunningSpeed():
 	speed = runningSpeed
+	$AnimatedSprite.speed_scale = 2
 	
 func setToWalkingSpeed():
 	speed = walkingSpeed
+	$AnimatedSprite.speed_scale = 1

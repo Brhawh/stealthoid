@@ -9,6 +9,7 @@ func enter():
 	eldestParent.setToWalkingSpeed()
 	soundEmitter.setWalkingState()
 	soundEmitter.startEmittingSound()
+	eldestParent.get_node("AnimatedSprite").play("Walk")
 	return
 
 func exit(next_state):

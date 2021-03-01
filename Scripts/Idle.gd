@@ -5,6 +5,7 @@ var fsm: StateMachine
 onready var eldestParent = get_parent().get_parent()
 
 func enter():
+	eldestParent.get_node("AnimatedSprite").play("Idle_Transition")
 	return
 
 func exit(next_state):
