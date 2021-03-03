@@ -1,0 +1,36 @@
+[gd_resource type="ShaderMaterial" load_steps=6 format=2]
+
+[sub_resource type="Shader" id=1]
+code = "shader_type canvas_item;
+
+uniform sampler2D noise;
+
+uniform sampler2D motion_noise;
+
+void fragment() {
+	vec4 base = texture(TEXTURE, UV);
+	float motion_noise_value = texture(motion_noise, UV).x + TIME;
+	vec4 n = texture(noise, vec2(UV.x, UV.y + motion_noise_value));
+	
+	base.r += 0.4f - distance(vec2(0.5, 0.5), UV);
+	base.r = (base.r * 0.3) + (n.r * 0.4);
+	
+	COLOR = vec4(float(base.r > 0.4), float(base.r > 0.5), float(base.r > 0.6), float(base.r > 0.4));
+}"
+
+[sub_resource type="OpenSimplexNoise" id=2]
+
+[sub_resource type="NoiseTexture" id=3]
+seamless = true
+noise = SubResource( 2 )
+
+[sub_resource type="OpenSimplexNoise" id=4]
+
+[sub_resource type="NoiseTexture" id=5]
+seamless = true
+noise = SubResource( 4 )
+
+[resource]
+shader = SubResource( 1 )
+shader_param/noise = SubResource( 5 )
+shader_param/motion_noise = SubResource( 3 )

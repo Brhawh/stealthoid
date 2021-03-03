@@ -1,0 +1,53 @@
+[gd_scene load_steps=10 format=2]
+
+[ext_resource path="res://Assets/fire_light_gradient.png" type="Texture" id=1]
+[ext_resource path="res://Scripts/fire_light.gd" type="Script" id=2]
+[ext_resource path="res://Assets/fire_base_texture.png" type="Texture" id=3]
+
+[sub_resource type="Shader" id=1]
+code = "shader_type canvas_item;
+
+uniform sampler2D noise;
+
+uniform sampler2D motion_noise;
+
+void fragment() {
+	vec4 base = texture(TEXTURE, UV);
+	float motion_noise_value = texture(motion_noise, UV).x + TIME;
+	vec4 n = texture(noise, vec2(UV.x, UV.y + motion_noise_value));
+	
+	base.r += 0.4f - distance(vec2(0.5, 0.5), UV);
+	base.r = (base.r * 0.3) + (n.r * 0.4);
+	
+	COLOR = vec4(float(base.r > 0.4), float(base.r > 0.5), float(base.r > 0.6), float(base.r > 0.4));
+}"
+
+[sub_resource type="OpenSimplexNoise" id=2]
+
+[sub_resource type="NoiseTexture" id=3]
+seamless = true
+noise = SubResource( 2 )
+
+[sub_resource type="OpenSimplexNoise" id=4]
+
+[sub_resource type="NoiseTexture" id=5]
+seamless = true
+noise = SubResource( 4 )
+
+[sub_resource type="ShaderMaterial" id=6]
+shader = SubResource( 1 )
+shader_param/noise = SubResource( 5 )
+shader_param/motion_noise = SubResource( 3 )
+
+[node name="Node2D" type="Node2D"]
+
+[node name="base_texture_fire" type="Sprite" parent="."]
+material = SubResource( 6 )
+texture = ExtResource( 3 )
+script = ExtResource( 2 )
+
+[node name="Light2D" type="Light2D" parent="base_texture_fire"]
+texture = ExtResource( 1 )
+texture_scale = 1.5
+mode = 2
+shadow_enabled = true
