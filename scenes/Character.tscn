@@ -1,20 +1,15 @@
-[gd_scene load_steps=27 format=2]
+[gd_scene load_steps=21 format=2]
 
 [ext_resource path="res://Scripts/CharacterController.gd" type="Script" id=1]
 [ext_resource path="res://Scripts/Camera2D.gd" type="Script" id=2]
-[ext_resource path="res://sprites/lighting/FirePointLight.png" type="Texture" id=3]
 [ext_resource path="res://Assets/Animations/Player_Idle_Transition/frame0000.png" type="Texture" id=4]
-[ext_resource path="res://Assets/Animations/Player_Idle_Transition/frame0002.png" type="Texture" id=5]
-[ext_resource path="res://Assets/Animations/Player_Idle_Transition/frame0003.png" type="Texture" id=6]
 [ext_resource path="res://Assets/Animations/Player_Idle_Transition/frame0001.png" type="Texture" id=7]
 [ext_resource path="res://Scripts/StateMachine.gd" type="Script" id=8]
 [ext_resource path="res://Scripts/Walking.gd" type="Script" id=9]
 [ext_resource path="res://Scripts/Running.gd" type="Script" id=10]
 [ext_resource path="res://Scripts/SoundEmitter.gd" type="Script" id=11]
 [ext_resource path="res://Scripts/Idle.gd" type="Script" id=12]
-[ext_resource path="res://Scripts/TorchLight.gd" type="Script" id=13]
 [ext_resource path="res://Assets/Animations/Player_Walk/frame0000.png" type="Texture" id=14]
-[ext_resource path="res://Assets/Animations/Player_Idle_Transition/frame0004.png" type="Texture" id=15]
 [ext_resource path="res://Assets/Animations/Player_Walk/frame0003.png" type="Texture" id=16]
 [ext_resource path="res://Assets/Animations/Player_Walk/frame0007.png" type="Texture" id=17]
 [ext_resource path="res://Assets/Animations/Player_Walk/frame0002.png" type="Texture" id=18]
@@ -32,10 +27,10 @@ height = 1.02148
 
 [sub_resource type="SpriteFrames" id=3]
 animations = [ {
-"frames": [ ExtResource( 4 ), ExtResource( 7 ), ExtResource( 5 ), ExtResource( 6 ), ExtResource( 15 ) ],
-"loop": false,
+"frames": [ ExtResource( 4 ), ExtResource( 7 ) ],
+"loop": true,
 "name": "Idle_Transition",
-"speed": 5.0
+"speed": 1.0
 }, {
 "frames": [ ExtResource( 14 ), ExtResource( 21 ), ExtResource( 18 ), ExtResource( 16 ), ExtResource( 19 ), ExtResource( 20 ), ExtResource( 22 ), ExtResource( 17 ) ],
 "loop": true,
@@ -43,13 +38,9 @@ animations = [ {
 "speed": 7.0
 } ]
 
-[sub_resource type="CircleShape2D" id=4]
-radius = 485.825
-
 [node name="Character" type="KinematicBody2D" groups=[
 "light_trackers",
 ]]
-position = Vector2( 193.896, 410.167 )
 scale = Vector2( 0.5, 0.5 )
 script = ExtResource( 1 )
 zoomLevel = Vector2( 0.2, 0.2 )
@@ -85,7 +76,6 @@ __meta__ = {
 rotation = -1.5708
 frames = SubResource( 3 )
 animation = "Idle_Transition"
-frame = 4
 playing = true
 
 [node name="StateMachine" type="Node" parent="."]
@@ -102,20 +92,5 @@ script = ExtResource( 12 )
 
 [node name="SoundEmitter" type="Node" parent="."]
 script = ExtResource( 11 )
-
-[node name="FireTorchLight" type="Area2D" parent="."]
-position = Vector2( 7, -2 )
-scale = Vector2( 0.1, 0.1 )
-script = ExtResource( 13 )
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="FireTorchLight"]
-shape = SubResource( 4 )
-
-[node name="Light2D" type="Light2D" parent="FireTorchLight"]
-texture = ExtResource( 3 )
-mode = 2
-shadow_enabled = true
 [connection signal="body_entered" from="SoundRadiusArea2D" to="SoundEmitter" method="_on_SoundRadiusArea2D_body_entered"]
 [connection signal="body_exited" from="SoundRadiusArea2D" to="SoundEmitter" method="_on_SoundRadiusArea2D_body_exited"]
-[connection signal="body_entered" from="FireTorchLight" to="FireTorchLight" method="_on_Area2D_body_entered"]
-[connection signal="body_exited" from="FireTorchLight" to="FireTorchLight" method="_on_Area2D_body_exited"]

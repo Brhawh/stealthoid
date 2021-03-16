@@ -22,8 +22,6 @@ func back():
 		_enter_state()
 		
 func _enter_state():
-	if DEBUG:
-		print("Entering state: ", state.name)
 	# Give the new state a reference to this state machine script
 	state.fsm = self
 	state.enter()
