@@ -2,10 +2,11 @@
 
 [ext_resource path="res://sprites/Pyramid/PyramidTileMap.png" type="Texture" id=1]
 [ext_resource path="res://scenes/Character.tscn" type="PackedScene" id=2]
-[ext_resource path="res://scenes/Boulder.tscn" type="PackedScene" id=3]
+[ext_resource path="res://scenes/BoulderBounce.tscn" type="PackedScene" id=3]
 [ext_resource path="res://scenes/Enemy.tscn" type="PackedScene" id=4]
 [ext_resource path="res://Scripts/PyramidTileMap.gd" type="Script" id=5]
 [ext_resource path="res://sprites/Pyramid/pyramid1_navpoly_7er.tres" type="NavigationPolygon" id=6]
+
 
 [sub_resource type="ConvexPolygonShape2D" id=1]
 points = PoolVector2Array( 0, 0, 16, 0, 16, 16, 0, 16 )
@@ -778,7 +779,6 @@ navpoly = ExtResource( 6 )
 [node name="Enemy" parent="." instance=ExtResource( 4 )]
 position = Vector2( 688, 688 )
 patrolPoints = [ Vector2( 760, 688 ), Vector2( 760, 752 ), Vector2( 688, 752 ) ]
-speed = 25.0
 guardingDegrees = [ 90.0, 0.0 ]
 guardPostLocation = Vector2( 688, 688 )
 targetPath = NodePath("../Character")
@@ -791,7 +791,6 @@ lightActivated = true
 [node name="Enemy2" parent="." instance=ExtResource( 4 )]
 position = Vector2( 688, 880 )
 patrolPoints = [ Vector2( 760, 880 ), Vector2( 760, 816 ), Vector2( 688, 816 ) ]
-speed = 25.0
 guardingDegrees = [ 270.0, 0.0 ]
 guardPostLocation = Vector2( 688, 880 )
 targetPath = NodePath("../Character")
@@ -805,7 +804,6 @@ lightActivated = true
 position = Vector2( 912, 688 )
 rotation = 3.14159
 patrolPoints = [ Vector2( 840, 688 ), Vector2( 840, 752 ), Vector2( 912, 752 ) ]
-speed = 25.0
 guardingDegrees = [ 90.0, 180.0 ]
 guardPostLocation = Vector2( 912, 688 )
 targetPath = NodePath("../Character")
@@ -819,7 +817,6 @@ lightActivated = true
 position = Vector2( 912, 880 )
 rotation = 3.14159
 patrolPoints = [ Vector2( 840, 880 ), Vector2( 840, 816 ), Vector2( 912, 816 ) ]
-speed = 25.0
 guardingDegrees = [ 270.0, 180.0 ]
 guardPostLocation = Vector2( 912, 880 )
 targetPath = NodePath("../Character")

@@ -5,11 +5,11 @@
 [ext_resource path="res://sprites/Pyramid/boulder3.png" type="Texture" id=3]
 [ext_resource path="res://sprites/Pyramid/boulder1.png" type="Texture" id=4]
 [ext_resource path="res://sprites/Pyramid/boulder5.png" type="Texture" id=5]
-[ext_resource path="res://Scripts/Boulder.gd" type="Script" id=6]
+[ext_resource path="res://Scripts/BoulderOnce.gd" type="Script" id=6]
 [ext_resource path="res://sprites/Pyramid/boulder2.png" type="Texture" id=7]
 
 [sub_resource type="CircleShape2D" id=1]
-radius = 13.6274
+radius = 12.5951
 
 [sub_resource type="CanvasItemMaterial" id=2]
 light_mode = 2
@@ -28,11 +28,11 @@ animations = [ {
 } ]
 
 [sub_resource type="CircleShape2D" id=4]
-radius = 13.5
+radius = 12.3825
 
 [node name="Boulder" type="KinematicBody2D"]
-position = Vector2( 736.647, 528.454 )
 script = ExtResource( 6 )
+speed = 0.5
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2( -0.55, 0 )
@@ -43,12 +43,13 @@ material = SubResource( 2 )
 position = Vector2( -23.5592, 21.8329 )
 frames = SubResource( 3 )
 animation = "left"
-frame = 5
+frame = 3
 playing = true
 offset = Vector2( 23.8434, -21.8329 )
 
 [node name="Area2D" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2( -0.579895, -0.116028 )
 shape = SubResource( 4 )
 [connection signal="body_entered" from="Area2D" to="." method="_on_Area2D_body_entered"]

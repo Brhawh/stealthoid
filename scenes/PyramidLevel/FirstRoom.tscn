@@ -60,7 +60,5 @@ __meta__ = {
 [node name="Enemy" parent="Enemies" instance=ExtResource( 7 )]
 position = Vector2( 221.583, 234.225 )
 patrolPoints = [ Vector2( 220, 190 ), Vector2( 320, 190 ), Vector2( 220, 320 ), Vector2( 320, 320 ) ]
-speed = 50.0
 guardingDegrees = [ 0.0, 90.0, 180.0, 270.0, 0.0 ]
-chasingNavigatorPath = NodePath("../../Navigation2D")
 guardPostLocation = Vector2( 220, 190 )

@@ -12,7 +12,7 @@ export (int) var walkingSpeed = 60
 export (int) var runningSpeed = 120
 
 func _ready():
-	remove_child(fireTorchLightNode)
+	#remove_child(fireTorchLightNode)
 	fsm.state = fsm.get_children()[0]
 	fsm._enter_state()
 	
