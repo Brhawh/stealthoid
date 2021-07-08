@@ -16,6 +16,8 @@ func enter():
 	mover.targetHandler = self
 	if patrolPoints.size() > 0:
 		mover.setTargetPosition(patrolPoints[targetPatrolPoint])
+	else:
+		exit("Guarding")
 	return
 
 func exit(next_state):

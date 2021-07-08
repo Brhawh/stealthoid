@@ -8,6 +8,7 @@ var attack_indicator = preload("res://Assets/attacking_indicator.png")
 var chase_indicator = preload("res://Assets/chasing_indicator.png")
 var guard_indicator = preload("res://Assets/guardin_indicator.png")
 var investigate_indicator = preload("res://Assets/investigating_indicator.png")
+var sleeping_indicator = preload("res://Assets/sleeping_indicator.png")
 
 onready var indicator_sprite = $"../StateIndicatorSprite"
 
@@ -39,3 +40,13 @@ func change_to(new_state):
 			indicator_sprite.set_texture(investigate_indicator)
 		"Attacking":
 			indicator_sprite.set_texture(attack_indicator)
+		"Sleeping":
+			indicator_sprite.set_texture(sleeping_indicator)
+
+func enterSleep():
+	if state.name != "Sleeping":
+		state.exit("Sleeping")
+	
+func wakeUp():
+	if state.name == "Sleeping":
+		state.exit("Guarding")

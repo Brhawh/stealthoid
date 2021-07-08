@@ -15,7 +15,7 @@ func _on_Area2D_body_exited(body):
 		for body_tracker in body_trackers:
 			if body_tracker[0] == body:
 				if body_tracker[1]:
-					body.removeLight(lightLevelEmitted)
+					body.get("lightTracker").removeLight(lightLevelEmitted)
 				body_trackers.remove(body_trackers.find(body_tracker))
 
 func _physics_process(delta):
@@ -24,8 +24,8 @@ func _physics_process(delta):
 		var result = spaceState.intersect_ray(global_position, body_tracker[0].global_position, [get_parent()])
 		if result and result.collider == body_tracker[0]:
 			if !body_tracker[1]:
-				body_tracker[0].addLight(lightLevelEmitted)
+				body_tracker[0].get("lightTracker").addLight(lightLevelEmitted)
 				body_tracker[1] = true
 		elif body_tracker[1]:
 			body_tracker[1] = false
-			body_tracker[0].removeLight(lightLevelEmitted)
+			body_tracker[0].get("lightTracker").removeLight(lightLevelEmitted)

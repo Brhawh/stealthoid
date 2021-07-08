@@ -49,7 +49,7 @@ func moveTowardsTarget(delta):
 	var distToTarget = startPoint.distance_to(navPath[0])
 	if moveDistance <= distToTarget:
 		movingNode.global_position = startPoint.linear_interpolate(navPath[0], moveDistance / distToTarget)
-		var newRot = rotationHandler.lerpAngle(movingNode.rotation, movingNode.global_position.direction_to(navPath[0]).angle(), 0.08)
+		var newRot = rotationHandler.lerpAngle(movingNode.rotation, movingNode.global_position.direction_to(navPath[0]).angle(), movingNode.speed)
 		movingNode.rotation = newRot
 	else:
 		movingNode.global_position = navPath[0]

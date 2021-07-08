@@ -13,7 +13,7 @@ func setupTargetHandling(_targetHandler, _target, _visionLightLevel):
 func _physics_process(delta):
 	if target != null && targetInArea:
 		var hitPos = detect_target()
-		if !hitPos.empty() && target.lightLevel >= visionLightLevel:
+		if !hitPos.empty() && target.lightTracker.lightLevel >= visionLightLevel:
 			targetHandler.handleTargetDetected(target)
 		else:
 			targetHandler.handleTargetLost()
