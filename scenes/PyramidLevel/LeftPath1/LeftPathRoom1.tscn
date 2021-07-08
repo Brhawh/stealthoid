@@ -218,7 +218,7 @@ visionLightLevel = 10.0
 lightActivated = true
 
 [node name="Character" parent="." instance=ExtResource( 4 )]
-position = Vector2( 376, 116 )
+position = Vector2( -688, -32 )
 rotation = -3.14159
 
 [node name="CanvasModulate" type="CanvasModulate" parent="."]
