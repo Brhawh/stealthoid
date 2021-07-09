@@ -39,8 +39,8 @@ _global_script_class_icons={
 [application]
 
 config/name="SuperStealthyWealthyGame"
-run/main_scene="res://scenes/PyramidLevel/LeftPath1/LeftPathRoom1.tscn"
-config/icon="res://sprites/icon.png"
+run/main_scene="res://Scenes/PyramidLevel/LeftPath1/LeftPathRoom1.tscn"
+config/icon="res://Sprites/icon.png"
 
 [importer_defaults]
 

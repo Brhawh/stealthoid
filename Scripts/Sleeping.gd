@@ -3,7 +3,7 @@ extends Node
 var fsm: EnemyStateMachine
 
 var mover
-var zeeAnimation = load("res://scenes/SleepingZeesAnimation.tscn").instance()
+var zeeAnimation = load("res://Scenes/SleepingZeesAnimation.tscn").instance()
 var parent
 
 func setUp(parentNode):
