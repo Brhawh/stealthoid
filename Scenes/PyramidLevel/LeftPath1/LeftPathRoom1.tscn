@@ -34,187 +34,187 @@ navpoly = SubResource( 1 )
 
 [node name="Enemy" parent="Node2D" instance=ExtResource( 3 )]
 position = Vector2( 32, 32 )
-visionLightLevel = 10.0
 patrolPoints = [ Vector2( 352, 32 ) ]
 guardPostLocation = Vector2( 32, 32 )
 targetPath = NodePath("../../Character")
 minLightLevel = 10.0
 maxLightLevel = 20.0
+visionLightLevel = 10.0
 lightActivated = true
 
 [node name="Enemy2" parent="Node2D" instance=ExtResource( 3 )]
 position = Vector2( 352, 192 )
 rotation = -3.14159
-visionLightLevel = 10.0
 patrolPoints = [ Vector2( 32, 192 ) ]
 guardPostLocation = Vector2( 352, 192 )
 targetPath = NodePath("../../Character")
 minLightLevel = 10.0
 maxLightLevel = 20.0
 baseSpeed = 20.0
+visionLightLevel = 10.0
 lightActivated = true
 
 [node name="Enemy3" parent="Node2D" instance=ExtResource( 3 )]
 position = Vector2( 320, 88 )
 rotation = 1.5708
-visionLightLevel = 10.0
 guardPostLocation = Vector2( 320, 88 )
 targetPath = NodePath("../../Character")
 minLightLevel = 10.0
 maxLightLevel = 20.0
+visionLightLevel = 10.0
 
 [node name="Enemy4" parent="Node2D" instance=ExtResource( 3 )]
 position = Vector2( 256, 88 )
 rotation = 1.5708
-visionLightLevel = 10.0
 guardPostLocation = Vector2( 256, 88 )
 targetPath = NodePath("../../Character")
 minLightLevel = 10.0
 maxLightLevel = 20.0
+visionLightLevel = 10.0
 
 [node name="Enemy5" parent="Node2D" instance=ExtResource( 3 )]
 position = Vector2( 192, 88 )
 rotation = 1.5708
-visionLightLevel = 10.0
 guardPostLocation = Vector2( 192, 88 )
 targetPath = NodePath("../../Character")
 minLightLevel = 10.0
 maxLightLevel = 20.0
+visionLightLevel = 10.0
 
 [node name="Enemy6" parent="Node2D" instance=ExtResource( 3 )]
 position = Vector2( 128, 88 )
 rotation = 1.5708
-visionLightLevel = 10.0
 guardPostLocation = Vector2( 128, 88 )
 targetPath = NodePath("../../Character")
 minLightLevel = 10.0
 maxLightLevel = 20.0
+visionLightLevel = 10.0
 
 [node name="Enemy7" parent="Node2D" instance=ExtResource( 3 )]
 position = Vector2( 64, 88 )
 rotation = 1.5708
-visionLightLevel = 10.0
 guardPostLocation = Vector2( 64, 88 )
 targetPath = NodePath("../../Character")
 minLightLevel = 10.0
 maxLightLevel = 20.0
+visionLightLevel = 10.0
 
 [node name="Enemy8" parent="Node2D" instance=ExtResource( 3 )]
 position = Vector2( 64, 136 )
 rotation = -1.5708
-visionLightLevel = 10.0
 guardPostLocation = Vector2( 64, 136 )
 targetPath = NodePath("../../Character")
 minLightLevel = 10.0
 maxLightLevel = 20.0
+visionLightLevel = 10.0
 
 [node name="Enemy9" parent="Node2D" instance=ExtResource( 3 )]
 position = Vector2( 128, 136 )
 rotation = -1.5708
-visionLightLevel = 10.0
 guardPostLocation = Vector2( 128, 136 )
 targetPath = NodePath("../../Character")
 minLightLevel = 10.0
 maxLightLevel = 20.0
+visionLightLevel = 10.0
 
 [node name="Enemy10" parent="Node2D" instance=ExtResource( 3 )]
 position = Vector2( 192, 136 )
 rotation = -1.5708
-visionLightLevel = 10.0
 guardPostLocation = Vector2( 192, 136 )
 targetPath = NodePath("../../Character")
 minLightLevel = 10.0
 maxLightLevel = 20.0
+visionLightLevel = 10.0
 
 [node name="Enemy11" parent="Node2D" instance=ExtResource( 3 )]
 position = Vector2( 256, 136 )
 rotation = -1.5708
-visionLightLevel = 10.0
 guardPostLocation = Vector2( 256, 136 )
 targetPath = NodePath("../../Character")
 minLightLevel = 10.0
 maxLightLevel = 20.0
+visionLightLevel = 10.0
 
 [node name="Enemy12" parent="Node2D" instance=ExtResource( 3 )]
 position = Vector2( 320, 136 )
 rotation = -1.5708
-visionLightLevel = 10.0
 guardPostLocation = Vector2( 320, 136 )
 targetPath = NodePath("../../Character")
 minLightLevel = 10.0
 maxLightLevel = 20.0
+visionLightLevel = 10.0
 
 [node name="Enemy13" parent="Node2D" instance=ExtResource( 3 )]
 position = Vector2( -64, 28 )
 rotation = 1.5708
-visionLightLevel = 10.0
 patrolPoints = [ Vector2( -64, 192 ) ]
 guardPostLocation = Vector2( -64, 28 )
 targetPath = NodePath("../../Character")
 minLightLevel = 10.0
 maxLightLevel = 20.0
+visionLightLevel = 10.0
 lightActivated = true
 
 [node name="Enemy14" parent="Node2D" instance=ExtResource( 3 )]
 position = Vector2( -160, 144 )
 rotation = 1.5708
-visionLightLevel = 10.0
 patrolPoints = [ Vector2( -160, 192 ) ]
 guardPostLocation = Vector2( -160, 144 )
 targetPath = NodePath("../../Character")
 minLightLevel = 10.0
 maxLightLevel = 20.0
+visionLightLevel = 10.0
 lightActivated = true
 
 [node name="Enemy15" parent="Node2D" instance=ExtResource( 3 )]
 position = Vector2( -256, 80 )
 rotation = 3.14159
-visionLightLevel = 10.0
 patrolPoints = [ Vector2( -384, 80 ) ]
 guardPostLocation = Vector2( -256, 80 )
 targetPath = NodePath("../../Character")
 minLightLevel = 10.0
 maxLightLevel = 20.0
+visionLightLevel = 10.0
 lightActivated = true
 
 [node name="Enemy16" parent="Node2D" instance=ExtResource( 3 )]
 position = Vector2( -480, 192 )
 rotation = 3.14159
-visionLightLevel = 10.0
 patrolPoints = [ Vector2( -608, 192 ), Vector2( -608, 32 ), Vector2( -480, 32 ) ]
 guardPostLocation = Vector2( -480, 192 )
 targetPath = NodePath("../../Character")
 minLightLevel = 10.0
 maxLightLevel = 20.0
+visionLightLevel = 10.0
 lightActivated = true
 
 [node name="Enemy17" parent="Node2D" instance=ExtResource( 3 )]
 position = Vector2( -608, 32 )
-visionLightLevel = 10.0
 patrolPoints = [ Vector2( -480, 32 ), Vector2( -480, 192 ), Vector2( -608, 192 ) ]
 guardPostLocation = Vector2( -608, 32 )
 targetPath = NodePath("../../Character")
 minLightLevel = 10.0
 maxLightLevel = 20.0
+visionLightLevel = 10.0
 lightActivated = true
 
 [node name="Enemy18" parent="Node2D" instance=ExtResource( 3 )]
 position = Vector2( -784, 112 )
-visionLightLevel = 10.0
 patrolPoints = [ Vector2( -608, 112 ), Vector2( -608, 192 ), Vector2( -784, 192 ) ]
 guardPostLocation = Vector2( -784, 112 )
 targetPath = NodePath("../../Character")
 minLightLevel = 10.0
 maxLightLevel = 20.0
+visionLightLevel = 10.0
 lightActivated = true
 
 [node name="Enemy19" parent="Node2D" instance=ExtResource( 3 )]
 position = Vector2( -728, 48.8 )
-visionLightLevel = 10.0
 guardPostLocation = Vector2( -728, 48.8 )
 targetPath = NodePath("../../Character")
 minLightLevel = 10.0
 maxLightLevel = 20.0
+visionLightLevel = 10.0
 lightActivated = true
 
 [node name="Character" parent="." instance=ExtResource( 4 )]
