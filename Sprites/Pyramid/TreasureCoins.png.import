@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/TreasureCoins.png-20d328b5dbe5e681557fcd66f64219b5.stex"
+path="res://.import/TreasureCoins.png-3a5bd5b5f0ec2e27bc59b52535e57274.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Sprites/Pyramid/TreasureCoins.png"
-dest_files=[ "res://.import/TreasureCoins.png-20d328b5dbe5e681557fcd66f64219b5.stex" ]
+source_file="res://sprites/Pyramid/TreasureCoins.png"
+dest_files=[ "res://.import/TreasureCoins.png-3a5bd5b5f0ec2e27bc59b52535e57274.stex" ]
 
 [params]
 
