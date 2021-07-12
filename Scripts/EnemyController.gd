@@ -8,7 +8,7 @@ export (Array, float) onready var guardingDegrees
 export (Vector2) onready var guardPostLocation
 export (NodePath) onready var targetPath
 
-onready var navigator = $"../Navigation2D"
+onready var navigator = $"../../Navigation2D"
 onready var fsm: StateMachine = $"StateMachine"
 onready var mover = $"Mover"
 

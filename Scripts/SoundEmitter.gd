@@ -50,8 +50,8 @@ func emitSound():
 	for enemy in enemies:
 		enemy.detectSound(get_parent())
 	
-	var particleNode = preload("res://scenes/Particles/StepIndicatorParticles.tscn").instance()
-	var particleMaterial = preload("res://scenes/Particles/StepIndicatorParticles.tres")
+	var particleNode = preload("res://Scenes/Particles/StepIndicatorParticles.tscn").instance()
+	var particleMaterial = preload("res://Scenes/Particles/StepIndicatorParticles.tres")
 	particleMaterial.initial_velocity = get_node("../SoundRadiusArea2D/CollisionShape2D").shape.radius 
 	particleNode.process_material = particleMaterial
 	get_parent().get_parent().add_child(particleNode)

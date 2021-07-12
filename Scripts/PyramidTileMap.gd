@@ -1,6 +1,6 @@
 extends TileMap
 
-onready var pressurePlateScene = preload("res://scenes/PressurePlate.tscn")
+onready var pressurePlateScene = preload("res://Scenes/PressurePlateDart.tscn")
 
 func _ready():
 	generatePressurePlates()

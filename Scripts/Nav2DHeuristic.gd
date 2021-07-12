@@ -3,7 +3,7 @@
 tool
 extends Navigation2D
 
-export(int)               var agent_radius
+export(int) var agent_radius
 export(NavigationPolygon) var current_navigation_polygon
 
 enum SMOOTH {ROUND = Geometry.JOIN_ROUND, MITER = Geometry.JOIN_MITER, SQUARE = Geometry.JOIN_SQUARE}

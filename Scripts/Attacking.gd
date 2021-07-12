@@ -6,8 +6,8 @@ var hasAttacked = false
 var canMove = true
 var _timer
 var target = null
-const ATTACK = preload("res://scenes/Attack.tscn")
-var characterController = load("res://scripts/CharacterController.gd").new()
+const ATTACK = preload("res://Scenes/Attack.tscn")
+var characterController = load("res://Scripts/CharacterController.gd").new()
 var distanceToTarget
 
 func setUp(parentNode):
@@ -58,7 +58,7 @@ func _on_Timer_timeout():
 	canMove = true
 	
 	if distanceToTarget < 20:
-		get_tree().change_scene("res://scenes/GameOver.tscn")
+		get_tree().change_scene("res://Scenes/GameOver.tscn")
 
 func handleTargetDetected(_target):
 	target = _target

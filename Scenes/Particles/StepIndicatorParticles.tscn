@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://Scenes/Particles/StepIndicatorParticles.tres" type="Material" id=1]
+[ext_resource path="res://Scripts/StepIndicatorParticles.gd" type="Script" id=2]
+
+
+[node name="StepIndicatorParticles" type="Particles2D"]
+amount = 1000
+one_shot = true
+speed_scale = 2.0
+explosiveness = 1.0
+process_material = ExtResource( 1 )
+script = ExtResource( 2 )

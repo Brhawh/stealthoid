@@ -5,7 +5,6 @@ var fsm: StateMachine
 onready var eldestParent = get_parent().get_parent()
 
 func enter():
-	eldestParent.get_node("AnimatedSprite").play("Idle_Transition")
 	return
 
 func exit(next_state):
@@ -17,6 +16,23 @@ func process(delta):
 	return delta
 
 func physics_process(delta):
+	if eldestParent.direction == 1:
+		eldestParent.get_node("AnimatedSprite").play("IdleBack")
+	elif eldestParent.direction == 2:
+		eldestParent.get_node("AnimatedSprite").play("IdleBack")
+	elif eldestParent.direction == 3:
+		eldestParent.get_node("AnimatedSprite").play("IdleBack")
+	elif eldestParent.direction == 4:
+		eldestParent.get_node("AnimatedSprite").play("IdleLeft")
+	elif eldestParent.direction == 5:
+		eldestParent.get_node("AnimatedSprite").play("IdleRight")
+	elif eldestParent.direction == 6:
+		eldestParent.get_node("AnimatedSprite").play("IdleFront")
+	elif eldestParent.direction == 7:
+		eldestParent.get_node("AnimatedSprite").play("IdleFront")
+	elif eldestParent.direction == 8:
+		eldestParent.get_node("AnimatedSprite").play("IdleFront")
+	
 	if eldestParent.velocity and Input.is_action_pressed("run"):
 		exit("Running")
 	elif eldestParent.velocity:
