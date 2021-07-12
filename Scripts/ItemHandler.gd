@@ -15,5 +15,3 @@ func add_item_in_range(itemNode):
 func remove_item_out_range(itemNode):
 	itemsInRange.remove(itemsInRange.find(itemNode))
 	print(itemsInRange)
-
-

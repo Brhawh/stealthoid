@@ -26,12 +26,18 @@ func physics_process(delta):
 		eldestParent.get_node("AnimatedSprite").play("IdleLeft")
 	elif eldestParent.direction == 5:
 		eldestParent.get_node("AnimatedSprite").play("IdleRight")
-	elif eldestParent.direction == 6:
+	elif eldestParent.direction == 6 && eldestParent.torchOn == false:
 		eldestParent.get_node("AnimatedSprite").play("IdleFront")
-	elif eldestParent.direction == 7:
+	elif eldestParent.direction == 7 && eldestParent.torchOn == false:
 		eldestParent.get_node("AnimatedSprite").play("IdleFront")
-	elif eldestParent.direction == 8:
+	elif eldestParent.direction == 8 && eldestParent.torchOn == false:
 		eldestParent.get_node("AnimatedSprite").play("IdleFront")
+	elif eldestParent.direction == 6 && eldestParent.torchOn == true:
+		eldestParent.get_node("AnimatedSprite").play("IdleFrontTorch")
+	elif eldestParent.direction == 7 && eldestParent.torchOn == true:
+		eldestParent.get_node("AnimatedSprite").play("IdleFrontTorch")
+	elif eldestParent.direction == 8 && eldestParent.torchOn == true:
+		eldestParent.get_node("AnimatedSprite").play("IdleFrontTorch")
 	
 	if eldestParent.velocity and Input.is_action_pressed("run"):
 		exit("Running")
