@@ -42,6 +42,10 @@ config/name="SuperStealthyWealthyGame"
 run/main_scene="res://scenes/PyramidLevel/LeftPath1/LeftPathRoom1.tscn"
 config/icon="res://sprites/icon.png"
 
+[display]
+
+window/size/height=768
+
 [importer_defaults]
 
 texture={
