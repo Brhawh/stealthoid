@@ -47,7 +47,7 @@ visionLightLevel = 9.0
 rotation = -1.5708
 frames = SubResource( 1 )
 animation = "WalkFront"
-frame = 3
+frame = 2
 playing = true
 __meta__ = {
 "_edit_lock_": true

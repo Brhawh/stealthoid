@@ -20,30 +20,15 @@
 
 [resource]
 animations = [ {
+"frames": [ ExtResource( 12 ), ExtResource( 11 ), ExtResource( 12 ), ExtResource( 8 ) ],
+"loop": true,
+"name": "WalkFront",
+"speed": 5.0
+}, {
 "frames": [ ExtResource( 15 ), ExtResource( 17 ), ExtResource( 15 ), ExtResource( 16 ) ],
 "loop": true,
 "name": "IdleFrontTorch",
 "speed": 10.0
-}, {
-"frames": [ ExtResource( 9 ) ],
-"loop": true,
-"name": "IdleRight",
-"speed": 5.0
-}, {
-"frames": [ ExtResource( 7 ), ExtResource( 3 ), ExtResource( 7 ), ExtResource( 5 ) ],
-"loop": true,
-"name": "WalkBack",
-"speed": 5.0
-}, {
-"frames": [ ExtResource( 12 ), ExtResource( 13 ), ExtResource( 14 ), ExtResource( 13 ) ],
-"loop": true,
-"name": "IdleFront",
-"speed": 2.0
-}, {
-"frames": [ ExtResource( 9 ), ExtResource( 6 ), ExtResource( 9 ), ExtResource( 1 ) ],
-"loop": true,
-"name": "WalkRight",
-"speed": 5.0
 }, {
 "frames": [ ExtResource( 7 ) ],
 "loop": true,
@@ -55,13 +40,28 @@ animations = [ {
 "name": "WalkLeft",
 "speed": 5.0
 }, {
+"frames": [ ExtResource( 9 ) ],
+"loop": true,
+"name": "IdleRight",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 9 ), ExtResource( 6 ), ExtResource( 9 ), ExtResource( 1 ) ],
+"loop": true,
+"name": "WalkRight",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 12 ), ExtResource( 13 ), ExtResource( 14 ), ExtResource( 13 ) ],
+"loop": true,
+"name": "IdleFront",
+"speed": 2.0
+}, {
 "frames": [ ExtResource( 10 ) ],
 "loop": true,
 "name": "IdleLeft",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 12 ), ExtResource( 11 ), ExtResource( 12 ), ExtResource( 8 ) ],
+"frames": [ ExtResource( 7 ), ExtResource( 3 ), ExtResource( 7 ), ExtResource( 5 ) ],
 "loop": true,
-"name": "WalkFront",
+"name": "WalkBack",
 "speed": 5.0
 } ]

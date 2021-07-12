@@ -54,7 +54,7 @@ __meta__ = {
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 frames = ExtResource( 3 )
 animation = "IdleFront"
-frame = 1
+frame = 3
 playing = true
 
 [node name="StateMachine" type="Node" parent="."]
