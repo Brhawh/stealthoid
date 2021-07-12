@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/Mascot.png-053c70109320f992b227de34c58457b1.stex"
+path="res://.import/Mascot.png-ef7df028c6a9683e52dac4ef96f51471.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Sprites/Mascot.png"
-dest_files=[ "res://.import/Mascot.png-053c70109320f992b227de34c58457b1.stex" ]
+source_file="res://sprites/Mascot.png"
+dest_files=[ "res://.import/Mascot.png-ef7df028c6a9683e52dac4ef96f51471.stex" ]
 
 [params]
 

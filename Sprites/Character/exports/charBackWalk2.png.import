@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/charBackWalk2.png-8cb8cfc28b35945442dbfe5288aaf9bc.stex"
+path="res://.import/charBackWalk2.png-ff1aa06528552d7b1618332d8eea7eb3.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Sprites/Character/exports/charBackWalk2.png"
-dest_files=[ "res://.import/charBackWalk2.png-8cb8cfc28b35945442dbfe5288aaf9bc.stex" ]
+source_file="res://sprites/Character/exports/charBackWalk2.png"
+dest_files=[ "res://.import/charBackWalk2.png-ff1aa06528552d7b1618332d8eea7eb3.stex" ]
 
 [params]
 
