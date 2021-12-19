@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/attackSwipe(5).png-f0a47f1e09d5434e64d299ceec008593.stex"
+path="res://.import/attackSwipe(5).png-47bb7b47f7c512b806a77d3d6aa05c2d.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Sprites/attackSwipe(5).png"
-dest_files=[ "res://.import/attackSwipe(5).png-f0a47f1e09d5434e64d299ceec008593.stex" ]
+source_file="res://sprites/attackSwipe(5).png"
+dest_files=[ "res://.import/attackSwipe(5).png-47bb7b47f7c512b806a77d3d6aa05c2d.stex" ]
 
 [params]
 

@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/charRightWalk1.png-34e669a9056c5957bc1c08d864642e17.stex"
+path="res://.import/charRightWalk1.png-ffe9c488a689f912b065bbed6c726475.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Sprites/Character/exports/charRightWalk1.png"
-dest_files=[ "res://.import/charRightWalk1.png-34e669a9056c5957bc1c08d864642e17.stex" ]
+source_file="res://sprites/Character/exports/charRightWalk1.png"
+dest_files=[ "res://.import/charRightWalk1.png-ffe9c488a689f912b065bbed6c726475.stex" ]
 
 [params]
 

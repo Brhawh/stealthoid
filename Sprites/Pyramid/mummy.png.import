@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/mummy.png-869991c5acbfaae4231ddc8f3c063367.stex"
+path="res://.import/mummy.png-18b499351aeae07dbd5bda462a024573.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Sprites/Pyramid/mummy.png"
-dest_files=[ "res://.import/mummy.png-869991c5acbfaae4231ddc8f3c063367.stex" ]
+source_file="res://sprites/Pyramid/mummy.png"
+dest_files=[ "res://.import/mummy.png-18b499351aeae07dbd5bda462a024573.stex" ]
 
 [params]
 

@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/PyramidTileMapISO.png-9faea93073ecaa98acf1893af2a2b2c3.stex"
+path="res://.import/PyramidTileMapISO.png-694b90a7927bb5d1f8e94b5093655415.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Sprites/Pyramid/exports/PyramidTileMapISO.png"
-dest_files=[ "res://.import/PyramidTileMapISO.png-9faea93073ecaa98acf1893af2a2b2c3.stex" ]
+source_file="res://sprites/Pyramid/exports/PyramidTileMapISO.png"
+dest_files=[ "res://.import/PyramidTileMapISO.png-694b90a7927bb5d1f8e94b5093655415.stex" ]
 
 [params]
 

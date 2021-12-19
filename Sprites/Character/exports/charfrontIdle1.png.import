@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/charfrontIdle1.png-51b3badad1d07c18ea7dddf0fb03bd58.stex"
+path="res://.import/charfrontIdle1.png-67fb9f1546f217ef6c41d34b554a571b.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Sprites/Character/exports/charfrontIdle1.png"
-dest_files=[ "res://.import/charfrontIdle1.png-51b3badad1d07c18ea7dddf0fb03bd58.stex" ]
+source_file="res://sprites/Character/exports/charfrontIdle1.png"
+dest_files=[ "res://.import/charfrontIdle1.png-67fb9f1546f217ef6c41d34b554a571b.stex" ]
 
 [params]
 

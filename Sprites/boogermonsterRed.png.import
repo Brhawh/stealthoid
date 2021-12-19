@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/boogermonsterRed.png-6ab32b900152341d755a7d97d7f3b900.stex"
+path="res://.import/boogermonsterRed.png-3408c141da1718ff6fa21765988c9c0e.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Sprites/boogermonsterRed.png"
-dest_files=[ "res://.import/boogermonsterRed.png-6ab32b900152341d755a7d97d7f3b900.stex" ]
+source_file="res://sprites/boogermonsterRed.png"
+dest_files=[ "res://.import/boogermonsterRed.png-3408c141da1718ff6fa21765988c9c0e.stex" ]
 
 [params]
 

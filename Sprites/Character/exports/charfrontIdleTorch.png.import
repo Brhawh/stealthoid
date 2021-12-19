@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/charfrontIdleTorch.png-db4168ec19436445973a9851f6e7aa1c.stex"
+path="res://.import/charfrontIdleTorch.png-213571025f4bf39d5ec65a1199e40125.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Sprites/Character/exports/charfrontIdleTorch.png"
-dest_files=[ "res://.import/charfrontIdleTorch.png-db4168ec19436445973a9851f6e7aa1c.stex" ]
+source_file="res://sprites/Character/exports/charfrontIdleTorch.png"
+dest_files=[ "res://.import/charfrontIdleTorch.png-213571025f4bf39d5ec65a1199e40125.stex" ]
 
 [params]
 

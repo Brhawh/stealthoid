@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/full_light_mask.png-fd1912d45ab0e36a22f6ae7375580270.stex"
+path="res://.import/full_light_mask.png-f0007795d6b43789c1e60930ab71ce9d.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Sprites/lighting/full_light_mask.png"
-dest_files=[ "res://.import/full_light_mask.png-fd1912d45ab0e36a22f6ae7375580270.stex" ]
+source_file="res://sprites/lighting/full_light_mask.png"
+dest_files=[ "res://.import/full_light_mask.png-f0007795d6b43789c1e60930ab71ce9d.stex" ]
 
 [params]
 

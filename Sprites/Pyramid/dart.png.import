@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/dart.png-930b6941935499ea2fdf7961ae697df9.stex"
+path="res://.import/dart.png-5292fe6a570ab3cbd1466c15002933e1.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Sprites/Pyramid/dart.png"
-dest_files=[ "res://.import/dart.png-930b6941935499ea2fdf7961ae697df9.stex" ]
+source_file="res://sprites/Pyramid/dart.png"
+dest_files=[ "res://.import/dart.png-5292fe6a570ab3cbd1466c15002933e1.stex" ]
 
 [params]
 
