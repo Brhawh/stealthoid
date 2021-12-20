@@ -1,8 +1,8 @@
-[gd_scene load_steps=22 format=2]
+[gd_scene load_steps=30 format=2]
 
 [ext_resource path="res://Scripts/EnemyController.gd" type="Script" id=1]
 [ext_resource path="res://Assets/patrolling_indicator.png" type="Texture" id=2]
-[ext_resource path="res://Sprites/Pyramid/mummy.png" type="Texture" id=3]
+[ext_resource path="res://Sprites/Pyramid/mummy/exports/mummyWalkRight1.png" type="Texture" id=3]
 [ext_resource path="res://Scripts/TorchLight.gd" type="Script" id=4]
 [ext_resource path="res://Sprites/lighting/FirePointLight.png" type="Texture" id=5]
 [ext_resource path="res://Scripts/Detector.gd" type="Script" id=6]
@@ -11,25 +11,63 @@
 [ext_resource path="res://Scripts/Guarding.gd" type="Script" id=9]
 [ext_resource path="res://Scripts/EnemyStateMachine.gd" type="Script" id=10]
 [ext_resource path="res://Scripts/Mover.gd" type="Script" id=11]
-[ext_resource path="res://Sprites/Pyramid/mummy(2).png" type="Texture" id=12]
-[ext_resource path="res://Sprites/Pyramid/mummy(1).png" type="Texture" id=13]
+[ext_resource path="res://Sprites/Pyramid/mummy/exports/mummyIdleLeft.png" type="Texture" id=12]
+[ext_resource path="res://Sprites/Pyramid/mummy/exports/mummyWalkLeft1.png" type="Texture" id=13]
 [ext_resource path="res://Scripts/Patrolling.gd" type="Script" id=14]
 [ext_resource path="res://Scripts/Attacking.gd" type="Script" id=15]
 [ext_resource path="res://Scripts/Sleeping.gd" type="Script" id=16]
 [ext_resource path="res://Sprites/Pyramid/mummy/exports/mummyWalk1.png" type="Texture" id=17]
 [ext_resource path="res://Sprites/Pyramid/mummy/exports/mummyIdle.png" type="Texture" id=18]
 [ext_resource path="res://Sprites/Pyramid/mummy/exports/mummyWalk2.png" type="Texture" id=19]
+[ext_resource path="res://Sprites/Pyramid/mummy/exports/mummyIdleRight.png" type="Texture" id=20]
+[ext_resource path="res://Sprites/Pyramid/mummy/exports/mummyWalkLeft2.png" type="Texture" id=21]
+[ext_resource path="res://Sprites/Pyramid/mummy/exports/mummyWalkRight2.png" type="Texture" id=22]
+[ext_resource path="res://Sprites/Pyramid/mummy/exports/mummyWalkBack1.png" type="Texture" id=23]
+[ext_resource path="res://Sprites/Pyramid/mummy/exports/mummyIdle2.png" type="Texture" id=24]
+[ext_resource path="res://Sprites/Pyramid/mummy/exports/mummyIdle1.png" type="Texture" id=25]
+[ext_resource path="res://Sprites/Pyramid/mummy/exports/mummyWalkBack2.png" type="Texture" id=26]
+[ext_resource path="res://Sprites/Pyramid/mummy/exports/mummyIdleBack.png" type="Texture" id=27]
 
 [sub_resource type="SpriteFrames" id=1]
 animations = [ {
-"frames": [ ExtResource( 3 ), ExtResource( 13 ), ExtResource( 12 ) ],
-"loop": true,
-"name": "default",
-"speed": 10.0
-}, {
 "frames": [ ExtResource( 18 ), ExtResource( 17 ), ExtResource( 18 ), ExtResource( 19 ) ],
 "loop": true,
 "name": "WalkFront",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 12 ), ExtResource( 13 ), ExtResource( 12 ), ExtResource( 21 ) ],
+"loop": true,
+"name": "WalkLeft",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 20 ), ExtResource( 3 ), ExtResource( 20 ), ExtResource( 22 ) ],
+"loop": true,
+"name": "WalkRight",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 20 ) ],
+"loop": true,
+"name": "IdleRight",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 27 ) ],
+"loop": true,
+"name": "IdleBack",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 12 ) ],
+"loop": true,
+"name": "IdleLeft",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 18 ), ExtResource( 25 ), ExtResource( 24 ), ExtResource( 25 ), ExtResource( 18 ) ],
+"loop": true,
+"name": "IdleFront",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 27 ), ExtResource( 23 ), ExtResource( 27 ), ExtResource( 26 ) ],
+"loop": true,
+"name": "WalkBack",
 "speed": 5.0
 } ]
 
@@ -44,9 +82,8 @@ script = ExtResource( 1 )
 visionLightLevel = 9.0
 
 [node name="EnemySprite" type="AnimatedSprite" parent="."]
-rotation = -1.5708
 frames = SubResource( 1 )
-animation = "WalkFront"
+animation = "IdleFront"
 frame = 2
 playing = true
 __meta__ = {
@@ -54,7 +91,6 @@ __meta__ = {
 }
 
 [node name="EnemyTorchLight" type="Area2D" parent="."]
-rotation = 1.5708
 collision_layer = 2
 script = ExtResource( 4 )
 __meta__ = {

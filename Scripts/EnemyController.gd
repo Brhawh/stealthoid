@@ -24,7 +24,8 @@ var rotationHandler = load("res://Scripts/RotationHandler.gd").new()
 func _ready():
 	# Set up enemy component nodes
 	get_node("Detector").setupTargetHandling(fsm, get_node(targetPath), visionLightLevel)
-	mover.setUp(self, navigator, rotationHandler)
+	print(navigator)
+	mover.setUp(self, navigator)
 	
 	# Set up finite state machine
 	var states = fsm.get_children()
@@ -46,6 +47,11 @@ func _physics_process(delta):
 	fsm.physics_process(delta)
 	mover.physics_process(delta)
 
+	if self.name == "Enemy":
+		print(mover.isMoving(), mover.getMoveDirection())
+	
+	setAnimation(mover.isMoving(), mover.getMoveDirection())
+
 func detectSound(soundSource):
 	var currentState = fsm.state.name
 	if currentState != "Chasing" and currentState != "Sleeping":
@@ -64,3 +70,15 @@ func updateSpeed(lightLevel):
 		fsm.enterSleep()
 	else:
 		fsm.wakeUp()
+		
+func setAnimation(isMoving, direction):
+	var animNode = get_node("EnemySprite")
+	if isMoving:
+		if direction < 45 and direction > -45:
+			animNode.play("WalkRight")
+		elif direction > 45 and direction < 135:
+			animNode.play("WalkFront")
+		elif (direction > 135 and direction < 325) or (direction < -135 and direction > - 325):
+			animNode.play("WalkLeft")
+		elif direction < -45 and direction > -135:
+			animNode.play("WalkBack")
