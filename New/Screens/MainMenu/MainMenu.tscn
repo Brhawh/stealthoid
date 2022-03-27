@@ -1,0 +1,36 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://Screens/MainMenu/background_img.jpg" type="Texture" id=1]
+[ext_resource path="res://Screens/MainMenu/menu_button.tscn" type="PackedScene" id=2]
+
+[node name="MainMenuScreen" type="Node2D"]
+
+[node name="background_image" type="Sprite" parent="."]
+position = Vector2( 360, 640 )
+scale = Vector2( 0.206363, 0.293511 )
+texture = ExtResource( 1 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="menu_new_game" parent="." instance=ExtResource( 2 )]
+margin_left = 160.0
+margin_top = 800.0
+margin_right = 544.0
+margin_bottom = 928.0
+text = "New Game"
+reference_path = "res://Levels/Level_1/LeftPathRoom1.tscn"
+
+[node name="menu_options" parent="." instance=ExtResource( 2 )]
+margin_left = 160.0
+margin_top = 944.0
+margin_right = 544.0
+margin_bottom = 1072.0
+text = "Options"
+
+[node name="menu_exit" parent="." instance=ExtResource( 2 )]
+margin_left = 160.0
+margin_top = 1088.0
+margin_right = 544.0
+margin_bottom = 1216.0
+text = "Exit"

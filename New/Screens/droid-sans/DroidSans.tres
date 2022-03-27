@@ -1,0 +1,11 @@
+[gd_resource type="DynamicFont" load_steps=2 format=2]
+
+[ext_resource path="res://fonts/droid-sans/DroidSans.ttf" type="DynamicFontData" id=1]
+
+[resource]
+size = 54
+extra_spacing_top = 20
+extra_spacing_bottom = 20
+extra_spacing_char = 20
+extra_spacing_space = 20
+font_data = ExtResource( 1 )

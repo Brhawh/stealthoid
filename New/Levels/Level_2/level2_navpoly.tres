@@ -1,0 +1,6 @@
+[gd_resource type="NavigationPolygon" format=2]
+
+[resource]
+vertices = PoolVector2Array( 240, 112, 240, 48, 272, 16, 272, 240, 160, 16, 160, 48, 240, 208, 160, 240, 160, 208, 128, 16, 128, -16, 160, -16, 128, 48, 160, 112, 128, 112, 16, 16, 48, 48, 16, 240, 48, 112, 160, 144, 128, 208, 128, 144, 128, 240, 160, 272, 128, 272, 48, 208, 240, 144, 48, 144 )
+polygons = [ PoolIntArray( 0, 1, 2, 3 ), PoolIntArray( 4, 2, 1, 5 ), PoolIntArray( 6, 3, 7, 8 ), PoolIntArray( 9, 10, 11, 4 ), PoolIntArray( 9, 4, 5, 12 ), PoolIntArray( 5, 13, 14, 12 ), PoolIntArray( 15, 9, 12, 16 ), PoolIntArray( 17, 15, 16, 18 ), PoolIntArray( 19, 8, 20, 21 ), PoolIntArray( 20, 8, 7, 22 ), PoolIntArray( 7, 23, 24, 22 ), PoolIntArray( 25, 20, 22, 17 ), PoolIntArray( 3, 6, 26 ), PoolIntArray( 0, 3, 26 ), PoolIntArray( 13, 0, 26, 19 ), PoolIntArray( 14, 13, 19, 21 ), PoolIntArray( 18, 14, 21, 27 ), PoolIntArray( 17, 18, 27 ), PoolIntArray( 17, 27, 25 ) ]
+outlines = [ PoolVector2Array( 48, 48, 48, 112, 128, 112, 128, 48 ), PoolVector2Array( 160, 48, 160, 112, 240, 112, 240, 48 ), PoolVector2Array( 48, 144, 48, 208, 128, 208, 128, 144 ), PoolVector2Array( 160, 144, 160, 208, 240, 208, 240, 144 ), PoolVector2Array( 16, 16, 128, 16, 128, -16, 160, -16, 160, 16, 272, 16, 272, 240, 160, 240, 160, 272, 128, 272, 128, 240, 16, 240 ) ]

@@ -1,0 +1,32 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://Screens/MainMenu/menu_button.tscn" type="PackedScene" id=1]
+
+[node name="GameOverScreen" type="CanvasLayer"]
+
+[node name="Title" type="Label" parent="."]
+margin_left = 48.0
+margin_top = 424.0
+margin_right = 668.0
+margin_bottom = 438.0
+size_flags_stretch_ratio = 0.0
+text = "GAME OVER"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="MainMenu" parent="." instance=ExtResource( 1 )]
+margin_left = 160.0
+margin_top = 944.0
+margin_right = 544.0
+margin_bottom = 1072.0
+text = "Main Menu"
+reference_path = "res://Screens/MainMenu/MainMenu.tscn"
+
+[node name="Quit" parent="." instance=ExtResource( 1 )]
+margin_left = 160.0
+margin_top = 1088.0
+margin_right = 544.0
+margin_bottom = 1216.0
+text = "Quit"
