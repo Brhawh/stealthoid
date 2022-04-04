@@ -6,7 +6,7 @@
 [ext_resource path="res://Entities/Humanoid/Character/Character.tscn" type="PackedScene" id=4]
 [ext_resource path="res://Levels/LevelEndArea.tscn" type="PackedScene" id=6]
 
-[sub_resource type="RectangleShape2D" id=2]
+[sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 24, 8 )
 
 [node name="Node2D" type="Node2D"]
@@ -41,4 +41,4 @@ position = Vector2( 72, 8 )
 reference_path = "res://Levels/Level_2/Level2.tscn"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="LevelEndArea"]
-shape = SubResource( 2 )
+shape = SubResource( 1 )

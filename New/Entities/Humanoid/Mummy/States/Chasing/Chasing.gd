@@ -45,7 +45,7 @@ func handleTargetLost():
 	target = null
 	
 func reachedTargetPosition():
-	exit("Investigating")
+	exit("Guarding")
 	
 func chaseSound(soundSource):
 	if target == null:

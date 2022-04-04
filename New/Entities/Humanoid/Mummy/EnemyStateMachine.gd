@@ -13,17 +13,15 @@ var sleeping_indicator = preload("res://Entities/Humanoid/Mummy/States/Sleeping/
 onready var indicator_sprite = $"../StateIndicatorSprite"
 
 func handleTargetDetected(target):
-	if state.name != "Chasing" && state.name != "Attacking":
-		get_node("Attacking").target = target
+	if state.name != "Chasing":
 		state.exit("Chasing")
+		get_parent().get_node("AnimationPlayer").play("Alerted")
 		get_node("Chasing").handleTargetDetected(target)
 	else:
 		state.handleTargetDetected(target)
 
 func handleTargetLost():
 	if state.name == "Chasing":
-		state.handleTargetLost()
-	if state.name == "Attacking":
 		state.handleTargetLost()
 		
 func change_to(new_state):
