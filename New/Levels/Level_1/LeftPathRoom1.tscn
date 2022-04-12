@@ -1,10 +1,11 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://Levels/Tiles_ISO.tres" type="TileSet" id=1]
 [ext_resource path="res://Levels/Level_1/level1_nav_poly_7_radius.tres" type="NavigationPolygon" id=2]
-[ext_resource path="res://Entities/Humanoid/Mummy/Mummy.tscn" type="PackedScene" id=3]
-[ext_resource path="res://Entities/Humanoid/Character/Character.tscn" type="PackedScene" id=4]
-[ext_resource path="res://Levels/LevelEndArea.tscn" type="PackedScene" id=6]
+[ext_resource path="res://Entities/Humanoid/Character/Character.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Entities/Humanoid/Mummy/Mummy.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Levels/LevelEndArea.tscn" type="PackedScene" id=5]
+[ext_resource path="res://Screens/Joystick.tscn" type="PackedScene" id=6]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 24, 8 )
@@ -23,22 +24,31 @@ tile_data = PoolIntArray( -131039, 2, 0, 0, 22, 0, 1, 22, 0, 2, 22, 0, 3, 23, 0,
 [node name="NavigationPolygonInstance" type="NavigationPolygonInstance" parent="Navigation2D"]
 navpoly = ExtResource( 2 )
 
-[node name="Character" parent="." instance=ExtResource( 4 )]
+[node name="Character" parent="." instance=ExtResource( 3 )]
 position = Vector2( 72, 224 )
 
 [node name="CanvasModulate" type="CanvasModulate" parent="."]
 color = Color( 0.27451, 0.27451, 0.27451, 1 )
 
-[node name="Enemy" parent="." instance=ExtResource( 3 )]
+[node name="Enemy" parent="." instance=ExtResource( 4 )]
 position = Vector2( 32, 192 )
 patrolPoints = [ Vector2( 112, 192 ), Vector2( 112, 32 ), Vector2( 32, 32 ) ]
 guardPostLocation = Vector2( 22, 192 )
 targetPath = NodePath("../Character")
 baseSpeed = 20.0
 
-[node name="LevelEndArea" parent="." instance=ExtResource( 6 )]
+[node name="LevelEndArea" parent="." instance=ExtResource( 5 )]
 position = Vector2( 72, 8 )
 reference_path = "res://Levels/Level_2/Level2.tscn"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="LevelEndArea"]
 shape = SubResource( 1 )
+
+[node name="Control" type="Control" parent="."]
+anchor_top = 1.0
+anchor_bottom = 1.0
+margin_top = -40.0
+margin_right = 40.0
+
+[node name="CanvasLayer" parent="Control" instance=ExtResource( 6 )]
+[connection signal="use_move_vector" from="Control/CanvasLayer" to="Character" method="_on_CanvasLayer_use_move_vector"]

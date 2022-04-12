@@ -64,8 +64,8 @@ func death():
 
 func _physics_process(delta):
 	fsm.physics_process(delta)
-	get_input()
-	velocity = move_and_slide(velocity)
+	# get_input()
+	# velocity = move_and_slide(velocity)
 
 func Door(var otherDoor, var offset):
 	position.y = get_node(otherDoor).get_position().y + offset
@@ -81,3 +81,7 @@ func setToRunningSpeed():
 func setToWalkingSpeed():
 	speed = walkingSpeed * transform.get_scale().x
 	$AnimatedSprite.speed_scale = 1
+
+
+func _on_CanvasLayer_use_move_vector(move_vector):
+	velocity = move_and_slide(move_vector * speed)
