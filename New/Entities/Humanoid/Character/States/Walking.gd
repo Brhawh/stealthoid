@@ -16,13 +16,13 @@ func process(delta):
 	return delta
 
 func physics_process(delta):
-	if eldestParent.direction in [1, 2, 3]:
+	if eldestParent.direction == 4:
 		eldestParent.get_node("AnimatedSprite").play("WalkBack")
-	elif eldestParent.direction == 4:
+	elif eldestParent.direction == 3:
 		eldestParent.get_node("AnimatedSprite").play("WalkLeft")
-	elif eldestParent.direction == 5:
+	elif eldestParent.direction == 1:
 		eldestParent.get_node("AnimatedSprite").play("WalkRight")
-	elif eldestParent.direction in [6, 7, 8]:
+	elif eldestParent.direction == 2:
 		eldestParent.get_node("AnimatedSprite").play("WalkFront")
 	
 	if Input.is_action_pressed("run"):

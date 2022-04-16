@@ -44,11 +44,5 @@ reference_path = "res://Levels/Level_2/Level2.tscn"
 [node name="CollisionShape2D" type="CollisionShape2D" parent="LevelEndArea"]
 shape = SubResource( 1 )
 
-[node name="Control" type="Control" parent="."]
-anchor_top = 1.0
-anchor_bottom = 1.0
-margin_top = -40.0
-margin_right = 40.0
-
-[node name="CanvasLayer" parent="Control" instance=ExtResource( 6 )]
-[connection signal="use_move_vector" from="Control/CanvasLayer" to="Character" method="_on_CanvasLayer_use_move_vector"]
+[node name="HUD" parent="." instance=ExtResource( 6 )]
+[connection signal="use_move_vector" from="HUD" to="Character" method="_on_CanvasLayer_use_move_vector"]

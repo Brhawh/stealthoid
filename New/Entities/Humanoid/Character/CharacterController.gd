@@ -26,35 +26,7 @@ func _ready():
 func get_input():		
 	velocity = Vector2()
 
-	var r = int(Input.is_action_pressed("right")) << 1
-	var l = int(Input.is_action_pressed("left")) << 2
-	var d = int(Input.is_action_pressed("down")) << 3
-	var u = int(Input.is_action_pressed("up")) << 4
-	var n = r + l + d + u
-	if n == d:
-		direction = 6
-	elif n == l:
-		direction = 4
-	elif n == u:
-		direction = 1
-	elif n == r: 
-		direction = 5
-	elif n == (u+l):
-		direction = 2
-	elif n == (u+r):
-		direction = 3
-	elif n == (d+l):
-		direction = 7
-	elif n == (d+r):
-		direction = 8
-	if Input.is_action_pressed('right'):
-		velocity.x += 1
-	if Input.is_action_pressed('left'):
-		velocity.x -= 1
-	if Input.is_action_pressed('down'):
-		velocity.y += 1
-	if Input.is_action_pressed('up'):
-		velocity.y -= 1
+	
 
 	velocity = velocity.normalized() * speed
 
@@ -84,4 +56,17 @@ func setToWalkingSpeed():
 
 
 func _on_CanvasLayer_use_move_vector(move_vector):
+	var r = move_vector.x > 0
+	var u = move_vector.y < 0
+	
+	if abs(move_vector.x) > abs(move_vector.y):
+		if r:
+			direction = 1
+		else:
+			direction = 3
+	else:
+		if u:
+			direction = 4
+		else:
+			direction = 2
 	velocity = move_and_slide(move_vector * speed)
